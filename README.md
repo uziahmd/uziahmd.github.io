@@ -6,7 +6,6 @@ Design: an "instrument readout" — cool slate + an amber signal accent, Bricola
 ## Files
 - `index.html` — the whole site
 - `Uzair_Ahmed_Resume.pdf` — linked from the site
-- `assets/WorldQuant-Gold-Certificate.pdf` — linked from Recognition
 
 ## Preview locally
 Just open `index.html` in a browser (double-click, or `start index.html`).
