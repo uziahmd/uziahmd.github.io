@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Uzair Ahmed — AI / ML Researcher & Engineer</title>
+<meta name="description" content="Uzair Ahmed — AI/ML researcher and engineer building production vision-language and LLM systems backed by rigorous evaluation. KAIST · KPST." />
+<meta name="author" content="Uzair Ahmed" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Uzair Ahmed — AI / ML Researcher & Engineer" />
+<meta property="og:description" content="Building production vision-language and LLM systems backed by rigorous evaluation." />
+<meta property="og:url" content="https://uziahmd.github.io" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   TOKENS — "instrument readout": cool slate + a single amber signal
+   ============================================================ */
+:root{
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
+
+  /* Light theme (default) — cool off-white ground, slate ink, deep amber accent */
+  --bg:#f4f6f9;
+  --surface:#ffffff;
+  --surface-2:#eef1f5;
+  --ink:#111721;
+  --ink-soft:#48525f;
+  --ink-faint:#828d9d;
+  --line:#e0e5ec;
+  --line-strong:#cfd6df;
+  --accent:#a75f00;      /* deep amber — AA on light ground */
+  --accent-2:#c47606;
+  --signal:#f0a93b;      /* bright signal — dots / graphics / glow */
+  --accent-weak:rgba(199,118,6,.10);
+  --shadow:0 1px 2px rgba(16,23,33,.04),0 12px 30px -18px rgba(16,23,33,.22);
+  --radius:14px;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d121b;
+    --surface:#141b27;
+    --surface-2:#1a2230;
+    --ink:#e9edf4;
+    --ink-soft:#a6b0bf;
+    --ink-faint:#69748a;
+    --line:#222b3a;
+    --line-strong:#2e3849;
+    --accent:#f2ac43;
+    --accent-2:#f7bd63;
+    --signal:#f7b74f;
+    --accent-weak:rgba(242,172,67,.13);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 20px 44px -24px rgba(0,0,0,.7);
+  }
+}
+/* Explicit toggle wins over the media query in both directions */
+:root[data-theme="light"]{
+  --bg:#f4f6f9;--surface:#ffffff;--surface-2:#eef1f5;--ink:#111721;--ink-soft:#48525f;
+  --ink-faint:#828d9d;--line:#e0e5ec;--line-strong:#cfd6df;--accent:#a75f00;--accent-2:#c47606;
+  --signal:#f0a93b;--accent-weak:rgba(199,118,6,.10);
+  --shadow:0 1px 2px rgba(16,23,33,.04),0 12px 30px -18px rgba(16,23,33,.22);
+}
+:root[data-theme="dark"]{
+  --bg:#0d121b;--surface:#141b27;--surface-2:#1a2230;--ink:#e9edf4;--ink-soft:#a6b0bf;
+  --ink-faint:#69748a;--line:#222b3a;--line-strong:#2e3849;--accent:#f2ac43;--accent-2:#f7bd63;
+  --signal:#f7b74f;--accent-weak:rgba(242,172,67,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 20px 44px -24px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:1.0625rem;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#fff}
+
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.08;text-wrap:balance;letter-spacing:-.01em}
+
+/* Utility: mono label */
+.mono{font-family:var(--font-mono)}
+.eyebrow{
+  font-family:var(--font-mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+}
+
+/* ============================================================
+   LAYOUT — sticky index rail + scrolling dossier column
+   ============================================================ */
+.page{
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:266px minmax(0,1fr);
+  gap:0;
+  padding:0 clamp(18px,4vw,44px);
+}
+.rail{
+  position:sticky;top:0;align-self:start;height:100vh;
+  display:flex;flex-direction:column;
+  padding:38px 34px 30px 0;
+  border-right:1px solid var(--line);
+}
+.rail-top{margin-bottom:auto}
+.wordmark{
+  display:inline-flex;align-items:center;gap:11px;
+  font-family:var(--font-display);font-weight:800;font-size:1.32rem;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.signal-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--signal);flex:0 0 auto;
+  box-shadow:0 0 0 0 var(--signal);
+  animation:pulse 2.6s ease-out infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(240,169,59,.55)}
+  70%{box-shadow:0 0 0 9px rgba(240,169,59,0)}
+  100%{box-shadow:0 0 0 0 rgba(240,169,59,0)}
+}
+.rail-role{
+  margin-top:12px;font-family:var(--font-mono);font-size:.76rem;line-height:1.5;
+  color:var(--ink-faint);letter-spacing:.02em;max-width:15ch;
+}
+.rail-nav{display:flex;flex-direction:column;gap:2px;margin:30px 0}
+.rail-nav a{
+  display:flex;align-items:baseline;gap:12px;
+  padding:7px 0;font-size:.92rem;color:var(--ink-soft);
+  border-left:2px solid transparent;padding-left:0;
+  transition:color .18s ease;
+}
+.rail-nav a .n{
+  font-family:var(--font-mono);font-size:.7rem;color:var(--ink-faint);
+  letter-spacing:.05em;min-width:20px;transition:color .18s ease;
+}
+.rail-nav a:hover,.rail-nav a.active{color:var(--ink)}
+.rail-nav a:hover .n,.rail-nav a.active .n{color:var(--accent)}
+.rail-nav a.active{font-weight:600}
+
+.rail-bottom{display:flex;flex-direction:column;gap:16px;margin-top:auto}
+.rail-links{display:flex;flex-wrap:wrap;gap:7px}
+.rail-links a{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.03em;
+  color:var(--ink-soft);padding:5px 9px;border:1px solid var(--line);border-radius:7px;
+  transition:border-color .18s ease,color .18s ease,background .18s ease;
+}
+.rail-links a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-weak)}
+.theme-toggle{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink-faint);
+  background:none;border:1px solid var(--line);border-radius:7px;padding:6px 10px;
+  transition:border-color .18s ease,color .18s ease;
+}
+.theme-toggle:hover{color:var(--ink);border-color:var(--line-strong)}
+
+/* Main column */
+.main{padding:0 0 0 clamp(28px,4vw,64px);min-width:0}
+section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:34px}
+.section-head .idx{
+  font-family:var(--font-mono);font-size:.74rem;color:var(--accent);
+  letter-spacing:.08em;padding-top:.4em;
+}
+.section-head h2{font-size:clamp(1.5rem,3.2vw,2.05rem)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding-top:clamp(52px,9vh,104px);border-top:none}
+.hero .eyebrow{display:block;margin-bottom:20px}
+.hero h1{
+  font-size:clamp(2.7rem,7.4vw,5rem);font-weight:800;letter-spacing:-.035em;line-height:.98;
+}
+.hero h1 .amp{color:var(--accent);font-style:italic;font-weight:600}
+.hero-thesis{
+  margin-top:26px;font-size:clamp(1.14rem,2.3vw,1.44rem);line-height:1.5;
+  color:var(--ink-soft);max-width:34ch;font-weight:400;
+}
+.hero-thesis b{color:var(--ink);font-weight:600}
+.hero-meta{
+  margin-top:20px;font-family:var(--font-mono);font-size:.82rem;color:var(--ink-faint);
+  display:flex;flex-wrap:wrap;gap:6px 14px;letter-spacing:.01em;
+}
+.hero-meta span{white-space:nowrap}
+.hero-meta .sep{color:var(--line-strong)}
+
+/* signal strip */
+.signal-strip{
+  margin-top:40px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface);box-shadow:var(--shadow);overflow:hidden;
+}
+.signal-strip-head{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:11px 16px;border-bottom:1px solid var(--line);
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);
+}
+.signal-strip-head .live{display:inline-flex;align-items:center;gap:7px;color:var(--accent)}
+.signal-strip-head .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2.6s ease-out infinite}
+#signal{display:block;width:100%;height:72px}
+
+.cta-row{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--font-mono);font-size:.82rem;letter-spacing:.02em;font-weight:500;
+  padding:11px 17px;border-radius:9px;border:1px solid var(--line-strong);
+  color:var(--ink);background:var(--surface);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn .arw{transition:transform .16s ease}
+.btn:hover .arw{transform:translate(2px,-2px)}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-body{max-width:64ch;font-size:1.115rem;color:var(--ink-soft)}
+.about-body b{color:var(--ink);font-weight:600}
+.about-body p+p{margin-top:1.1em}
+
+/* ============================================================
+   ENTRIES (work / experience)
+   ============================================================ */
+.entry{
+  padding:30px 0;border-top:1px solid var(--line);
+}
+.entry:first-child{border-top:none;padding-top:4px}
+.entry-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px 24px;flex-wrap:wrap;
+}
+.entry-head h3{font-size:1.24rem;letter-spacing:-.015em}
+.entry-org{
+  margin-top:6px;font-family:var(--font-mono);font-size:.82rem;color:var(--accent);letter-spacing:.02em;
+}
+.entry-date{
+  font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint);white-space:nowrap;
+  letter-spacing:.03em;padding-top:3px;
+}
+.entry-desc{margin-top:14px;color:var(--ink-soft);max-width:70ch}
+.entry-points{margin:15px 0 0;list-style:none;display:flex;flex-direction:column;gap:9px;max-width:74ch}
+.entry-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:1.0025rem}
+.entry-points li::before{
+  content:"";position:absolute;left:2px;top:.68em;width:6px;height:6px;border-radius:2px;
+  background:var(--signal);transform:rotate(45deg);
+}
+.entry-points li b{color:var(--ink);font-weight:600}
+
+.readouts{
+  margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden;
+}
+.readout{background:var(--surface);padding:13px 15px}
+.readout-val{
+  font-family:var(--font-mono);font-weight:600;font-size:1.02rem;color:var(--accent);
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+}
+.readout-label{
+  margin-top:4px;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-faint);line-height:1.35;
+}
+
+.tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:7px}
+.tag{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.02em;color:var(--ink-soft);
+  padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);
+}
+.entry-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:16px}
+.tlink{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.78rem;
+  color:var(--accent);letter-spacing:.02em;border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:border-color .16s ease;
+}
+.tlink:hover{border-color:var(--accent)}
+.tlink .arw{transition:transform .16s ease}
+.tlink:hover .arw{transform:translate(2px,-2px)}
+.entry-note{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint)}
+
+/* sub-tracks list inside K&D lab */
+.tracks{margin-top:18px;display:grid;gap:12px}
+.track{
+  border:1px solid var(--line);border-radius:11px;padding:15px 17px;background:var(--surface);
+}
+.track h4{font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:-.01em}
+.track h4 .venue{
+  font-family:var(--font-mono);font-size:.66rem;font-weight:500;color:var(--accent);
+  letter-spacing:.05em;margin-left:9px;padding:2px 7px;border:1px solid var(--accent);border-radius:5px;
+  vertical-align:middle;white-space:nowrap;
+}
+.track p{margin-top:8px;font-size:.97rem;color:var(--ink-soft)}
+
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+.pubs{display:flex;flex-direction:column}
+.pub{
+  padding:20px 0;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:112px 1fr;gap:20px;align-items:baseline;
+}
+.pub:first-child{border-top:none}
+.pub-venue{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.03em;color:var(--accent);
+  line-height:1.5;
+}
+.pub-venue .yr{display:block;color:var(--ink-faint)}
+.pub-title{font-weight:600;color:var(--ink);font-size:1.045rem;line-height:1.4}
+.pub-authors{margin-top:5px;font-size:.92rem;color:var(--ink-faint)}
+.pub-authors .me{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.project{
+  display:flex;flex-direction:column;gap:10px;
+  border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;
+  background:var(--surface);box-shadow:var(--shadow);
+  transition:transform .18s ease,border-color .18s ease;
+}
+.project:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+.project-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.project h3{font-size:1.08rem;letter-spacing:-.015em}
+.project-year{font-family:var(--font-mono);font-size:.7rem;color:var(--ink-faint);white-space:nowrap}
+.project-role{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.project p{font-size:.95rem;color:var(--ink-soft);flex:1}
+.project-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:2px}
+
+/* ============================================================
+   STACK
+   ============================================================ */
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stack-group{background:var(--surface);padding:18px 20px}
+.stack-group h4{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:500;margin-bottom:11px;
+}
+.stack-group p{font-size:.94rem;color:var(--ink);line-height:1.7}
+.stack-group b{color:var(--accent);font-weight:600}
+
+/* ============================================================
+   AWARDS
+   ============================================================ */
+.awards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.award{
+  background:var(--surface);padding:16px 20px;display:flex;justify-content:space-between;
+  align-items:baseline;gap:18px;flex-wrap:wrap;
+}
+.award-name{font-size:1.02rem;color:var(--ink)}
+.award-name b{color:var(--ink);font-weight:700}
+.award-meta{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint);letter-spacing:.02em;white-space:nowrap}
+.award-meta a{color:var(--accent)}
+.award-meta a:hover{text-decoration:underline}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{padding:clamp(60px,8vw,90px) 0 46px;border-top:1px solid var(--line)}
+.foot-cta{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,4vw,2.6rem);letter-spacing:-.025em;max-width:16ch}
+.foot-cta .amp{color:var(--accent)}
+.foot-links{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+.colophon{
+  margin-top:44px;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint);
+  letter-spacing:.02em;line-height:1.6;
+}
+
+/* focus */
+a:focus-visible,button:focus-visible,.btn:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;
+}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .signal-dot,.signal-strip-head .live::before{animation:none}
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .page{grid-template-columns:1fr;padding:0 clamp(18px,5vw,30px)}
+  .rail{
+    position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);
+    padding:26px 0 20px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px 22px;
+  }
+  .rail-top{margin:0}
+  .rail-role{display:none}
+  .rail-nav{display:none}
+  .rail-bottom{flex-direction:row;align-items:center;margin:0 0 0 auto;gap:12px;flex-wrap:wrap}
+  .main{padding:0}
+  .pub{grid-template-columns:1fr;gap:6px}
+  .pub-venue{display:flex;gap:8px}
+  .pub-venue .yr{display:inline}
+}
+@media (max-width:520px){
+  .hero-thesis{max-width:100%}
+  .entry-head{flex-direction:column;gap:6px}
+  .cta-row .btn{flex:1 1 auto;justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ INDEX RAIL ============ -->
+  <aside class="rail">
+    <div class="rail-top">
+      <a class="wordmark" href="#top"><span class="signal-dot" aria-hidden="true"></span>Uzair Ahmed</a>
+      <p class="rail-role">AI / ML Researcher &amp; Engineer</p>
+    </div>
+    <nav class="rail-nav" aria-label="Sections">
+      <a href="#about"><span class="n">00</span> About</a>
+      <a href="#work"><span class="n">01</span> Selected Work</a>
+      <a href="#research"><span class="n">02</span> Publications</a>
+      <a href="#projects"><span class="n">03</span> Projects</a>
+      <a href="#stack"><span class="n">04</span> Stack</a>
+      <a href="#recognition"><span class="n">05</span> Recognition</a>
+    </nav>
+    <div class="rail-bottom">
+      <div class="rail-links">
+        <a href="https://github.com/uziahmd" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/uziahmd/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:uziahmd@outlook.com">Email</a>
+        <a href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <span id="themeIcon">◑</span><span id="themeLabel">Theme</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main" id="top">
+
+    <!-- HERO -->
+    <header class="hero">
+      <span class="eyebrow">AI / ML Researcher · Systems Engineer</span>
+      <h1>Uzair<br>Ahmed</h1>
+      <p class="hero-thesis">I build production <b>vision-language and LLM systems</b> — and the <b>rigorous evaluation</b> that proves they work.</p>
+      <div class="hero-meta">
+        <span>Daejeon, Korea</span><span class="sep">/</span>
+        <span>AI Researcher @ KPST</span><span class="sep">/</span>
+        <span>B.S. CS @ KAIST</span>
+      </div>
+
+      <div class="signal-strip" aria-hidden="true">
+        <div class="signal-strip-head">
+          <span>stream · inference readout</span>
+          <span class="live">live</span>
+        </div>
+        <canvas id="signal" width="1000" height="72"></canvas>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:uziahmd@outlook.com">Get in touch</a>
+        <a class="btn" href="https://github.com/uziahmd" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
+        <a class="btn" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) <span class="arw">↗</span></a>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-head"><span class="idx">00</span><h2>About</h2></div>
+      <div class="about-body reveal">
+        <p>I'm an AI researcher and engineer who takes systems from a research idea to something that runs — under real constraints, on real hardware, measured honestly. At <b>KPST</b> I shipped an infinite-stream industrial-safety vision-language model that watches never-ending camera feeds with <b>bounded memory</b> and emits schema-constrained hazard decisions to drive a live alarm system.</p>
+        <p>At KAIST's <b>Knowledge &amp; Democracy Lab</b> I research LLM reasoning and difficulty perception, VLM bias and interpretability, and LLM safety — adversarial prefills, many-shot jailbreaking, model introspection. Earlier, at <b>ICLab</b>, I co-authored an <b>IMWUT / Ubicomp 2024</b> reproducible mobile-sensing pipeline and led its personalization component. My strengths sit at the meeting point of PyTorch and Hugging Face fine-tuning, interpretability and evaluation-harness design, and reproducible experimentation.</p>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section id="work">
+      <div class="section-head"><span class="idx">01</span><h2>Selected Work</h2></div>
+
+      <!-- KPST -->
+      <article class="entry reveal">
+        <div class="entry-head">
+          <div>
+            <h3>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h3>
+            <div class="entry-org">KPST (Korea Platform Service Technology) — AI Researcher</div>
+          </div>
+          <span class="entry-date">Feb 2026 — Present</span>
+        </div>
+        <p class="entry-desc">A real-time safety system that watches a continuous, never-ending camera stream and emits one compact, schema-constrained JSON hazard decision per step to drive a downstream alarm — no separate object detector, the VLM makes the call end to end.</p>
+        <ul class="entry-points">
+          <li>Adapted <b>Qwen2.5-VL-7B</b> with <b>StreamingVLM</b>-style streaming attention (attention-sink + sliding-window KV cache, contiguous 3D RoPE) for <b>constant memory and per-step latency regardless of stream duration</b> — a camera can run for hours or days without KV growth or drift.</li>
+          <li>Designed a <b>two-stage LoRA SFT</b> pipeline (broad SFT, then event-centered annealing on hazard transitions) on a <b>single V100 32 GB</b>, freezing the vision tower.</li>
+          <li>Guaranteed <b>100% output validity</b> via FSM / schema-constrained decoding, and measured generalization on <b>held-out cameras never seen in training</b>.</li>
+        </ul>
+        <div class="readouts">
+          <div class="readout"><div class="readout-val">~2 Hz</div><div class="readout-label">Per-step decision</div></div>
+          <div class="readout"><div class="readout-val">100%</div><div class="readout-label">Valid JSON output</div></div>
+          <div class="readout"><div class="readout-val">O(1)</div><div class="readout-label">Memory · any length</div></div>
+          <div class="readout"><div class="readout-val">1×V100</div><div class="readout-label">LoRA fine-tune</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">PyTorch</span><span class="tag">Qwen2.5-VL</span><span class="tag">StreamingVLM</span>
+          <span class="tag">PEFT / LoRA</span><span class="tag">Constrained decoding</span><span class="tag">CUDA</span><span class="tag">FFmpeg</span>
+        </div>
+        <div class="entry-links">
+          <a class="tlink" href="https://github.com/uziahmd/streaming_hazard_" target="_blank" rel="noopener">github · streaming_hazard <span class="arw">↗</span></a>
+        </div>
+      </article>
+
+      <!-- K&D Lab -->
+      <article class="entry reveal">
+        <div class="entry-head">
+          <div>
+            <h3>LLM Reasoning, Safety &amp; VLM Interpretability</h3>
+            <div class="entry-org">Knowledge &amp; Democracy Lab, KAIST — Undergraduate Researcher</div>
+          </div>
+          <span class="entry-date">Aug 2025 — Feb 2026</span>
+        </div>
+        <p class="entry-desc">Four research tracks across LLM reasoning, model safety, and vision-language interpretability — building reproducible pipelines end to end.</p>
+        <div class="tracks">
+          <div class="track">
+            <h4>LLM Difficulty Perception<span class="venue">submitted · ACL 2026</span></h4>
+            <p>Built a sandboxed code-execution framework with strict I/O judging and a reasoning-eval suite over <b>4 benchmarks (658 problems) × 6 LLMs</b>; implemented the LoRA/QLoRA fine-tuning pipeline (TRL + PEFT) and curated AIME / E2H-Codeforces SFT data.</p>
+          </div>
+          <div class="track">
+            <h4>LLM Safety &amp; Introspection</h4>
+            <p>Reproducible SGLang + OpenRouter pipeline over HarmBench &amp; SocialHarmBench; implemented <b>ADVPrefix</b> end to end and reproduced Anthropic's <b>Many-Shot Jailbreaking</b> (Llama Guard scoring, attack-vs-shot-count analysis) across Gemma / Qwen / Llama.</p>
+          </div>
+          <div class="track">
+            <h4>VLM Ideology &amp; Interpretability</h4>
+            <p>Extended ideology-probing to VLMs: per-layer/head ridge-regression <b>linear probes</b> on DW-NOMINATE scores, inference-time steering by vector injection, a ~550-politician multimodal dataset, and NMF topic modeling over chain-of-thought.</p>
+          </div>
+          <div class="track">
+            <h4>Bias Localization in VLMs<span class="venue">ongoing</span></h4>
+            <p>Probing sensitive-attribute leakage in <b>InternVL, Gemma3-VL, Qwen-VL</b> via layer-wise probes and attribution (Grad-CAM, Integrated Gradients, TCAV); counterfactual edits to localize bias to image regions and cross-modal tokens.</p>
+          </div>
+        </div>
+        <div class="entry-links">
+          <a class="tlink" href="https://github.com/uziahmd/p_difficulty_code" target="_blank" rel="noopener">github · p_difficulty_code <span class="arw">↗</span></a>
+        </div>
+      </article>
+
+      <!-- ICLab -->
+      <article class="entry reveal">
+        <div class="entry-head">
+          <div>
+            <h3>Mobile-Sensing for Mental Health</h3>
+            <div class="entry-org">ICLab, KAIST — Undergraduate Researcher</div>
+          </div>
+          <span class="entry-date">May 2023 — Jun 2025</span>
+        </div>
+        <p class="entry-desc">In-the-wild stress prediction from multimodal phone/wearable sensor data — reproducible pipelines, leakage guards, and cross-user generalization.</p>
+        <ul class="entry-points">
+          <li>Co-authored a reproducible <b>IMWUT / Ubicomp 2024</b> stress-prediction pipeline; led the personalization component (partial / multi-task), improving <b>AUROC by up to ~17%</b> over the user-independent baseline.</li>
+          <li>Built <b>CrossShift</b>, quantifying user-level data shift across <b>8 datasets / 693 users</b> — finding <b>concept shift P(Y|X)</b> the primary driver of cross-user degradation (β = 0.265).</li>
+          <li>Designed the <b>CausalCFF</b> pipeline (POI clustering, association-rule mining, Convergent Cross Mapping) for a <b>CHI EA 2025</b> extended abstract.</li>
+        </ul>
+        <div class="readouts">
+          <div class="readout"><div class="readout-val">+17%</div><div class="readout-label">AUROC · personalization</div></div>
+          <div class="readout"><div class="readout-val">693</div><div class="readout-label">Users · 8 datasets</div></div>
+          <div class="readout"><div class="readout-val">2×</div><div class="readout-label">Peer-reviewed venues</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Multi-task learning</span>
+          <span class="tag">LOSO CV</span><span class="tag">statsmodels</span><span class="tag">Hydra</span>
+        </div>
+      </article>
+
+      <!-- DocsHunt -->
+      <article class="entry reveal">
+        <div class="entry-head">
+          <div>
+            <h3>Multilingual Document-Automation APIs</h3>
+            <div class="entry-org">DocsHunt AI — AI Engineer (Seoul)</div>
+          </div>
+          <span class="entry-date">Jun 2024 — Aug 2024</span>
+        </div>
+        <p class="entry-desc">Shipped and productionized an LLM document-automation service on Naver Cloud Platform.</p>
+        <ul class="entry-points">
+          <li>Built an automated prompt-template pipeline (Python, Flask, LangChain) that cut prompt variance across languages and document types.</li>
+          <li>Hardened REST APIs with pytest, structured logging, and retry-safe handlers; tuned Flask + Gunicorn to roughly <b>triple sustained throughput</b> and stabilize p95/p99 tail latency under load.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Gunicorn</span>
+          <span class="tag">LangChain</span><span class="tag">REST</span><span class="tag">Naver Cloud</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="research">
+      <div class="section-head"><span class="idx">02</span><h2>Publications &amp; Preprints</h2></div>
+      <div class="pubs">
+        <article class="pub reveal">
+          <div class="pub-venue">ACM IMWUT<span class="yr">2024</span></div>
+          <div>
+            <div class="pub-title">A Reproducible Stress Prediction Pipeline with Mobile Sensor Data</div>
+            <div class="pub-authors">P. Zhang, G. Jung, J. Alikhanov, <span class="me">U. Ahmed</span>, U. Lee — Proc. ACM IMWUT 8(3), Art. 143 (35pp)</div>
+          </div>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-venue">CHI EA<span class="yr">2025</span></div>
+          <div>
+            <div class="pub-title">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features</div>
+            <div class="pub-authors">P. Zhang, G. Jung, <span class="me">U. Ahmed</span>, U. Lee — CHI Extended Abstracts '25</div>
+          </div>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-venue">ACL 2026<span class="yr">under review</span></div>
+          <div>
+            <div class="pub-title">Difficulty Perception in the Reasoning of LLMs</div>
+            <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim</div>
+          </div>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-venue">preprint<span class="yr">under review</span></div>
+          <div>
+            <div class="pub-title">CrossShift: Quantifying Inter-Personal Differences in Mobile Sensing for Mental Health</div>
+            <div class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee</div>
+          </div>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-venue">JKAIA<span class="yr">2023</span></div>
+          <div>
+            <div class="pub-title">Standing on the Shoulders of Language Giants: Improving LLM Capabilities on Low-Resource Languages through Pivots</div>
+            <div class="pub-authors"><span class="me">U. Ahmed</span>, M. F. Zahid, H. Ahmad, A. Oh, J. Thorne — <span class="me">first author</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-head"><span class="idx">03</span><h2>Projects</h2></div>
+      <div class="projects">
+        <article class="project reveal">
+          <div class="project-top"><h3>Smart Binarization</h3><span class="project-year">2025</span></div>
+          <div class="project-role">LLM Quantization</div>
+          <p>Activation-aware selective binarization (GPTQ-based PTQ) — keeps salient weights high-precision, binarizes the rest. Cut the perplexity gap vs. magnitude-only by up to <b style="color:var(--accent)">64×</b> (Gemma-3-1B).</p>
+          <div class="project-foot"><a class="tlink" href="https://github.com/uziahmd/smart_bin" target="_blank" rel="noopener">github <span class="arw">↗</span></a></div>
+        </article>
+        <article class="project reveal">
+          <div class="project-top"><h3>Allah-u-Allam</h3><span class="project-year">2025</span></div>
+          <div class="project-role">Hierarchical RAG · Freelance</div>
+          <p>Air-gapped hierarchical RAG over 96+ canonical texts; FAISS (HNSW/IVF-PQ), semantic chunking, LangGraph agentic planning, a fine-tuned 70B-class model served offline via Ollama, Dockerized.</p>
+          <div class="project-foot"><span class="entry-note">client work · NDA</span></div>
+        </article>
+        <article class="project reveal">
+          <div class="project-top"><h3>Pivot-Assisted Consensus</h3><span class="project-year">2023</span></div>
+          <div class="project-role">First Author · KAIST</div>
+          <p>Zero-shot routing of low-resource inputs through high-resource pivots, aggregated to a consensus. +16.8% METEOR (Hindi) and +15.1% reasoning EM over single-pass baselines across MGSM / XQuAD / XNLI.</p>
+          <div class="project-foot"><span class="entry-note">JKAIA 2023</span></div>
+        </article>
+        <article class="project reveal">
+          <div class="project-top"><h3>Signature Forgery Verification</h3><span class="project-year">2024</span></div>
+          <div class="project-role">ViT &amp; CNNs</div>
+          <p>Pipeline over 10,242 signatures (500 identities) with embeddings (ResNet50, Inception-ResNet, ViT) and cosine-similarity pair verification. Best: Inception-ResNet 85.3% accuracy.</p>
+          <div class="project-foot"><a class="tlink" href="https://github.com/uziahmd/Siguature_Verification" target="_blank" rel="noopener">github <span class="arw">↗</span></a></div>
+        </article>
+        <article class="project reveal">
+          <div class="project-top"><h3>AlphaHand</h3><span class="project-year">robotics</span></div>
+          <div class="project-role">Vision + Control</div>
+          <p>A Rock-Paper-Scissors playing robot — real-time hand-gesture recognition driving a physical actuator. A hands-on excursion into embodied, closed-loop vision.</p>
+          <div class="project-foot"><a class="tlink" href="https://github.com/uziahmd/AlphaHand" target="_blank" rel="noopener">github <span class="arw">↗</span></a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack">
+      <div class="section-head"><span class="idx">04</span><h2>Stack</h2></div>
+      <div class="stack">
+        <div class="stack-group reveal">
+          <h4>Languages</h4>
+          <p>Python · C · OCaml · Kotlin · SQL · Bash</p>
+        </div>
+        <div class="stack-group reveal">
+          <h4>ML / Deep Learning</h4>
+          <p><b>PyTorch</b> · TensorFlow · scikit-learn · XGBoost · <b>Hugging Face</b> (Transformers, PEFT, TRL) · OpenCLIP</p>
+        </div>
+        <div class="stack-group reveal">
+          <h4>LLM / VLM</h4>
+          <p><b>LoRA / QLoRA</b> fine-tuning · PTQ / quantization · <b>RAG</b> · FAISS · Ollama · SGLang · constrained decoding · LangChain / LangGraph</p>
+        </div>
+        <div class="stack-group reveal">
+          <h4>Interpretability &amp; Eval</h4>
+          <p>Linear probes · Grad-CAM · Integrated Gradients · TCAV · CKA · eval-harness design</p>
+        </div>
+        <div class="stack-group reveal">
+          <h4>Infra &amp; Tooling</h4>
+          <p>Docker · Git · pytest · Hydra · Weights &amp; Biases · Flask · Gunicorn · CUDA · OpenCV · Linux</p>
+        </div>
+        <div class="stack-group reveal">
+          <h4>Cloud</h4>
+          <p>Naver Cloud Platform · AWS (S3, EC2)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOGNITION -->
+    <section id="recognition">
+      <div class="section-head"><span class="idx">05</span><h2>Recognition</h2></div>
+      <div class="awards">
+        <div class="award reveal">
+          <div class="award-name"><b>WorldQuant Challenge</b> — Gold</div>
+          <div class="award-meta"><a href="assets/WorldQuant-Gold-Certificate.pdf" target="_blank" rel="noopener">certificate ↗</a></div>
+        </div>
+        <div class="award reveal">
+          <div class="award-name"><b>National Mathematics Olympiad</b> — Top 5 in Pakistan</div>
+          <div class="award-meta">2018 · 2019</div>
+        </div>
+        <div class="award reveal">
+          <div class="award-name"><b>KAIST Lean Start-up</b> Industry Cooperation — Winner</div>
+          <div class="award-meta">KAIST</div>
+        </div>
+        <div class="award reveal">
+          <div class="award-name"><b>Google Code-in</b> — Runner-up</div>
+          <div class="award-meta">2018</div>
+        </div>
+        <div class="award reveal">
+          <div class="award-name">International Quant Competition — Top 20%</div>
+          <div class="award-meta">global</div>
+        </div>
+        <div class="award reveal">
+          <div class="award-name">Cambridge IGCSE — Distinction (Pakistan Top, Int'l Mathematics)</div>
+          <div class="award-meta">2018 · 2019</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="foot-cta">Let's build systems that ship <span class="amp">&amp;</span> hold up.</div>
+      <div class="foot-links">
+        <a class="btn primary" href="mailto:uziahmd@outlook.com">uziahmd@outlook.com</a>
+        <a class="btn" href="https://github.com/uziahmd" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
+        <a class="btn" href="https://www.linkedin.com/in/uziahmd/" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
+        <a class="btn" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arw">↗</span></a>
+      </div>
+      <p class="colophon">
+        Uzair Ahmed · AI / ML Researcher &amp; Engineer · Daejeon, Korea<br>
+        Self-contained static site · built 2026 · no trackers, no cookies.
+      </p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- theme toggle ---------- */
+  var root=document.documentElement;
+  var toggle=document.getElementById("themeToggle");
+  var icon=document.getElementById("themeIcon");
+  function stored(){try{return localStorage.getItem("theme");}catch(e){return null;}}
+  function systemDark(){return window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches;}
+  function isDark(){var t=root.getAttribute("data-theme");return t?t==="dark":systemDark();}
+  function apply(t){root.setAttribute("data-theme",t);icon.textContent=t==="dark"?"◐":"◑";}
+  var init=stored();if(init){apply(init);}else{icon.textContent=systemDark()?"◐":"◑";}
+  toggle.addEventListener("click",function(){
+    var next=isDark()?"light":"dark";apply(next);
+    try{localStorage.setItem("theme",next);}catch(e){}
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var reveals=document.querySelectorAll(".reveal");
+  if(reduce||!("IntersectionObserver" in window)){
+    reveals.forEach(function(el){el.classList.add("in");});
+  }else{
+    var ro=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");ro.unobserve(e.target);}});
+    },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    reveals.forEach(function(el){ro.observe(el);});
+  }
+
+  /* ---------- active section in rail ---------- */
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll(".rail-nav a"));
+  var map={};navLinks.forEach(function(a){map[a.getAttribute("href").slice(1)]=a;});
+  var sections=navLinks.map(function(a){return document.getElementById(a.getAttribute("href").slice(1));}).filter(Boolean);
+  if("IntersectionObserver" in window){
+    var so=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          navLinks.forEach(function(a){a.classList.remove("active");});
+          var link=map[e.target.id];if(link)link.classList.add("active");
+        }
+      });
+    },{rootMargin:"-45% 0px -50% 0px",threshold:0});
+    sections.forEach(function(s){so.observe(s);});
+  }
+
+  /* ---------- hero signal waveform ---------- */
+  var canvas=document.getElementById("signal");
+  if(canvas&&canvas.getContext){
+    var ctx=canvas.getContext("2d");
+    var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
+    var W=0,H=0,pts=[],N=0,phase=0;
+    function css(v){return getComputedStyle(root).getPropertyValue(v).trim();}
+    function resize(){
+      var r=canvas.getBoundingClientRect();
+      W=r.width;H=r.height;
+      canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      N=Math.max(60,Math.round(W/6));
+      if(pts.length===0){for(var i=0;i<N;i++)pts.push(0.5);}
+    }
+    function nextVal(){
+      phase+=0.13;
+      // layered, mostly-calm signal with occasional "event" spikes
+      var base=0.5+0.16*Math.sin(phase)+0.07*Math.sin(phase*2.3+1.1);
+      var spike=(Math.random()<0.03)?(Math.random()-0.5)*0.6:0;
+      var jitter=(Math.random()-0.5)*0.05;
+      var v=base+spike+jitter;
+      return Math.max(0.06,Math.min(0.94,v));
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var accent=css("--signal")||"#f0a93b";
+      var faint=css("--line")||"#e0e5ec";
+      // baseline grid
+      ctx.strokeStyle=faint;ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(0,H*0.5+.5);ctx.lineTo(W,H*0.5+.5);ctx.stroke();
+      // waveform
+      var step=W/(N-1);
+      ctx.lineJoin="round";ctx.lineCap="round";
+      ctx.beginPath();
+      for(var i=0;i<N;i++){
+        var x=i*step, y=H-(pts[i]*H);
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle=accent;ctx.lineWidth=2;
+      ctx.shadowColor=accent;ctx.shadowBlur=8;
+      ctx.stroke();
+      ctx.shadowBlur=0;
+      // endpoint dot
+      var lx=(N-1)*step, ly=H-(pts[N-1]*H);
+      ctx.beginPath();ctx.arc(lx-1,ly,3.4,0,Math.PI*2);ctx.fillStyle=accent;ctx.fill();
+    }
+    resize();
+    window.addEventListener("resize",resize);
+    if(reduce){
+      // static representative trace
+      for(var i=0;i<N;i++){pts[i]=0.5+0.16*Math.sin(i*0.16)+0.06*Math.sin(i*0.37);}
+      draw();
+    }else{
+      var acc=0;
+      (function loop(t){
+        // ~14 fps update for a measured, instrument-like cadence
+        if(!loop.last)loop.last=t;
+        acc+=t-loop.last;loop.last=t;
+        if(acc>70){acc=0;pts.push(nextVal());if(pts.length>N)pts.shift();draw();}
+        requestAnimationFrame(loop);
+      })(0);
+    }
+  }
+})();
+</script>
+</body>
+</html>
