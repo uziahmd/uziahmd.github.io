@@ -529,23 +529,19 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
           <span class="entry-date">Aug 2025 — Feb 2026</span>
         </div>
-        <p class="entry-desc">Four research tracks across LLM reasoning, model safety, and vision-language interpretability — building reproducible pipelines end to end.</p>
+        <p class="entry-desc">Three research tracks across LLM reasoning, model safety, and vision-language interpretability — building reproducible pipelines end to end.</p>
         <div class="tracks">
           <div class="track">
             <h4>LLM Difficulty Perception<span class="venue">submitted · ACL 2026</span></h4>
             <p>Built a sandboxed code-execution framework with strict I/O judging and a reasoning-eval suite over <b>4 benchmarks (658 problems) × 6 LLMs</b>; implemented the LoRA/QLoRA fine-tuning pipeline (TRL + PEFT) and curated AIME / E2H-Codeforces SFT data.</p>
           </div>
           <div class="track">
-            <h4>LLM Safety &amp; Introspection</h4>
-            <p>Reproducible SGLang + OpenRouter pipeline over HarmBench &amp; SocialHarmBench; implemented <b>ADVPrefix</b> end to end and reproduced Anthropic's <b>Many-Shot Jailbreaking</b> (Llama Guard scoring, attack-vs-shot-count analysis) across Gemma / Qwen / Llama.</p>
+            <h4>LLM Safety &amp; Introspection<span class="venue">COLM 2026 · arXiv</span></h4>
+            <p>Built a reproducible SGLang + OpenRouter pipeline evaluating prefill attacks (control / static / adversarial) and model introspection over HarmBench &amp; SocialHarmBench; implemented <b>ADVPrefix</b> end to end and reproduced Anthropic's <b>Many-Shot Jailbreaking</b> (Llama Guard scoring) across Gemma / Qwen / Llama. Key finding — across <b>10 open-weight LLMs (3B–70B)</b>, no model reliably recognizes its own adversarially-prefilled outputs. <a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Read the preprint ↗</a></p>
           </div>
           <div class="track">
-            <h4>VLM Ideology &amp; Interpretability</h4>
-            <p>Extended ideology-probing to VLMs: per-layer/head ridge-regression <b>linear probes</b> on DW-NOMINATE scores, inference-time steering by vector injection, a ~550-politician multimodal dataset, and NMF topic modeling over chain-of-thought.</p>
-          </div>
-          <div class="track">
-            <h4>Bias Localization in VLMs<span class="venue">ongoing</span></h4>
-            <p>Probing sensitive-attribute leakage in <b>InternVL, Gemma3-VL, Qwen-VL</b> via layer-wise probes and attribution (Grad-CAM, Integrated Gradients, TCAV); counterfactual edits to localize bias to image regions and cross-modal tokens.</p>
+            <h4>VLM Ideology, Interpretability &amp; Bias Localization</h4>
+            <p>Extended political-ideology probing from LLMs to Vision-Language Models: trained per-layer/per-head ridge-regression <b>linear probes</b> on DW-NOMINATE scores, performed inference-time steering by injecting learned ideology vectors, built a <b>~550-politician</b> multimodal dataset (Voteview + portraits), and ran <b>NMF topic modeling</b> over chain-of-thought to surface the visual cues models tie to ideology. Extended the same probing to localize bias — measuring sensitive-attribute leakage and spurious correlations in <b>InternVL, Gemma3-VL, Qwen-VL</b> via layer-wise probes and attribution (Grad-CAM, Integrated Gradients, TCAV), and applying counterfactual edits to quantify subgroup gaps and localize bias to image regions and cross-modal tokens.</p>
           </div>
         </div>
         <div class="entry-links">
@@ -562,20 +558,24 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
           <span class="entry-date">May 2023 — Jun 2025</span>
         </div>
-        <p class="entry-desc">In-the-wild stress prediction from multimodal phone/wearable sensor data — reproducible pipelines, leakage guards, and cross-user generalization.</p>
-        <ul class="entry-points">
-          <li>Co-authored a reproducible <b>IMWUT / Ubicomp 2024</b> stress-prediction pipeline; led the personalization component (partial / multi-task), improving <b>AUROC by up to ~17%</b> over the user-independent baseline.</li>
-          <li>Built <b>CrossShift</b>, quantifying user-level data shift across <b>8 datasets / 693 users</b> — finding <b>concept shift P(Y|X)</b> the primary driver of cross-user degradation (β = 0.265).</li>
-          <li>Designed the <b>CausalCFF</b> pipeline (POI clustering, association-rule mining, Convergent Cross Mapping) for a <b>CHI EA 2025</b> extended abstract.</li>
-        </ul>
-        <div class="readouts">
-          <div class="readout"><div class="readout-val">+17%</div><div class="readout-label">AUROC · personalization</div></div>
-          <div class="readout"><div class="readout-val">693</div><div class="readout-label">Users · 8 datasets</div></div>
-          <div class="readout"><div class="readout-val">2×</div><div class="readout-label">Peer-reviewed venues</div></div>
-        </div>
-        <div class="tags">
-          <span class="tag">scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Multi-task learning</span>
-          <span class="tag">LOSO CV</span><span class="tag">statsmodels</span><span class="tag">Hydra</span>
+        <p class="entry-desc">Four research tracks on in-the-wild stress prediction from multimodal phone/wearable sensor data — reproducible pipelines, leakage guards, and cross-user generalization.</p>
+        <div class="tracks">
+          <div class="track">
+            <h4>Reproducible Stress-Prediction Pipeline<span class="venue">ACM IMWUT 2024</span></h4>
+            <p>Co-authored a reproducible in-the-wild stress-prediction pipeline (feature extraction, leakage guards, temporal-order controls). Led the personalization component — partial / multi-task personalization via an adapted <b>TSGB</b> multi-task learner — improving <b>AUROC by up to ~17%</b> on DeepStress over the user-independent baseline.</p>
+          </div>
+          <div class="track">
+            <h4>CrossShift — Inter-Personal Differences<span class="venue">ACM IMWUT 2026</span></h4>
+            <p>Built <b>CrossShift</b>, quantifying user-level data shift across <b>8 datasets / 693 users</b>: PERMANOVA/PERMDISP and χ² testing with Wasserstein (covariate), L2 (label), OTDD (conditional), and JS-divergence (concept) quantification, plus a LOSO harness and domain-generalization baselines — finding <b>concept shift P(Y|X)</b> the primary driver of cross-user degradation (β = 0.265), and using JS-based OOD checks for onboarding-time selective personalization.</p>
+          </div>
+          <div class="track">
+            <h4>CausalCFF — Causal Analysis of Stress<span class="venue">CHI EA 2025</span></h4>
+            <p>Designed the <b>CausalCFF</b> pipeline — POI clustering, association-rule mining, and Convergent Cross Mapping causal analysis — surfacing high-lift behavior patterns and testing their causal impact on stress across six weeks of GPS / activity / app-usage data; structured and documented the codebase for public release.</p>
+          </div>
+          <div class="track">
+            <h4>Multimodal Sensor Integration</h4>
+            <p>Integrated multimodal sensor data (Audio, Aqara, Withings, Smartphone) with KNN imputation and feature selection (ANOVA, LASSO-CV, correlation filtering); identified <b>60-minute windows</b> and "Yesterday Epoch" features as the strongest configuration via LOSO and K-Fold CV with hyperparameter optimization.</p>
+          </div>
         </div>
       </article>
 
@@ -612,24 +612,31 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
         </article>
         <article class="pub reveal">
-          <div class="pub-venue">CHI EA<span class="yr">2025</span></div>
+          <div class="pub-venue">ACM IMWUT<span class="yr">2026 · accepted</span></div>
           <div>
-            <div class="pub-title">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features</div>
-            <div class="pub-authors">P. Zhang, G. Jung, <span class="me">U. Ahmed</span>, U. Lee — CHI Extended Abstracts '25</div>
+            <div class="pub-title">CrossShift: Quantifying Inter-Personal Differences in Mobile Sensing for Mental Health</div>
+            <div class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee</div>
           </div>
         </article>
         <article class="pub reveal">
-          <div class="pub-venue">ACL 2026<span class="yr">under review</span></div>
+          <div class="pub-venue">COLM<span class="yr">2026 · arXiv</span></div>
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--accent)">Can LLMs Reliably Self-Report Adversarial Prefills, and How?</a></div>
+            <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim — preprint, under review</div>
+          </div>
+        </article>
+        <article class="pub reveal">
+          <div class="pub-venue">ACL<span class="yr">2026 · under review</span></div>
           <div>
             <div class="pub-title">Difficulty Perception in the Reasoning of LLMs</div>
             <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim</div>
           </div>
         </article>
         <article class="pub reveal">
-          <div class="pub-venue">preprint<span class="yr">under review</span></div>
+          <div class="pub-venue">CHI EA<span class="yr">2025</span></div>
           <div>
-            <div class="pub-title">CrossShift: Quantifying Inter-Personal Differences in Mobile Sensing for Mental Health</div>
-            <div class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee</div>
+            <div class="pub-title">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features</div>
+            <div class="pub-authors">P. Zhang, G. Jung, <span class="me">U. Ahmed</span>, U. Lee — CHI Extended Abstracts '25</div>
           </div>
         </article>
         <article class="pub reveal">
@@ -646,6 +653,12 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
     <section id="projects">
       <div class="section-head"><span class="idx">03</span><h2>Projects</h2></div>
       <div class="projects">
+        <article class="project reveal">
+          <div class="project-top"><h3>HSN Academy</h3><span class="project-year">side venture</span></div>
+          <div class="project-role">Growth &amp; Operations</div>
+          <p>Helped scale my brother's online K-12 academy (math &amp; core subjects) to <b style="color:var(--accent)">~$40K ARR</b> — building the funnel, enrollment operations, and the systems behind steady, repeatable growth.</p>
+          <div class="project-foot"><span class="entry-note">bootstrapped · revenue-generating</span></div>
+        </article>
         <article class="project reveal">
           <div class="project-top"><h3>Smart Binarization</h3><span class="project-year">2025</span></div>
           <div class="project-role">LLM Quantization</div>
