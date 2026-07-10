@@ -151,7 +151,8 @@
       var s = document.createElement("span");
       s.className = "fx fx-" + kind;
       s.textContent = kind === "heart" ? "♥" : kind === "excl" ? "!" : "z";
-      var dur = rand(0.9, 1.6);
+      /* z's drift up dreamily; hearts and "!" stay snappy */
+      var dur = kind === "z" ? rand(2.6, 3.6) : rand(0.9, 1.6);
       s.style.left = Math.round(centerX() + rand(-26, 26)) + "px";
       s.style.top = Math.round(pos.y + rand(-6, 14)) + "px";
       s.style.animationDuration = dur.toFixed(2) + "s";
