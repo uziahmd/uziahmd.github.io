@@ -25,7 +25,9 @@
     wave:    { src: "assets/charizard/charizard_wave.gif",    w: 72 },
     pet:     { src: "assets/charizard/charizard_pet.gif",     w: 63 },
     fire:    { src: "assets/charizard/charizard_fire.gif",    w: 71 },
-    shift:   { src: "assets/charizard/charizard_shift.gif",   w: 70 },
+    /* directional theme transitions, straight from the two toggle sheets */
+    shiftdark:  { src: "assets/charizard/charizard_shift_dark.gif",  w: 73 },
+    shiftlight: { src: "assets/charizard/charizard_shift_light.gif", w: 65 },
     /* single-frame idle pose — the only sprite allowed under reduced motion */
     still:   { src: "assets/charizard/charizard_still.gif",   w: 90 }
   };
@@ -52,7 +54,8 @@
   var PET_LINGER_S = 1.0;        // s of slow lingering before petting starts
   var PET_COOLDOWN = 4;          // s after a pet session
   var SLEEP_AFTER_S = 60;        // s of user inactivity before napping
-  var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 0.86, fire: 1.16, shift: 0.66 };
+  var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 0.86, fire: 1.16,
+                    shiftdark: 1.8, shiftlight: 1.2 };
   var KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown",
                 "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
   var MAX_PARTICLES = 40;
@@ -249,7 +252,11 @@
   var shiftAir = false;
   function beginShift() {        /* theme sneeze wherever he is, air or ground */
     shiftAir = airborne;
-    beginOneshot("shift", shiftAir);
+    beginOneshot(dark ? "shiftdark" : "shiftlight", shiftAir);
+  }
+  function endShift() {          /* resume where the sneeze interrupted */
+    if (shiftAir) { shiftAir = false; beginFly(null); }
+    else beginIdle();
   }
   function beginWake() { beginOneshot("wake"); }
   function beginPet() {
@@ -271,10 +278,8 @@
     wake: beginIdle,
     wave: beginIdle,
     fire: beginIdle,
-    shift: function () {         /* resume where the sneeze interrupted */
-      if (shiftAir) { shiftAir = false; beginFly(null); }
-      else beginIdle();
-    }
+    shiftdark: endShift,
+    shiftlight: endShift
   };
 
   function beginFor(choice) {
