@@ -32,6 +32,7 @@
 }
 #pet-fx .fx-heart{color:var(--signal,#f0a93b)}
 #pet-fx .fx-z{color:var(--ink-faint,#828d9d)}
+#pet-fx .fx-excl{color:var(--accent,#a75f00);font-weight:700}
 @keyframes fx-float{
   0%{opacity:0;transform:translateY(0) scale(.7)}
   18%{opacity:1}

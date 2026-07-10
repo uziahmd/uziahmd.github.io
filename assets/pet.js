@@ -144,7 +144,7 @@
     for (var i = 0; i < count && particles.length < MAX_PARTICLES; i++) {
       var s = document.createElement("span");
       s.className = "fx fx-" + kind;
-      s.textContent = kind === "heart" ? "♥" : "z";
+      s.textContent = kind === "heart" ? "♥" : kind === "excl" ? "!" : "z";
       var dur = rand(0.9, 1.6);
       s.style.left = Math.round(centerX() + rand(-26, 26)) + "px";
       s.style.top = Math.round(pos.y + rand(-6, 14)) + "px";
@@ -218,11 +218,22 @@
     waitLeft = rand(PAUSE_S[0], PAUSE_S[1]);
   }
 
-  /* ---------------- interaction states (grounded, stationary) ---------------- */
-  function beginOneshot(key) {   /* startle | wake | wave | fire | shift */
-    mode = key; airborne = false; landAction = null;
+  /* ---------------- interaction states (stationary) ---------------- */
+  function beginOneshot(key, inAir) {  /* startle | wake | wave | fire | shift */
+    if (mode === "pet") petReadyAt = nowMs() + PET_COOLDOWN * 1000;
+    if (inAir) {                 /* react in place mid-air — never snap down */
+      /* keep the rendered bob continuous even when a damped landing glide is
+         interrupted: re-anchor the phase to the currently rendered offset */
+      var b0 = Math.sin(bobT * Math.PI * 2 * BOB_HZ) * BOB_AMP *
+               (landAction ? clamp(dist(pos, tgt) / 80, 0, 1) : 1);
+      bobT = Math.asin(clamp(b0 / BOB_AMP, -1, 1)) / (Math.PI * 2 * BOB_HZ);
+      airborne = true;
+    } else {
+      airborne = false;
+      pos.y = groundY;
+    }
+    mode = key; landAction = null;
     setSprite(key, true);
-    pos.y = groundY;
     waitLeft = ONESHOT_S[key];
   }
   function beginStartle() {
@@ -235,7 +246,11 @@
     spawnBurst("heart", 5);
   }
   function beginFire() { beginOneshot("fire"); }
-  function beginShift() { beginOneshot("shift"); }
+  var shiftAir = false;
+  function beginShift() {        /* theme sneeze wherever he is, air or ground */
+    shiftAir = airborne;
+    beginOneshot("shift", shiftAir);
+  }
   function beginWake() { beginOneshot("wake"); }
   function beginPet() {
     mode = "pet"; airborne = false; landAction = null;
@@ -256,7 +271,10 @@
     wake: beginIdle,
     wave: beginIdle,
     fire: beginIdle,
-    shift: beginIdle
+    shift: function () {         /* resume where the sneeze interrupted */
+      if (shiftAir) { shiftAir = false; beginFly(null); }
+      else beginIdle();
+    }
   };
 
   function beginFor(choice) {
@@ -447,14 +465,27 @@
     if (d === dark) return;
     dark = d;
     pet.className = dark ? "dark" : "";       /* persistent glow + palette shift */
-    if (interactive() &&
-        (mode === "idle" || mode === "flap" || mode === "walk")) {
-      beginShift();                            /* flinch + sneeze animation */
-    }
+    if (interactive()) beginShift();          /* interrupts ANY state to react */
   }
 
   /* ---------------- input ---------------- */
   function markActivity() { lastActivity = nowMs(); }
+  function onPointerDown(e) {
+    markActivity();
+    if (!interactive()) return;
+    if (typeof e.clientX !== "number") return;
+    /* hit-test the click against his box — the pet itself stays
+       pointer-events:none, so the page under him still gets the click */
+    var m = 8;
+    if (e.clientX < pos.x - m || e.clientX > pos.x + BOX_W + m ||
+        e.clientY < pos.y - m || e.clientY > pos.y + BOX_H + m) return;
+    if (mode === "startle") return;   /* already reacting */
+    cursor.x = e.clientX; cursor.y = e.clientY; /* aim the flee away from the tap */
+    if (mode === "pet") petReadyAt = nowMs() + PET_COOLDOWN * 1000;
+    spawnBurst("excl", 3);
+    if (airborne) fleeFly();          /* poked mid-air: dart away */
+    else beginStartle();              /* poked on the ground: full startle */
+  }
   function onMouseMove(e) {
     var t = nowMs();
     var ddt = Math.max(8, t - cursor.at);
@@ -479,10 +510,9 @@
       konamiBuf.length = 0;
       if (!interactive()) return;
       if (mode === "fly") { landAction = "fire"; tgt.y = groundY; }
-      else if (mode === "hover") beginFly("fire");
-      else if (mode === "pause")
-        /* an airborne pause must glide down first — never snap to the ground */
-        afterPause = airborne ? function () { beginFly("fire"); } : beginFire;
+      else if (airborne) beginFly("fire");  /* hover / air pause / air sneeze:
+                                               glide down first, never snap */
+      else if (mode === "pause") afterPause = beginFire;
       else beginFire();
     }
   }
@@ -549,7 +579,7 @@
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("wheel", markActivity, { passive: true });
     window.addEventListener("scroll", markActivity, { passive: true });
-    window.addEventListener("pointerdown", markActivity, { passive: true });
+    window.addEventListener("pointerdown", onPointerDown, { passive: true });
 
     /* theme: site toggle sets data-theme on <html>; system pref may change too */
     dark = isDark();
