@@ -41,32 +41,34 @@
   var MIN_LEG     = 90;          // min length of a movement segment, px
   var MIN_LAND_DX = 160;         // min horizontal run-in for a landing glide, px
   var MIN_WIDTH   = 700;         // no pet below this viewport width
-  var REST_S  = [2, 6];          // duration of hover / flap / idle states, seconds
+  var REST_S  = [3, 7];          // duration of hover / flap / idle states, seconds
   var PAUSE_S = [0.3, 1.2];      // short pause between segments, seconds
   var Z_PET = 999, Z_BTN = 1000; // site CSS uses no z-index; these sit on top
 
   /* interaction tunables */
-  var STARTLE_RADIUS = 120;      // px — detection radius around pet center
-  var STARTLE_SPEED  = 900;      // px/s — cursor speed that counts as "fast"
+  var STARTLE_RADIUS = 140;      // px — detection radius around pet center
+  var STARTLE_SPEED  = 700;      // px/s — cursor speed that counts as "fast"
   var STARTLE_COOLDOWN = 6;      // s between startles
-  var PET_RADIUS   = 70;         // px — cursor linger distance to start petting
-  var PET_KEEP     = 100;        // px — stays in pet state within this distance
+  var PET_RADIUS   = 90;         // px — cursor linger distance to start petting
+  var PET_KEEP     = 120;        // px — stays in pet state within this distance
   var PET_LINGER_S = 1.0;        // s of slow lingering before petting starts
   var PET_COOLDOWN = 4;          // s after a pet session
   var SLEEP_AFTER_S = 60;        // s of user inactivity before napping
   var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 0.86, fire: 1.16,
                     shiftdark: 1.8, shiftlight: 1.2 };
-  var KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown",
-                "ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  var SECRET = ["f", "i", "r", "e"];  /* easter egg: just type "fire" */
+  var LAUNCH_PERCH_S = 1.3;      // s standing on the name before first takeoff
   var MAX_PARTICLES = 40;
   var LS_KEY = "charizard-pet-enabled";
 
-  /* weighted transitions; land* = glide down to the ground line first */
+  /* weighted transitions; land* = glide down to the ground line first.
+     Biased toward standing (idle/flap) — that's where startle and petting
+     live, so he should spend most of his time reachable on the ground. */
   var TRANSITIONS = {
-    fly:  [["fly", 0.25], ["hover", 0.15], ["landWalk", 0.25], ["landIdle", 0.20], ["landFlap", 0.15]],
-    walk: [["walk", 0.25], ["idle", 0.30], ["flap", 0.15], ["fly", 0.30]],
-    idle: [["walk", 0.40], ["flap", 0.15], ["fly", 0.45]],
-    flap: [["walk", 0.30], ["idle", 0.35], ["fly", 0.35]]
+    fly:  [["fly", 0.18], ["hover", 0.10], ["landWalk", 0.22], ["landIdle", 0.32], ["landFlap", 0.18]],
+    walk: [["walk", 0.15], ["idle", 0.45], ["flap", 0.15], ["fly", 0.25]],
+    idle: [["idle", 0.25], ["walk", 0.28], ["flap", 0.15], ["fly", 0.32]],
+    flap: [["idle", 0.45], ["walk", 0.25], ["fly", 0.30]]
   };
 
   /* ---------------- state ---------------- */
@@ -92,7 +94,7 @@
   var startleReadyAt = 0, petReadyAt = 0, petLinger = 0;
   var sleepEnteredAt = 0, zTimer = 0, waveHalfDone = false;
   var greeted = false;
-  var konamiBuf = [];
+  var secretBuf = [];
   var dark = false;
   var particles = [];
 
@@ -112,6 +114,7 @@
     groundY = vh - BOX_H - GROUND_PAD;
   }
   function xTargetMax() { return Math.max(EDGE_PAD, vw - BOX_W - EDGE_PAD); }
+  function elevated() { return !airborne && pos.y < groundY - 1; } /* name perch */
   function centerX() { return pos.x + BOX_W / 2; }
   function centerY() { return pos.y + BOX_H / 2; }
   function cursorDist() {
@@ -251,7 +254,7 @@
   function beginFire() { beginOneshot("fire"); }
   var shiftAir = false;
   function beginShift() {        /* theme sneeze wherever he is, air or ground */
-    shiftAir = airborne;
+    shiftAir = airborne || elevated();  /* on the name: react in place */
     beginOneshot(dark ? "shiftdark" : "shiftlight", shiftAir);
   }
   function endShift() {          /* resume where the sneeze interrupted */
@@ -418,9 +421,22 @@
   /* ---------------- placement ---------------- */
   function spawn() {
     measure();
-    pos.x = rand(EDGE_PAD, xTargetMax());
-    pos.y = rand(Math.min(EDGE_PAD, groundY), groundY);
-    beginFly(null);
+    /* launch from the top of the name in the hero, when it's on screen */
+    var h1 = document.querySelector ? document.querySelector(".hero h1") : null;
+    var r = h1 && h1.getBoundingClientRect ? h1.getBoundingClientRect() : null;
+    if (r && r.top > BOX_H + 8 && r.top < vh - 40) {
+      pos.x = clamp(r.left + 60, 0, Math.max(0, vw - BOX_W));
+      pos.y = r.top - BOX_H;           /* feet on the top edge of the name */
+      airborne = false;
+      setSprite("idle");
+      setFacing(false);
+      startPause(function () { beginFly(null); });
+      waitLeft = LAUNCH_PERCH_S;       /* a beat on the name, then take off */
+    } else {
+      pos.x = rand(EDGE_PAD, xTargetMax());
+      pos.y = rand(Math.min(EDGE_PAD, groundY), groundY);
+      beginFly(null);
+    }
     render();
   }
   function perch() {
@@ -488,7 +504,7 @@
     cursor.x = e.clientX; cursor.y = e.clientY; /* aim the flee away from the tap */
     if (mode === "pet") petReadyAt = nowMs() + PET_COOLDOWN * 1000;
     spawnBurst("excl", 3);
-    if (airborne) fleeFly();          /* poked mid-air: dart away */
+    if (airborne || elevated()) fleeFly(); /* mid-air or on the name: dart away */
     else beginStartle();              /* poked on the ground: full startle */
   }
   function onMouseMove(e) {
@@ -505,18 +521,18 @@
   function onKeyDown(e) {
     markActivity();
     var k = e.key;
-    if (typeof k !== "string") return;
-    /* rolling last-N-keys buffer: robust to repeated prefixes (↑↑↑↓↓…) */
-    konamiBuf.push(k.length === 1 ? k.toLowerCase() : k);
-    if (konamiBuf.length > KONAMI.length) konamiBuf.shift();
-    if (konamiBuf.length === KONAMI.length) {
-      for (var i = 0; i < KONAMI.length; i++)
-        if (konamiBuf[i] !== KONAMI[i]) return;
-      konamiBuf.length = 0;
+    if (typeof k !== "string" || k.length !== 1) return;
+    /* rolling last-N-keys buffer: robust to repeated prefixes ("ffire") */
+    secretBuf.push(k.toLowerCase());
+    if (secretBuf.length > SECRET.length) secretBuf.shift();
+    if (secretBuf.length === SECRET.length) {
+      for (var i = 0; i < SECRET.length; i++)
+        if (secretBuf[i] !== SECRET[i]) return;
+      secretBuf.length = 0;
       if (!interactive()) return;
       if (mode === "fly") { landAction = "fire"; tgt.y = groundY; }
-      else if (airborne) beginFly("fire");  /* hover / air pause / air sneeze:
-                                               glide down first, never snap */
+      else if (airborne || elevated()) beginFly("fire"); /* hover / air pause /
+                            air sneeze / name perch: glide down, never snap */
       else if (mode === "pause") afterPause = beginFire;
       else beginFire();
     }
