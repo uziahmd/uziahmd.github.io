@@ -8,10 +8,40 @@
 }
 #pet-charizard img{
   height:auto;pointer-events:none;user-select:none;-webkit-user-drag:none;
-  /* sprites are pixel art but rendered at a mild downscale (~0.7×), where
+  position:relative;
+  /* sprites are pixel art but rendered at a mild downscale (~0.6×), where
      `pixelated` drops outline pixels and shimmers; smooth sampling reads cleaner */
   image-rendering:auto;
+  transition:filter .8s ease;
 }
+/* dark-mode: persistent tail glow + slightly mutated palette */
+#pet-charizard .glow{
+  position:absolute;left:50%;bottom:2px;width:110px;height:64px;
+  transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(96,205,255,.55),rgba(96,205,255,0));
+  opacity:0;transition:opacity .8s ease;pointer-events:none;
+}
+#pet-charizard.dark .glow{opacity:.75}
+#pet-charizard.dark img{filter:brightness(.94) saturate(1.12)}
+
+/* particles: hearts on petting/waving, z's while sleeping */
+#pet-fx{position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:999}
+#pet-fx .fx{
+  position:fixed;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  animation:fx-float 1.2s ease-out forwards;pointer-events:none;user-select:none;
+}
+#pet-fx .fx-heart{color:var(--signal,#f0a93b)}
+#pet-fx .fx-z{color:var(--ink-faint,#828d9d)}
+@keyframes fx-float{
+  0%{opacity:0;transform:translateY(0) scale(.7)}
+  18%{opacity:1}
+  100%{opacity:0;transform:translateY(-48px) scale(1.05)}
+}
+@media (prefers-reduced-motion:reduce){
+  #pet-fx .fx{animation:none;opacity:0}
+  #pet-charizard .glow,#pet-charizard img{transition:none}
+}
+
 /* toggle — matches the site's .theme-toggle aesthetic (line border, 7px radius) */
 #pet-toggle{
   position:fixed;left:14px;bottom:14px;width:28px;height:28px;padding:0;
