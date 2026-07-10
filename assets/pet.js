@@ -24,7 +24,7 @@
     startle: { src: "assets/charizard/charizard_startle.gif", w: 73 },
     wave:    { src: "assets/charizard/charizard_wave.gif",    w: 72 },
     pet:     { src: "assets/charizard/charizard_pet.gif",     w: 63 },
-    fire:    { src: "assets/charizard/charizard_fire.gif",    w: 71 },
+    fire:    { src: "assets/charizard/charizard_fire.gif",    w: 101 },
     /* directional theme transitions, straight from the two toggle sheets */
     shiftdark:  { src: "assets/charizard/charizard_shift_dark.gif",  w: 73 },
     shiftlight: { src: "assets/charizard/charizard_shift_light.gif", w: 65 },
@@ -54,7 +54,7 @@
   var PET_LINGER_S = 1.0;        // s of slow lingering before petting starts
   var PET_COOLDOWN = 4;          // s after a pet session
   var SLEEP_AFTER_S = 60;        // s of user inactivity before napping
-  var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 0.86, fire: 1.16,
+  var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 0.86, fire: 2.8,
                     shiftdark: 1.8, shiftlight: 1.2 };
   var SECRET = ["f", "i", "r", "e"];  /* easter egg: just type "fire" */
   var LAUNCH_PERCH_S = 1.3;      // s standing on the name before first takeoff
@@ -421,17 +421,26 @@
   /* ---------------- placement ---------------- */
   function spawn() {
     measure();
-    /* launch from the top of the name in the hero, when it's on screen */
+    /* launch from the empty space to the right of the name in the hero */
     var h1 = document.querySelector ? document.querySelector(".hero h1") : null;
     var r = h1 && h1.getBoundingClientRect ? h1.getBoundingClientRect() : null;
-    if (r && r.top > BOX_H + 8 && r.top < vh - 40) {
-      pos.x = clamp(r.left + 60, 0, Math.max(0, vw - BOX_W));
-      pos.y = r.top - BOX_H;           /* feet on the top edge of the name */
+    if (r && r.bottom - BOX_H > 8 && r.bottom < vh - 20) {
+      var textRight = r.left + 380;    /* estimate if Range is unavailable */
+      if (document.createRange) {
+        try {                          /* actual right edge of the name text */
+          var rng = document.createRange();
+          rng.selectNodeContents(h1);
+          var tr = rng.getBoundingClientRect();
+          if (tr && tr.right) textRight = tr.right;
+        } catch (e) {}
+      }
+      pos.x = clamp(textRight + 28, 0, Math.max(0, vw - BOX_W));
+      pos.y = clamp(r.bottom - BOX_H, 4, groundY); /* feet level with its base */
       airborne = false;
       setSprite("idle");
-      setFacing(false);
+      setFacing(false);                /* looking at the name */
       startPause(function () { beginFly(null); });
-      waitLeft = LAUNCH_PERCH_S;       /* a beat on the name, then take off */
+      waitLeft = LAUNCH_PERCH_S;       /* a beat beside the name, then take off */
     } else {
       pos.x = rand(EDGE_PAD, xTargetMax());
       pos.y = rand(Math.min(EDGE_PAD, groundY), groundY);
