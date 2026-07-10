@@ -54,7 +54,7 @@
   var PET_LINGER_S = 1.0;        // s of slow lingering before petting starts
   var PET_COOLDOWN = 4;          // s after a pet session
   var SLEEP_AFTER_S = 60;        // s of user inactivity before napping
-  var ONESHOT_S = { startle: 0.32, wake: 0.45, wave: 1.5, fire: 2.8,
+  var ONESHOT_S = { startle: 0.62, wake: 0.45, wave: 1.5, fire: 2.8,
                     shiftdark: 1.8, shiftlight: 1.2 };
   var SECRET = ["f", "i", "r", "e"];  /* easter egg: just type "fire" */
   var LAUNCH_PERCH_S = 1.3;      // s standing on the name before first takeoff
