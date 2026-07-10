@@ -200,20 +200,6 @@ section:first-of-type{border-top:none}
 .hero-meta span{white-space:nowrap}
 .hero-meta .sep{color:var(--line-strong)}
 
-/* signal strip */
-.signal-strip{
-  margin-top:40px;border:1px solid var(--line);border-radius:var(--radius);
-  background:var(--surface);box-shadow:var(--shadow);overflow:hidden;
-}
-.signal-strip-head{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:11px 16px;border-bottom:1px solid var(--line);
-  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);
-}
-.signal-strip-head .live{display:inline-flex;align-items:center;gap:7px;color:var(--accent)}
-.signal-strip-head .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);animation:pulse 2.6s ease-out infinite}
-#signal{display:block;width:100%;height:72px}
-
 .cta-row{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
 .btn{
   display:inline-flex;align-items:center;gap:9px;
@@ -390,7 +376,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .signal-dot,.signal-strip-head .live::before{animation:none}
+  .signal-dot{animation:none}
 }
 
 /* ============================================================
@@ -462,14 +448,6 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
         <span>B.S. CS @ KAIST</span>
       </div>
 
-      <div class="signal-strip" aria-hidden="true">
-        <div class="signal-strip-head">
-          <span>stream · inference readout</span>
-          <span class="live">live</span>
-        </div>
-        <canvas id="signal" width="1000" height="72"></canvas>
-      </div>
-
       <div class="cta-row">
         <a class="btn primary" href="mailto:uziahmd@outlook.com">Get in touch</a>
         <a class="btn" href="https://github.com/uziahmd" target="_blank" rel="noopener">GitHub <span class="arw">↗</span></a>
@@ -481,8 +459,8 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
     <section id="about">
       <div class="section-head"><span class="idx">00</span><h2>About</h2></div>
       <div class="about-body reveal">
-        <p>I'm an AI researcher and engineer who takes systems from a research idea to something that runs — under real constraints, on real hardware, measured honestly. At <b>KPST</b> I shipped an infinite-stream industrial-safety vision-language model that watches never-ending camera feeds with <b>bounded memory</b> and emits schema-constrained hazard decisions to drive a live alarm system.</p>
-        <p>At KAIST's <b>Knowledge &amp; Democracy Lab</b> I research LLM reasoning and difficulty perception, VLM bias and interpretability, and LLM safety — adversarial prefills, many-shot jailbreaking, model introspection. Earlier, at <b>ICLab</b>, I co-authored an <b>IMWUT / Ubicomp 2024</b> reproducible mobile-sensing pipeline and led its personalization component. My strengths sit at the meeting point of PyTorch and Hugging Face fine-tuning, interpretability and evaluation-harness design, and reproducible experimentation.</p>
+        <p>I'm an AI researcher and engineer who takes systems from a research idea to something that runs — under real constraints, on real hardware, measured honestly. At <b>KPST</b> I shipped an infinite-stream industrial-safety vision-language model that watches never-ending camera feeds with bounded memory and emits schema-constrained hazard decisions to drive a live alarm system.</p>
+        <p>At KAIST's Knowledge &amp; Democracy Lab I research LLM reasoning and difficulty perception, VLM bias and interpretability, and LLM safety — adversarial prefills, many-shot jailbreaking, model introspection. Earlier, at ICLab, I co-authored an IMWUT / Ubicomp 2024 reproducible mobile-sensing pipeline and led its personalization component. My strengths sit at the meeting point of PyTorch and Hugging Face fine-tuning, interpretability and evaluation-harness design, and reproducible experimentation.</p>
       </div>
     </section>
 
@@ -501,9 +479,9 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
         </div>
         <p class="entry-desc">A real-time safety system that watches a continuous, never-ending camera stream and emits one compact, schema-constrained JSON hazard decision per step to drive a downstream alarm — no separate object detector, the VLM makes the call end to end.</p>
         <ul class="entry-points">
-          <li>Adapted <b>Qwen2.5-VL-7B</b> with <b>StreamingVLM</b>-style streaming attention (attention-sink + sliding-window KV cache, contiguous 3D RoPE) for <b>constant memory and per-step latency regardless of stream duration</b> — a camera can run for hours or days without KV growth or drift.</li>
-          <li>Designed a <b>two-stage LoRA SFT</b> pipeline (broad SFT, then event-centered annealing on hazard transitions) on a <b>single V100 32 GB</b>, freezing the vision tower.</li>
-          <li>Guaranteed <b>100% output validity</b> via FSM / schema-constrained decoding, and measured generalization on <b>held-out cameras never seen in training</b>.</li>
+          <li>Adapted Qwen2.5-VL-7B with <b>StreamingVLM</b>-style streaming attention (attention-sink + sliding-window KV cache, contiguous 3D RoPE) for constant memory and per-step latency regardless of stream duration — a camera can run for hours or days without KV growth or drift.</li>
+          <li>Designed a <b>two-stage LoRA SFT</b> pipeline (broad SFT, then event-centered annealing on hazard transitions) on a single V100 32 GB, freezing the vision tower.</li>
+          <li>Guaranteed 100% output validity via FSM / schema-constrained decoding, and measured generalization on <b>held-out cameras never seen in training</b>.</li>
         </ul>
         <div class="readouts">
           <div class="readout"><div class="readout-val">~2 Hz</div><div class="readout-label">Per-step decision</div></div>
@@ -529,19 +507,24 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
           <span class="entry-date">Aug 2025 — Feb 2026</span>
         </div>
-        <p class="entry-desc">Three research tracks across LLM reasoning, model safety, and vision-language interpretability — building reproducible pipelines end to end.</p>
+        <p class="entry-desc">Three research tracks across LLM reasoning, model safety, and vision-language interpretability — reproducible pipelines built end to end.</p>
+        <div class="readouts">
+          <div class="readout"><div class="readout-val">658</div><div class="readout-label">Problems · 6 LLMs</div></div>
+          <div class="readout"><div class="readout-val">10 LLMs</div><div class="readout-label">Open-weight · 3B–70B</div></div>
+          <div class="readout"><div class="readout-val">~550</div><div class="readout-label">Politician multimodal set</div></div>
+        </div>
         <div class="tracks">
           <div class="track">
-            <h4>LLM Difficulty Perception<span class="venue">submitted · ACL 2026</span></h4>
-            <p>Built a sandboxed code-execution framework with strict I/O judging and a reasoning-eval suite over <b>4 benchmarks (658 problems) × 6 LLMs</b>; implemented the LoRA/QLoRA fine-tuning pipeline (TRL + PEFT) and curated AIME / E2H-Codeforces SFT data.</p>
+            <h4>LLM Difficulty Perception<span class="venue">in preparation</span></h4>
+            <p>Do LLMs perceive how hard a problem is — and does injecting more knowledge move that perception? Built the sandboxed I/O code-execution eval and the LoRA/QLoRA fine-tuning pipeline (TRL + PEFT) across 658 reasoning problems and 6 models.</p>
           </div>
           <div class="track">
-            <h4>LLM Safety &amp; Introspection<span class="venue">COLM 2026 · arXiv</span></h4>
-            <p>Built a reproducible SGLang + OpenRouter pipeline evaluating prefill attacks (control / static / adversarial) and model introspection over HarmBench &amp; SocialHarmBench; implemented <b>ADVPrefix</b> end to end and reproduced Anthropic's <b>Many-Shot Jailbreaking</b> (Llama Guard scoring) across Gemma / Qwen / Llama. Key finding — across <b>10 open-weight LLMs (3B–70B)</b>, no model reliably recognizes its own adversarially-prefilled outputs. <a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Read the preprint ↗</a></p>
+            <h4>LLM Safety &amp; Introspection<span class="venue">EMNLP 2026 · under review</span></h4>
+            <p>Can a model tell that its own harmful reply was elicited by an adversarial prefill? Built the reproducible prefill-attack and introspection pipeline (ADVPrefix, Many-Shot Jailbreaking) — and found that across 10 open-weight LLMs (3B–70B), none reliably recognizes its own compromised output.</p>
           </div>
           <div class="track">
-            <h4>VLM Ideology, Interpretability &amp; Bias Localization</h4>
-            <p>Extended political-ideology probing from LLMs to Vision-Language Models: trained per-layer/per-head ridge-regression <b>linear probes</b> on DW-NOMINATE scores, performed inference-time steering by injecting learned ideology vectors, built a <b>~550-politician</b> multimodal dataset (Voteview + portraits), and ran <b>NMF topic modeling</b> over chain-of-thought to surface the visual cues models tie to ideology. Extended the same probing to localize bias — measuring sensitive-attribute leakage and spurious correlations in <b>InternVL, Gemma3-VL, Qwen-VL</b> via layer-wise probes and attribution (Grad-CAM, Integrated Gradients, TCAV), and applying counterfactual edits to quantify subgroup gaps and localize bias to image regions and cross-modal tokens.</p>
+            <h4>VLM Ideology &amp; Bias Localization</h4>
+            <p>Extended political-ideology linear probing from LLMs to vision-language models over a ~550-politician multimodal dataset, then reused the probes to localize bias — attributing sensitive-attribute leakage to specific image regions and cross-modal tokens (Grad-CAM, Integrated Gradients, TCAV).</p>
           </div>
         </div>
       </article>
@@ -555,23 +538,29 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
           <span class="entry-date">May 2023 — Jun 2025</span>
         </div>
-        <p class="entry-desc">Four research tracks on in-the-wild stress prediction from multimodal phone/wearable sensor data — reproducible pipelines, leakage guards, and cross-user generalization.</p>
+        <p class="entry-desc">Four tracks on in-the-wild stress prediction from multimodal phone and wearable sensor data — reproducible pipelines, leakage guards, cross-user generalization.</p>
+        <div class="readouts">
+          <div class="readout"><div class="readout-val">+17%</div><div class="readout-label">AUROC · personalization</div></div>
+          <div class="readout"><div class="readout-val">693</div><div class="readout-label">Users · 8 datasets</div></div>
+          <div class="readout"><div class="readout-val">60 min</div><div class="readout-label">Optimal sensing window</div></div>
+          <div class="readout"><div class="readout-val">3</div><div class="readout-label">Papers · IMWUT / CHI</div></div>
+        </div>
         <div class="tracks">
           <div class="track">
             <h4>Reproducible Stress-Prediction Pipeline<span class="venue">ACM IMWUT 2024</span></h4>
-            <p>Co-authored a reproducible in-the-wild stress-prediction pipeline (feature extraction, leakage guards, temporal-order controls). Led the personalization component — partial / multi-task personalization via an adapted <b>TSGB</b> multi-task learner — improving <b>AUROC by up to ~17%</b> on DeepStress over the user-independent baseline.</p>
+            <p>Co-authored a reproducible in-the-wild stress-prediction pipeline and led its personalization component — a multi-task TSGB learner that lifted AUROC by up to ~17% over the user-independent baseline on DeepStress.</p>
           </div>
           <div class="track">
             <h4>CrossShift — Inter-Personal Differences<span class="venue">ACM IMWUT 2026</span></h4>
-            <p>Built <b>CrossShift</b>, quantifying user-level data shift across <b>8 datasets / 693 users</b>: PERMANOVA/PERMDISP and χ² testing with Wasserstein (covariate), L2 (label), OTDD (conditional), and JS-divergence (concept) quantification, plus a LOSO harness and domain-generalization baselines — finding <b>concept shift P(Y|X)</b> the primary driver of cross-user degradation (β = 0.265), and using JS-based OOD checks for onboarding-time selective personalization.</p>
+            <p>Quantified user-level data shift across 8 datasets / 693 users (PERMANOVA, Wasserstein / OTDD / JS divergences, LOSO), pinpointing concept shift P(Y|X) as the primary driver of cross-user degradation.</p>
           </div>
           <div class="track">
             <h4>CausalCFF — Causal Analysis of Stress<span class="venue">CHI EA 2025</span></h4>
-            <p>Designed the <b>CausalCFF</b> pipeline — POI clustering, association-rule mining, and Convergent Cross Mapping causal analysis — surfacing high-lift behavior patterns and testing their causal impact on stress across six weeks of GPS / activity / app-usage data; structured and documented the codebase for public release.</p>
+            <p>Built a causal pipeline — POI clustering, association-rule mining, and Convergent Cross Mapping — that surfaces high-lift behavior patterns and tests their causal impact on stress across six weeks of GPS, activity, and app-usage data.</p>
           </div>
           <div class="track">
             <h4>Multimodal Sensor Integration</h4>
-            <p>Integrated multimodal sensor data (Audio, Aqara, Withings, Smartphone) with KNN imputation and feature selection (ANOVA, LASSO-CV, correlation filtering); identified <b>60-minute windows</b> and "Yesterday Epoch" features as the strongest configuration via LOSO and K-Fold CV with hyperparameter optimization.</p>
+            <p>Fused audio, Aqara, Withings, and smartphone streams with KNN imputation and feature selection, identifying 60-minute windows and "Yesterday Epoch" features as the strongest configuration under LOSO / K-fold CV.</p>
           </div>
         </div>
       </article>
@@ -616,14 +605,14 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
           </div>
         </article>
         <article class="pub reveal">
-          <div class="pub-venue">COLM<span class="yr">2026 · arXiv</span></div>
+          <div class="pub-venue">EMNLP<span class="yr">2026 · under review</span></div>
           <div>
-            <div class="pub-title"><a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--accent)">Can LLMs Reliably Self-Report Adversarial Prefills, and How?</a></div>
-            <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim — preprint, under review</div>
+            <div class="pub-title">Can LLMs Introspect in Safety Contexts?</div>
+            <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim — submitted, under review</div>
           </div>
         </article>
         <article class="pub reveal">
-          <div class="pub-venue">ACL<span class="yr">2026 · under review</span></div>
+          <div class="pub-venue">Working paper<span class="yr">2026 · in prep</span></div>
           <div>
             <div class="pub-title">Difficulty Perception in the Reasoning of LLMs</div>
             <div class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim</div>
@@ -699,11 +688,11 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
         </div>
         <div class="stack-group reveal">
           <h4>ML / Deep Learning</h4>
-          <p><b>PyTorch</b> · TensorFlow · scikit-learn · XGBoost · <b>Hugging Face</b> (Transformers, PEFT, TRL) · OpenCLIP</p>
+          <p><b>PyTorch</b> · TensorFlow · scikit-learn · XGBoost · Hugging Face (Transformers, PEFT, TRL) · OpenCLIP</p>
         </div>
         <div class="stack-group reveal">
           <h4>LLM / VLM</h4>
-          <p><b>LoRA / QLoRA</b> fine-tuning · PTQ / quantization · <b>RAG</b> · FAISS · Ollama · SGLang · constrained decoding · LangChain / LangGraph</p>
+          <p><b>LoRA / QLoRA</b> fine-tuning · PTQ / quantization · RAG · FAISS · Ollama · SGLang · constrained decoding · LangChain / LangGraph</p>
         </div>
         <div class="stack-group reveal">
           <h4>Interpretability &amp; Eval</h4>
@@ -815,70 +804,6 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
     sections.forEach(function(s){so.observe(s);});
   }
 
-  /* ---------- hero signal waveform ---------- */
-  var canvas=document.getElementById("signal");
-  if(canvas&&canvas.getContext){
-    var ctx=canvas.getContext("2d");
-    var dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
-    var W=0,H=0,pts=[],N=0,phase=0;
-    function css(v){return getComputedStyle(root).getPropertyValue(v).trim();}
-    function resize(){
-      var r=canvas.getBoundingClientRect();
-      W=r.width;H=r.height;
-      canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      N=Math.max(60,Math.round(W/6));
-      if(pts.length===0){for(var i=0;i<N;i++)pts.push(0.5);}
-    }
-    function nextVal(){
-      phase+=0.13;
-      // layered, mostly-calm signal with occasional "event" spikes
-      var base=0.5+0.16*Math.sin(phase)+0.07*Math.sin(phase*2.3+1.1);
-      var spike=(Math.random()<0.03)?(Math.random()-0.5)*0.6:0;
-      var jitter=(Math.random()-0.5)*0.05;
-      var v=base+spike+jitter;
-      return Math.max(0.06,Math.min(0.94,v));
-    }
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      var accent=css("--signal")||"#f0a93b";
-      var faint=css("--line")||"#e0e5ec";
-      // baseline grid
-      ctx.strokeStyle=faint;ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(0,H*0.5+.5);ctx.lineTo(W,H*0.5+.5);ctx.stroke();
-      // waveform
-      var step=W/(N-1);
-      ctx.lineJoin="round";ctx.lineCap="round";
-      ctx.beginPath();
-      for(var i=0;i<N;i++){
-        var x=i*step, y=H-(pts[i]*H);
-        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
-      }
-      ctx.strokeStyle=accent;ctx.lineWidth=2;
-      ctx.shadowColor=accent;ctx.shadowBlur=8;
-      ctx.stroke();
-      ctx.shadowBlur=0;
-      // endpoint dot
-      var lx=(N-1)*step, ly=H-(pts[N-1]*H);
-      ctx.beginPath();ctx.arc(lx-1,ly,3.4,0,Math.PI*2);ctx.fillStyle=accent;ctx.fill();
-    }
-    resize();
-    window.addEventListener("resize",resize);
-    if(reduce){
-      // static representative trace
-      for(var i=0;i<N;i++){pts[i]=0.5+0.16*Math.sin(i*0.16)+0.06*Math.sin(i*0.37);}
-      draw();
-    }else{
-      var acc=0;
-      (function loop(t){
-        // ~14 fps update for a measured, instrument-like cadence
-        if(!loop.last)loop.last=t;
-        acc+=t-loop.last;loop.last=t;
-        if(acc>70){acc=0;pts.push(nextVal());if(pts.length>N)pts.shift();draw();}
-        requestAnimationFrame(loop);
-      })(0);
-    }
-  }
 })();
 </script>
 </body>
