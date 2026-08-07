@@ -1,0 +1,132 @@
+# Product
+
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+web
+
+## Stack
+
+Static HTML/CSS/JS, no build step, no dependencies, no trackers. One file — `index.html` — carries the entire site (markup, stylesheet, and behavior script inline). Deployed as a GitHub Pages **user site** from the repo root: `https://uziahmd.github.io`. Sibling assets: `Uzair_Ahmed_Resume.pdf`, and `assets/` (the Charizard pet — see Brand Commitments).
+
+## Users
+
+**Primary:** people who decide about Uzair Ahmed and are reading under time pressure.
+
+- **Recruiters and hiring engineers** — skimming with his résumé PDF open in the next tab, under office ceiling light, deciding in under a minute whether to keep reading.
+- **Principal investigators / lab leads** — checking whether the publication record, author positions, and venues are real before replying to an email; often late, often on a dark screen.
+- **Graduate admissions readers** — working a stack at a desk by a window at 10am, needing venue, year, status, and author position without hunting.
+
+Secondary: collaborators and freelance clients arriving from GitHub or LinkedIn.
+
+Every one of them arrives cold, stays briefly, and leaves with either a decision or nothing. The site is read in daylight more often than at night; light is the primary theme and gets the rigor.
+
+## Product Purpose
+
+A single-page professional record that proves, to a stranger with twenty seconds, that Uzair Ahmed builds production AI/ML systems **and** the evaluation that shows they work — and that gives a reviewer who stays five minutes a citable, verifiable publication record.
+
+What the site must prove, in order:
+
+1. **He ships.** Real systems under real constraints on real hardware — a streaming VLM on one V100, a productionized LLM API service.
+2. **He measures.** Every claim carries its number, unit, and scope (~2 Hz per-step decision, O(1) memory, +17% AUROC, 100% valid JSON, 693 users / 8 datasets).
+3. **The record is checkable.** Venue, year, status, author position, and artifact link for every publication — the same facts a PI or admissions reader would otherwise have to ask for.
+4. **He is reachable.** Email is the primary action in the first viewport and again in the footer title block.
+
+Success is a reply: an email, an interview, an application read further. Not time-on-page.
+
+**Surface mode: Persuade.** This is a persuasion surface, not a documentation or utility surface. It leads with claim and evidence, sequences toward contact, and treats every section as something a skeptical reader is auditing. It is not a blog, not a CMS, not a link tree.
+
+## Positioning
+
+Most researcher portfolios assert; this one measures. The differentiating mechanism is that **nothing is claimed without its measurement beside it** — value, unit, date, venue, author position, status — and the visual world enforces it (see DESIGN.md). A neighboring portfolio cannot truthfully copy the numbers, the author positions, or the specific system work; and the pairing of production engineering with evaluation rigor is the actual position: he is not a pure researcher and not a pure engineer, and the site should never flatten him into either.
+
+Second, structurally: he is an early-career researcher whose record is genuinely mixed-status — one first-author paper, several middle-author papers, one accepted, one under review, one in preparation. The site's answer is to **state the status plainly rather than blur it**. Honesty about position is the credibility asset; concealing it would forfeit the only thing a PI is checking for.
+
+## Operating Context
+
+- **Read cold, once, briefly.** No onboarding, no return visits, no account. First viewport must carry claim + evidence + contact.
+- **Read alongside the résumé PDF.** The site and `Uzair_Ahmed_Resume.pdf` must not contradict each other. When the résumé changes, the site's facts change with it.
+- **Read on a laptop, mostly.** Desktop is the decision context; mobile is the follow-up glance. The layout must not lose chronology when the axis gutter collapses.
+- **Facts age.** Statuses move (under review → accepted → published), roles change, new venues land. The record is expected to be edited by hand in `index.html`, by its owner, without a build step.
+
+## Capabilities and Constraints
+
+**What the site does:** one scrolling record with six sections — About, Selected Work, Publications & Preprints, Projects, Stack, Recognition — plus a hero, a footer title block, a light/dark theme toggle, an active-section indicator in the header, an anchor-driven "measurement cursor" that brackets a publication row when a work-section chip links to it, and the Charizard pet.
+
+**Content-truth rules (binding — these govern every future edit):**
+
+1. **Status vocabulary is fixed and exhaustive.** A publication carries exactly one of: *published* (bare year, e.g. `2024`), *accepted*, *under review* / *review*, *in preparation* / *in prep*. There is no "forthcoming", no "to appear", no "submitted to X" used as a venue. The status is visually coded (solid / dashed / dotted trace) as well as written; both must agree.
+2. **Author position is always shown.** Every record states his position as `N / M` (his index, total authors) and marks his name in the author list. Never omit the position to make a middle-author paper read like a first-author paper. Never reorder an author list.
+3. **A venue is a venue.** `Working paper` is the venue for an unsubmitted paper. Do not promote a target venue into the venue column before submission, and do not write a conference name for a paper only under review there without the dashed status beside it.
+4. **Every number is a measured number with a scope.** `+17%` is *AUROC, personalization, over the user-independent baseline on DeepStress* — the scope travels with the number. Rounded and approximate values are marked (`~2 Hz`, `~550`, `~$40K`). Never state a number the underlying work did not produce.
+5. **No invented claims.** No fabricated testimonials, citation counts, employer logos, metrics, awards, dates, or "trusted by" content. No placeholder social proof. If a fact is not on hand, the section shrinks; it does not get filled.
+6. **Density follows substance.** A project with a real measured number gets a readout cell; one without gets none. Do not add a readout cell to balance a row visually.
+7. **NDA and client work stays bounded.** `Allah-u-Allam` is marked *client work · NDA* and carries no client name, no metrics, and no link. Future client work follows the same shape.
+8. **Links open honestly.** External links carry `target="_blank" rel="noopener"`, a visible `↗`, and a screen-reader "(opens in new tab)". Dead links are removed, not left pointing at a 404.
+
+**Technical constraints:**
+
+- Single file, no build, no framework, no bundler. An edit is a text edit plus a `git push`.
+- Two webfont families only (Archivo variable, IBM Plex Mono), one Google Fonts request. IBM Plex Mono must stay loaded regardless of page use — the pet's particles request it (see Brand Commitments).
+- `assets/pet.js`, `assets/pet.css`, and `assets/charizard/` are frozen third-party-shaped code: not to be modified, renamed, or moved.
+- No analytics, no cookies, no third-party scripts beyond the font stylesheet.
+
+**Explicitly undecided:** whether to add a writing/notes section; whether to host the publication PDFs directly; whether to add a Korean-language version.
+
+## Brand Commitments
+
+**Name and voice.** "Uzair Ahmed", set as real text (never an image, never a logotype file). Role line: *AI / ML Researcher & Engineer*. Location: *Daejeon, Korea*. Voice is plain, first-person, technically specific, and unhedged about numbers — never marketing-superlative, never "passionate about".
+
+**The Charizard pet is permanent product truth, not decoration.** A pixel-art Charizard lives on the page: he glides, hovers, walks the bottom of the viewport, startles at fast cursors, gets petted by lingering ones, waves on first landing, naps after 60s idle, wakes on activity, breathes fire when the visitor types "fire", sneezes when the theme changes, carries a dark-mode tail glow, perches beside the hero name on load, and can be switched off with a 🔥 toggle in the bottom-left corner. He is the site's most-loved asset and the single piece of personality in an otherwise measured document. The colophon says so out loud: *"A Charizard lives here — type 'fire'."*
+
+**Preservation contract (summary — the full text is authoritative; every clause is non-negotiable):**
+
+1. `assets/pet.css` linked in `<head>`; `assets/pet.js` deferred before `</body>`. Neither file, nor the 14 GIFs in `assets/charizard/`, may be modified.
+2. A `.hero h1` containing his name as **real text**, sitting in the first viewport with clear space to its right — pet.js measures a Range over that text to place the perch.
+3. A working light/dark toggle setting `data-theme="light|dark"` on `<html>`, persisted to localStorage key `theme`, respecting `prefers-color-scheme` when unset. Both themes fully authored.
+4. Six CSS custom properties must exist on `:root`, by these exact names, in both themes, with adequate contrast: `--signal`, `--ink-faint`, `--accent`, `--surface`, `--line`, `--line-strong`. pet.css reads them.
+5. No `z-index ≥ 999` anywhere in site CSS. The pet sits at 999, his toggle at 1000.
+6. `"IBM Plex Mono"` stays loaded — his particles request it.
+7. The bottom ~96px of the viewport stays clear of fixed/sticky elements, and the palette must not clash with an orange dragon in either theme.
+8. No global listeners or rAF loops that fight pet.js; no pointer interception over his area; no renaming or moving `assets/`.
+9. localStorage keys `theme` and `charizard-pet-enabled` keep their exact semantics.
+
+A redesign that breaks any clause is a failed redesign, regardless of how it looks.
+
+## Evidence on Hand
+
+**Real and verifiable (in `index.html`):**
+
+- 6 publication records: ACM IMWUT 2026 (accepted), EMNLP 2026 (under review), a 2026 working paper (in prep), CHI EA 2025, ACM IMWUT 2024, JKAIA 2023 (first author). Two carry live DOI links (`dl.acm.org/doi/full/10.1145/3706599.3719776`, `dl.acm.org/doi/10.1145/3678578`).
+- 4 work entries with measured results: KPST (Feb 2026 – present), KAIST K&D Lab (Aug 2025 – Feb 2026), KAIST ICLab (May 2023 – Jun 2025), DocsHunt AI (Jun – Aug 2024).
+- 6 projects, 4 with public GitHub repos: `streaming_hazard_`, `smart_bin`, `Siguature_Verification`, `AlphaHand`; plus `Kaist-ICLab/CausalCFF`.
+- 6 recognitions, 2018–2025.
+- `Uzair_Ahmed_Resume.pdf` at the repo root, linked twice.
+- Contact: `uziahmd@outlook.com`, `github.com/uziahmd`, `linkedin.com/in/uziahmd`.
+
+**Owner-supplied TODO — wanted, URLs not known:**
+
+- **Google Scholar profile URL.** Wanted in the footer title block alongside GitHub / LinkedIn / Résumé, and it is the single strongest credibility link for the PI and admissions audience. Do not guess, construct, or search-link it — it must come from Uzair.
+- **ORCID iD.** Same placement, same rule. An ORCID is `https://orcid.org/0000-0000-0000-0000`; a fabricated one is worse than none.
+
+Until both are supplied by the owner, they stay absent. **Never invent, infer, or approximate either URL.**
+
+**Known absences future work must not fabricate:** no citation counts, no h-index, no reference letters, no testimonials, no employer logos, no press coverage, no talk recordings, no hosted PDFs of the unlinked papers.
+
+## Product Principles
+
+1. **A claim without its measurement is not shipped.** Value, unit, scope, and date travel together or the claim comes out.
+2. **State the status; never blur it.** Accepted, under review, and in preparation are different words with different weights, and a reader who catches the site blurring them stops trusting all of it.
+3. **Twenty seconds is the design budget.** Claim, evidence, and contact must land in the first viewport; everything after is for the reader who chose to stay.
+4. **The dragon is a feature, not a liability.** Every layout, palette, and z-index decision is made around him. When personality and layout convenience conflict, personality wins.
+5. **One file, no build, owner-editable.** Any improvement that requires a toolchain to update a date has made the site worse.
+
+## Accessibility & Inclusion
+
+- Skip-to-content is the first focusable element; `main` is the target.
+- Every interactive element has a visible focus ring that survives both themes and all three grounds.
+- Nothing functional renders below 12px; interactive hit areas are ≥24px, primary keys 44px.
+- Status is coded by line pattern (solid / dashed / dotted) **before** it is coded by color, so the record survives desaturation and colorblindness.
+- `prefers-reduced-motion` is honored site-wide and by the pet (static perch, no particles).
+- The pet hides below 700px viewport width; the site must be complete and persuasive without him.
