@@ -295,9 +295,7 @@ section{padding:63px 0 72px;border-top:1px solid var(--line)}
   letter-spacing:.02em;user-select:all;
 }
 
-.hero-readouts{flex:0 1 auto;display:flex;flex-direction:column;border-left:2px solid var(--sig);padding-left:18px;gap:16px}
-.hero-readouts .r .v{font-family:var(--font-data);font-weight:500;font-size:17px;color:var(--ink)}
-.hero-readouts .r .l{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+.hero-strip{margin-top:32px;max-width:640px}
 
 /* ============================================================
    ABOUT
@@ -504,7 +502,6 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear graticul
 @media (max-width:520px){
   .hero-thesis{max-width:100%}
   .cta-row .key{flex:1 1 auto;justify-content:center}
-  .hero-readouts{border-left:none;border-top:2px solid var(--sig);padding:14px 0 0;flex-direction:row;flex-wrap:wrap;gap:14px 24px}
   .brand span.nm{display:none}
 }
 </style>
@@ -570,11 +567,11 @@ finish review, the verdict, and DESIGN.md.
               <a class="key" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
             </div>
             <p class="cta-addr">uziahmd@outlook.com</p>
-          </div>
-          <div class="hero-readouts" role="list" aria-label="Key measurements">
-            <div class="r" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision, infinite stream</div></div>
-            <div class="r" role="listitem"><div class="v">O(1)</div><div class="l">memory · any stream length</div></div>
-            <div class="r" role="listitem"><div class="v">+17%</div><div class="l">AUROC · personalization</div></div>
+            <div class="strip hero-strip" role="list" aria-label="Key measurements">
+              <div class="cell" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision · infinite stream</div></div>
+              <div class="cell" role="listitem"><div class="v">O(1)</div><div class="l">memory · any stream length</div></div>
+              <div class="cell" role="listitem"><div class="v">+17%</div><div class="l">AUROC · personalization</div></div>
+            </div>
           </div>
         </div>
       </div>
