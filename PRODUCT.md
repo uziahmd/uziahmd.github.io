@@ -41,7 +41,7 @@ Success is a reply: an email, an interview, an application read further. Not tim
 
 Most researcher portfolios assert; this one measures. The differentiating mechanism is that **nothing is claimed without its measurement beside it** — value, unit, date, venue, author position, status — and the visual world enforces it (see DESIGN.md). A neighboring portfolio cannot truthfully copy the numbers, the author positions, or the specific system work; and the pairing of production engineering with evaluation rigor is the actual position: he is not a pure researcher and not a pure engineer, and the site should never flatten him into either.
 
-Second, structurally: he is an early-career researcher whose record is genuinely mixed-status — one first-author paper, several middle-author papers, one accepted, one under review, one in preparation. The site's answer is to **state the status plainly rather than blur it**. Honesty about position is the credibility asset; concealing it would forfeit the only thing a PI is checking for.
+Second, structurally: he is an early-career researcher whose record is genuinely mixed-status — one first-author paper, several middle-author papers, two accepted (ACM IMWUT 2026 CrossShift; EMNLP 2026), none currently under review, one in preparation (Difficulty Perception). The site's answer is to **state the status plainly rather than blur it**. Honesty about position is the credibility asset; concealing it would forfeit the only thing a PI is checking for.
 
 ## Operating Context
 
@@ -98,7 +98,7 @@ A redesign that breaks any clause is a failed redesign, regardless of how it loo
 
 **Real and verifiable (in `index.html`):**
 
-- 6 publication records: ACM IMWUT 2026 (accepted), EMNLP 2026 (under review), a 2026 working paper (in prep), CHI EA 2025, ACM IMWUT 2024, JKAIA 2023 (first author). Two carry live DOI links (`dl.acm.org/doi/full/10.1145/3706599.3719776`, `dl.acm.org/doi/10.1145/3678578`).
+- 6 publication records: ACM IMWUT 2026 (accepted), EMNLP 2026 (accepted — decision 23 Aug 2026; the conference has not been held yet, so arXiv's comments field may still read "In submission". The owner's confirmation governs; do **not** demote this back to *under review* from an online source), a 2026 working paper (in prep), CHI EA 2025, ACM IMWUT 2024, JKAIA 2023 (first author). Four titles are live links — `doi.org/10.1145/3831954` (CrossShift; correct per the camera-ready, and expected to 404 until ACM registers the Sep 2026 issue — do not remove it as dead), `arxiv.org/abs/2606.23671` (EMNLP), `dl.acm.org/doi/full/10.1145/3706599.3719776` (CausalCFF), `dl.acm.org/doi/10.1145/3678578` (IMWUT 2024). Three records also carry a code repo (`Kaist-ICLab/CrossShift`, `ngqm/prefill-introspection`, `Kaist-ICLab/CausalCFF`) and CausalCFF carries a talk/teaser video.
 - 4 work entries with measured results: KPST (Feb 2026 – present), KAIST K&D Lab (Aug 2025 – Feb 2026), KAIST ICLab (May 2023 – Jun 2025), DocsHunt AI (Jun – Aug 2024).
 - 6 projects, 4 with public GitHub repos: `streaming_hazard_`, `smart_bin`, `Siguature_Verification`, `AlphaHand`; plus `Kaist-ICLab/CausalCFF`.
 - 6 recognitions, 2018–2025.
@@ -112,7 +112,9 @@ A redesign that breaks any clause is a failed redesign, regardless of how it loo
 
 Until both are supplied by the owner, they stay absent. **Never invent, infer, or approximate either URL.**
 
-**Known absences future work must not fabricate:** no citation counts, no h-index, no reference letters, no testimonials, no employer logos, no press coverage, no talk recordings, no hosted PDFs of the unlinked papers.
+**Known absences future work must not fabricate:** no citation counts, no h-index, no reference letters, no testimonials, no employer logos, no press coverage, no hosted PDFs of the unlinked papers.
+
+**Not an absence — do not delete as invented:** the CausalCFF talk/teaser video, `https://www.youtube.com/watch?v=7Ov20nvivYU`, is real and verified, and is linked as `video ↗` on the CHI EA 2025 record. It is the only recording that exists; no other talk video may be added.
 
 ## Product Principles
 

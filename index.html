@@ -389,7 +389,7 @@ section{padding:63px 0 72px;border-top:1px solid var(--line)}
 .pub-pos{grid-column:4;grid-row:1;font-family:var(--font-data);font-size:13px;color:var(--ink-soft);white-space:nowrap;text-align:right}
 .pub-pos .pl{display:none} /* the word "author" appears when the column label is gone */
 .pub-pos b{color:var(--ink);font-weight:500}
-.pub-art{grid-column:3;margin-top:6px}
+.pub-art{grid-column:3;margin-top:6px;display:flex;flex-wrap:wrap;gap:18px} /* same artifact-link rhythm as .entry-links */
 
 /* ============================================================
    PROJECTS — a ledger, not a card grid
@@ -493,7 +493,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear graticul
   .record .pub-pos{display:block;text-align:left;margin-top:4px;white-space:normal}
   .record .pub-pos .pl{display:inline}
   .record .pub-authors{display:block;margin-top:3px}
-  .record .pub-art{display:block;margin-top:7px}
+  .record .pub-art{display:flex;margin-top:7px}
   .titleblock{grid-template-columns:1fr}
   .titleblock .tb{border-left:none;border-top:1px solid var(--line)}
   .titleblock .tb:first-child{border-top:none}
@@ -606,9 +606,10 @@ finish review, the verdict, and DESIGN.md.
           <ul class="findings" role="list">
             <li>Adapted Qwen2.5-VL-7B with <strong>StreamingVLM</strong>-style streaming attention (attention-sink + sliding-window KV cache, contiguous 3D RoPE) for constant memory and per-step latency regardless of stream duration. A camera can run for hours or days without KV growth or drift.</li>
             <li>Designed a <strong>two-stage LoRA SFT</strong> pipeline (broad SFT, then event-centered annealing on hazard transitions) on a single V100 32 GB, freezing the vision tower.</li>
-            <li>Guaranteed 100% output validity via FSM / schema-constrained decoding, and measured generalization on <strong>held-out cameras never seen in training</strong>.</li>
+            <li>Guaranteed 100% output validity via FSM / schema-constrained decoding, and measured <strong>83% F1 on held-out cameras</strong> never seen in training.</li>
           </ul>
           <div class="strip" role="list" aria-label="Measured results">
+            <div class="cell" role="listitem"><div class="v">83%</div><div class="l">F1 · held-out cameras</div></div>
             <div class="cell" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision</div></div>
             <div class="cell" role="listitem"><div class="v">100%</div><div class="l">valid JSON output</div></div>
             <div class="cell" role="listitem"><div class="v">O(1)</div><div class="l">memory · any length</div></div>
@@ -640,7 +641,7 @@ finish review, the verdict, and DESIGN.md.
               <p>Do LLMs perceive how hard a problem is, and does injecting more knowledge move that perception? Built the sandboxed I/O code-execution eval and the LoRA/QLoRA fine-tuning pipeline (TRL + PEFT) across 658 reasoning problems and 6 models.</p>
             </div>
             <div class="track">
-              <h4>LLM Safety &amp; Introspection <a class="chip dash" href="#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · under review</a></h4>
+              <h4>LLM Safety &amp; Introspection <a class="chip" href="#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted</a></h4>
               <p>Can a model tell that its own harmful reply was elicited by an adversarial prefill? Built the reproducible prefill-attack and introspection pipeline (ADVPrefix, Many-Shot Jailbreaking), and found that across 10 open-weight LLMs (3B–70B), none reliably recognizes its own compromised output.</p>
             </div>
             <div class="track">
@@ -669,7 +670,7 @@ finish review, the verdict, and DESIGN.md.
               <p>Co-authored the pipeline and led its personalization component: a multi-task TSGB learner that lifted AUROC by up to ~17% over the user-independent baseline on DeepStress.</p>
             </div>
             <div class="track">
-              <h4>CrossShift — Inter-Personal Differences <a class="chip" href="#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted</a></h4>
+              <h4>CrossShift — Interpersonal Differences <a class="chip" href="#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted</a></h4>
               <p>Quantified user-level data shift across 8 datasets / 693 users (PERMANOVA, Wasserstein / OTDD / JS divergences, LOSO), pinpointing concept shift P(Y|X) as the primary driver of cross-user degradation.</p>
             </div>
             <div class="track">
@@ -709,22 +710,24 @@ finish review, the verdict, and DESIGN.md.
       <div>
         <div class="sec-head">
           <h2>Publications &amp; Preprints</h2>
-          <p class="legend">6 records · trace key:<span class="pub-status"><span class="tick" aria-hidden="true"></span>published / accepted</span><span class="pub-status dash"><span class="tick" aria-hidden="true"></span>under review</span><span class="pub-status dot"><span class="tick" aria-hidden="true"></span>in preparation</span></p>
+          <p class="legend">6 records · trace key:<span class="pub-status"><span class="tick" aria-hidden="true"></span>published / accepted</span><span class="pub-status dot"><span class="tick" aria-hidden="true"></span>in preparation</span></p>
         </div>
         <ol class="record" role="list">
           <li id="pub-imwut26">
             <span class="pub-venue">ACM IMWUT</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2026 · accepted</span>
-            <span class="pub-title">CrossShift: Quantifying Inter-Personal Differences in Mobile Sensing for Mental Health</span>
-            <span class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee</span>
+            <span class="pub-title"><a href="https://doi.org/10.1145/3831954" target="_blank" rel="noopener">CrossShift: Quantifying Interpersonal Differences in Mobile Sensing for Mental Health<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee · Proc. ACM IMWUT 10(3), Art. 189 (40pp)</span>
             <span class="pub-pos" title="Author position"><span class="pl">author </span><b>5</b> / 9</span>
+            <span class="pub-art"><a class="tlink" href="https://github.com/Kaist-ICLab/CrossShift" target="_blank" rel="noopener">code <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a></span>
           </li>
           <li id="pub-emnlp26">
             <span class="pub-venue">EMNLP</span>
-            <span class="pub-status dash"><span class="tick" aria-hidden="true"></span>2026 · review</span>
-            <span class="pub-title">Can LLMs Introspect in Safety Contexts?</span>
-            <span class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim · submitted, under review</span>
+            <span class="pub-status"><span class="tick" aria-hidden="true"></span>2026 · accepted</span>
+            <span class="pub-title"><a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener">Can LLMs Reliably Self-Report Adversarial Prefills, and How?<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim · EMNLP 2026, accepted</span>
             <span class="pub-pos" title="Author position"><span class="pl">author </span><b>2</b> / 3</span>
+            <span class="pub-art"><a class="tlink" href="https://github.com/ngqm/prefill-introspection" target="_blank" rel="noopener">code <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a></span>
           </li>
           <li id="pub-difficulty">
             <span class="pub-venue">Working paper</span>
@@ -739,7 +742,7 @@ finish review, the verdict, and DESIGN.md.
             <span class="pub-title"><a href="https://dl.acm.org/doi/full/10.1145/3706599.3719776" target="_blank" rel="noopener">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features<span class="sr"> (opens in new tab)</span></a></span>
             <span class="pub-authors">P. Zhang, G. Jung, <span class="me">U. Ahmed</span>, U. Lee · CHI Extended Abstracts '25</span>
             <span class="pub-pos" title="Author position"><span class="pl">author </span><b>3</b> / 4</span>
-            <span class="pub-art"><a class="tlink" href="https://github.com/Kaist-ICLab/CausalCFF" target="_blank" rel="noopener">code <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-art"><a class="tlink" href="https://github.com/Kaist-ICLab/CausalCFF" target="_blank" rel="noopener">code <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a><a class="tlink" href="https://www.youtube.com/watch?v=7Ov20nvivYU" target="_blank" rel="noopener">video <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a></span>
           </li>
           <li id="pub-imwut24">
             <span class="pub-venue">ACM IMWUT</span>
