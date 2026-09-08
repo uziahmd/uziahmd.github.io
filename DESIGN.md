@@ -245,7 +245,7 @@ There is no `--grat` and no graticule layer. The paper palette for print is a fi
 | Body | `1.0625rem` | default; also the wordmark and ledger `h3` |
 | Secondary | `0.9375rem` | contribution clauses, author lists, descriptions, findings, plate items, marker names, ledger prose, key labels |
 | Label | `0.8125rem` | nav, annotations, strip labels, org lines, statuses, venues, years, notes, colophon |
-| Tick | `0.75rem` | axis ticks, chips, the folded marker's mono span |
+| Tick | `0.75rem` | axis ticks, chips, notes |
 
 **The display size is the one exception and it is deliberate.** `.hero h1` is `clamp(56px, 7.2vw, 90px)` in **px, never rem**, because a 24px browser default would otherwise wrap the name into the perch. PRODUCT.md clause 14 makes this testable.
 
@@ -273,7 +273,7 @@ The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry desc
 
 **The Width-Not-Weight Rule.** Emphasis in headings comes from the width axis (112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.
 
-**The Counting-Heading Rule.** A section `h2` states what is in the section and over what span — "Six records, one first-author", "Four roles, 2023–2026", "Six projects, 2019–2026", "Recognition, 2018–2025". It never states policy and it never introduces a legend. If a heading needs a key to be understood, the notation is wrong.
+**The Plain-Heading Rule.** Section headings are plain nouns — Work, Publications, Projects, Toolkit, Recognition — by the owner's decision of 2026-09-08. Counts and spans live in the hero cells and the rail ticks, never in a heading, and never as a slogan.
 
 ## Layout
 
@@ -281,7 +281,7 @@ The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry desc
 
 **The 9px module.** The vertical rhythm and every macro measurement is a multiple of 9: sections are `45px 0 54px` (36 / 45 at ≤699px), the hero is `clamp(45px, 7vh, 72px) 0 45px`, the row gap is 27px, the hero body gaps 18/54, the footer rule 45px above and 150px below, `scroll-padding-top: 72px`. **Component interiors are not on the module** — cell padding is 12/16, 16/18, 14/18, 13/18, 4/12; key padding is `0 22px`; gaps are 10, 11, 14, 20, 22. That is the honest state of the build: *the module governs the page's vertical rhythm and its lanes, not the inside of a cell.* Do not "correct" the interiors to multiples of 9; do not let a section's rhythm drift off them.
 
-**The two-column row.** Each of the four sections is `.row` — `grid-template-columns: 132px minmax(0,1fr)`, `gap: 0 27px`. The left column is the **axis gutter**: a `--line-strong` right border, a 2px CH1 span bracket inset 6px top and bottom, and two mono ticks — `t0` at the top and `t1` pinned to the bottom — reading that section's real date span. Small-multiples logic: each band carries its own local time axis, so sequence is carried by years that mean something rather than by section numbers.
+**The two-column row.** Each of the five sections is `.row` — `grid-template-columns: 132px minmax(0,1fr)`, `gap: 0 27px`. The left column is the **axis gutter**: a `--line-strong` right border, a 2px CH1 span bracket inset 6px top and bottom, and two mono ticks — `t0` at the top and `t1` pinned to the bottom — reading that section's real date span. Small-multiples logic: each band carries its own local time axis, so sequence is carried by years that mean something rather than by section numbers.
 
 **The hero has no rail.** `.hero .row { display: block }`. The name owns the whole measure, which is what buys the perch its clear space. Below it, `.hero-body` is a two-column grid with named areas — `"left proof" / "more proof" / "cta proof"` at `minmax(0,1fr) 360px` — so the portrait and thesis, the lead and annotations, and the two keys stack in the left column while the vertical measurement strip holds the right one at full height.
 
@@ -380,7 +380,7 @@ Not a card. `18px 0`, 1px `--line-2` top rule. A head line of title + role + rig
 
 ### Plate and markers (Toolkit & Recognition)
 
-One band, two columns (`3fr 2fr`, 27/45 gaps), each with its own `h2`. **Left:** a bordered plate of four `label + list` groups on a `--line-2` ground with `gap: 1px`; each group is a 118px heading column beside inline items joined by a `·` drawn in `--line-strong` via `::after`. **Right:** a bordered marker table — name, a dotted `--line-strong` leader that stretches, then a right-aligned mono year in a fixed column — closed by one folded "Earlier" row at label size that carries three older items in a single sentence rather than three more rows.
+Two bands, one after the other, each in its own `.row` with its own `h2`. **Toolkit** is a bordered plate of four `label + list` groups on a `--line-2` ground (`150px` label column, items joined by a `--line-strong` middot); its axis cell carries no ticks. **Recognition** is a bordered ledger of six rows, each `96px minmax(0,1fr)`: the year first in `--font-data` at `.8125rem`, then the award with its name in `--ink` 600 and the result in `--ink-soft`; rows divide on `--line-2`, and the rail ticks read 2025 / 2018. No leaders, no fold: every award has its own row and its own year, the six at equal weight by the owner's decision.
 
 ### Chip / artifact link
 

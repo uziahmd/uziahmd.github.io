@@ -4,44 +4,295 @@
   "title": "Design System: Timebase",
   "extensions": {
     "colorMeta": {
-      "field": { "role": "neutral", "displayName": "Instrument Paper", "canonical": "#edf1f3", "dark": "#141c22", "tonalRamp": ["#0c1216","#141c22","#1c262e","#2b3944","#556670","#8ba0ad","#c3d0d6","#edf1f3"] },
-      "surface": { "role": "neutral", "displayName": "Lit Panel", "canonical": "#f8fafb", "dark": "#1c262e", "tonalRamp": ["#0f1418","#1c262e","#2b3944","#48585f","#74838e","#a8b8c2","#d9e2e6","#f8fafb"] },
-      "surface-2": { "role": "neutral", "displayName": "Second Panel Step (unspent)", "canonical": "#e2e8ec", "dark": "#232f38", "tonalRamp": ["#111a1f","#1c262e","#232f38","#3b4c58","#6b7f8d","#9fb0ba","#c8d3d9","#e2e8ec"] },
-      "ink": { "role": "neutral", "displayName": "Engraved Ink", "canonical": "#101a20", "dark": "#e7eef2", "tonalRamp": ["#080d10","#101a20","#1e2c35","#3a4a54","#566772","#8ba0ad","#c3d0d6","#e7eef2"] },
-      "ink-soft": { "role": "neutral", "displayName": "Read Ink", "canonical": "#3a4a54", "dark": "#a8b8c2", "tonalRamp": ["#131b1f","#222e35","#3a4a54","#4d5f6a","#74838e","#a8b8c2","#cfdae0","#eef3f5"] },
-      "ink-faint": { "role": "neutral", "displayName": "Tick Grey", "canonical": "#566772", "dark": "#8ba0ad", "tonalRamp": ["#171e22","#28343b","#3d4c55","#566772","#71838f","#8ba0ad","#b6c5cd","#dde5e9"] },
-      "line": { "role": "neutral", "displayName": "Decorative Hairline", "canonical": "#d2dade", "dark": "#2b3944", "tonalRamp": ["#141b20","#1f2b33","#2b3944","#465661","#6f7f89","#a2b0b8","#d2dade","#eef2f4"] },
-      "line-2": { "role": "neutral", "displayName": "Structural Hairline", "canonical": "#b9c4ca", "dark": "#3b4c58", "tonalRamp": ["#171e23","#26333c","#3b4c58","#55686f","#7c8c95","#9dabb3","#b9c4ca","#dde3e6"] },
-      "line-strong": { "role": "neutral", "displayName": "Container Edge", "canonical": "#74838e", "dark": "#6b7f8d", "tonalRamp": ["#1a1f23","#2c353b","#43505a","#5b6b76","#74838e","#96a4ae","#bcc7ce","#e0e6e9"] },
-      "sig": { "role": "primary", "displayName": "CH1 Teal-Cyan", "canonical": "#0a6f80", "dark": "#5fd0e6", "tonalRamp": ["#032027","#053039","#063f4a","#085b6a","#0a6f80","#189fb5","#5fd0e6","#b7ecf6"] },
-      "sig-2": { "role": "primary", "displayName": "CH1, One Step Over (hover)", "canonical": "#063f4a", "dark": "#a5e8f5", "tonalRamp": ["#031c22","#063f4a","#08596a","#0a6f80","#189fb5","#5fd0e6","#a5e8f5","#dbf6fb"] },
-      "signal": { "role": "tertiary", "displayName": "Pet Heart Magenta (never on the page)", "canonical": "#b3186b", "dark": "#ff8fc4", "tonalRamp": ["#2c0619","#4d0b2d","#7a1049","#b3186b","#d92e8c","#f6ab0f","#ff8fc4","#ffd3e6"] },
-      "accent": { "role": "tertiary", "displayName": "Dragon Amber (never on the page)", "canonical": "#a04708", "dark": "#ffab5c", "tonalRamp": ["#2a1202","#4a2004","#6f3106","#a04708","#cf6510","#f08a2c","#ffab5c","#ffd9b3"] }
+      "field": {
+        "role": "neutral",
+        "displayName": "Instrument Paper",
+        "canonical": "#edf1f3",
+        "dark": "#141c22",
+        "tonalRamp": [
+          "#0c1216",
+          "#141c22",
+          "#1c262e",
+          "#2b3944",
+          "#556670",
+          "#8ba0ad",
+          "#c3d0d6",
+          "#edf1f3"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Lit Panel",
+        "canonical": "#f8fafb",
+        "dark": "#1c262e",
+        "tonalRamp": [
+          "#0f1418",
+          "#1c262e",
+          "#2b3944",
+          "#48585f",
+          "#74838e",
+          "#a8b8c2",
+          "#d9e2e6",
+          "#f8fafb"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Second Panel Step (unspent)",
+        "canonical": "#e2e8ec",
+        "dark": "#232f38",
+        "tonalRamp": [
+          "#111a1f",
+          "#1c262e",
+          "#232f38",
+          "#3b4c58",
+          "#6b7f8d",
+          "#9fb0ba",
+          "#c8d3d9",
+          "#e2e8ec"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Engraved Ink",
+        "canonical": "#101a20",
+        "dark": "#e7eef2",
+        "tonalRamp": [
+          "#080d10",
+          "#101a20",
+          "#1e2c35",
+          "#3a4a54",
+          "#566772",
+          "#8ba0ad",
+          "#c3d0d6",
+          "#e7eef2"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Read Ink",
+        "canonical": "#3a4a54",
+        "dark": "#a8b8c2",
+        "tonalRamp": [
+          "#131b1f",
+          "#222e35",
+          "#3a4a54",
+          "#4d5f6a",
+          "#74838e",
+          "#a8b8c2",
+          "#cfdae0",
+          "#eef3f5"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Tick Grey",
+        "canonical": "#566772",
+        "dark": "#8ba0ad",
+        "tonalRamp": [
+          "#171e22",
+          "#28343b",
+          "#3d4c55",
+          "#566772",
+          "#71838f",
+          "#8ba0ad",
+          "#b6c5cd",
+          "#dde5e9"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Decorative Hairline",
+        "canonical": "#d2dade",
+        "dark": "#2b3944",
+        "tonalRamp": [
+          "#141b20",
+          "#1f2b33",
+          "#2b3944",
+          "#465661",
+          "#6f7f89",
+          "#a2b0b8",
+          "#d2dade",
+          "#eef2f4"
+        ]
+      },
+      "line-2": {
+        "role": "neutral",
+        "displayName": "Structural Hairline",
+        "canonical": "#b9c4ca",
+        "dark": "#3b4c58",
+        "tonalRamp": [
+          "#171e23",
+          "#26333c",
+          "#3b4c58",
+          "#55686f",
+          "#7c8c95",
+          "#9dabb3",
+          "#b9c4ca",
+          "#dde3e6"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Container Edge",
+        "canonical": "#74838e",
+        "dark": "#6b7f8d",
+        "tonalRamp": [
+          "#1a1f23",
+          "#2c353b",
+          "#43505a",
+          "#5b6b76",
+          "#74838e",
+          "#96a4ae",
+          "#bcc7ce",
+          "#e0e6e9"
+        ]
+      },
+      "sig": {
+        "role": "primary",
+        "displayName": "CH1 Teal-Cyan",
+        "canonical": "#0a6f80",
+        "dark": "#5fd0e6",
+        "tonalRamp": [
+          "#032027",
+          "#053039",
+          "#063f4a",
+          "#085b6a",
+          "#0a6f80",
+          "#189fb5",
+          "#5fd0e6",
+          "#b7ecf6"
+        ]
+      },
+      "sig-2": {
+        "role": "primary",
+        "displayName": "CH1, One Step Over (hover)",
+        "canonical": "#063f4a",
+        "dark": "#a5e8f5",
+        "tonalRamp": [
+          "#031c22",
+          "#063f4a",
+          "#08596a",
+          "#0a6f80",
+          "#189fb5",
+          "#5fd0e6",
+          "#a5e8f5",
+          "#dbf6fb"
+        ]
+      },
+      "signal": {
+        "role": "tertiary",
+        "displayName": "Pet Heart Magenta (never on the page)",
+        "canonical": "#b3186b",
+        "dark": "#ff8fc4",
+        "tonalRamp": [
+          "#2c0619",
+          "#4d0b2d",
+          "#7a1049",
+          "#b3186b",
+          "#d92e8c",
+          "#f6ab0f",
+          "#ff8fc4",
+          "#ffd3e6"
+        ]
+      },
+      "accent": {
+        "role": "tertiary",
+        "displayName": "Dragon Amber (never on the page)",
+        "canonical": "#a04708",
+        "dark": "#ffab5c",
+        "tonalRamp": [
+          "#2a1202",
+          "#4a2004",
+          "#6f3106",
+          "#a04708",
+          "#cf6510",
+          "#f08a2c",
+          "#ffab5c",
+          "#ffd9b3"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The hero name, once. Clamp bounds stay in px so a reader's font-size preference cannot wrap the name into the pet's perch." },
-      "headline": { "displayName": "Headline", "purpose": "Section h2 only. Always carries a count and a span." },
-      "lead": { "displayName": "Lead", "purpose": "The hero thesis, once. The only first-viewport sentence without a proper noun or a number." },
-      "title": { "displayName": "Title", "purpose": "Publication titles and work-entry h3." },
-      "body": { "displayName": "Body", "purpose": "Default prose at 1.0625rem on a 1.62 lead." },
-      "secondary": { "displayName": "Secondary", "purpose": "Contribution clauses, author lists, descriptions, findings, plate items." },
-      "label": { "displayName": "Label", "purpose": "Nav, annotations, strip labels, org lines, colophon." },
-      "data": { "displayName": "Data", "purpose": "Digits and identifiers that align: ticks, values, venues, statuses, years, repo slugs. Never prose." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero name, once. Clamp bounds stay in px so a reader's font-size preference cannot wrap the name into the pet's perch."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2 only. Always carries a count and a span."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The hero thesis, once. The only first-viewport sentence without a proper noun or a number."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Publication titles and work-entry h3."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default prose at 1.0625rem on a 1.62 lead."
+      },
+      "secondary": {
+        "displayName": "Secondary",
+        "purpose": "Contribution clauses, author lists, descriptions, findings, plate items."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, annotations, strip labels, org lines, colophon."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Digits and identifiers that align: ticks, values, venues, statuses, years, repo slugs. Never prose."
+      }
     },
     "shadows": [
-      { "name": "focus-inner-ring", "value": "0 0 0 1px var(--field)", "purpose": "The only box-shadow in the system. Zero blur, zero offset; it keeps the 2px CH1 focus outline legible on every ground." }
+      {
+        "name": "focus-inner-ring",
+        "value": "0 0 0 1px var(--field)",
+        "purpose": "The only box-shadow in the system. Zero blur, zero offset; it keeps the 2px CH1 focus outline legible on every ground."
+      }
     ],
     "motion": [
-      { "name": "state-change", "value": "0.16s ease", "purpose": "Border, color and background on every control. Nothing moves, scales, or lifts." },
-      { "name": "nav-bracket", "value": "0.22s ease", "purpose": "The header's active-section cursor rules taking color." },
-      { "name": "cursor-sweep", "value": "1.1s ease-out", "purpose": "The measurement cursors sweeping in from ∓50vw to bracket a targeted record row. They stop at rest and stay; a dropped cursor does not fade." },
-      { "name": "skip-link", "value": "0.18s ease", "purpose": "The skip link dropping into view on focus. Disabled under prefers-reduced-motion." }
+      {
+        "name": "state-change",
+        "value": "0.16s ease",
+        "purpose": "Border, color and background on every control. Nothing moves, scales, or lifts."
+      },
+      {
+        "name": "nav-bracket",
+        "value": "0.22s ease",
+        "purpose": "The header's active-section cursor rules taking color."
+      },
+      {
+        "name": "cursor-sweep",
+        "value": "1.1s ease-out",
+        "purpose": "The measurement cursors sweeping in from ∓50vw to bracket a targeted record row. They stop at rest and stay; a dropped cursor does not fade."
+      },
+      {
+        "name": "skip-link",
+        "value": "0.18s ease",
+        "purpose": "The skip link dropping into view on focus. Disabled under prefers-reduced-motion."
+      }
     ],
     "breakpoints": [
-      { "name": "lane", "value": "1200px" },
-      { "name": "rail-collapse", "value": "900px" },
-      { "name": "pet-hide", "value": "699px" },
-      { "name": "compact", "value": "520px" }
+      {
+        "name": "lane",
+        "value": "1200px"
+      },
+      {
+        "name": "rail-collapse",
+        "value": "900px"
+      },
+      {
+        "name": "pet-hide",
+        "value": "699px"
+      },
+      {
+        "name": "compact",
+        "value": "520px"
+      }
     ]
   },
   "components": [
@@ -147,21 +398,81 @@
       "Nothing is fixed or sticky at the bottom of the viewport, ever."
     ],
     "rules": [
-      { "name": "The Withheld Orange Rule", "body": "Orange appears nowhere on the page. --accent is declared, contrast-checked, and spent entirely on the dragon's startle mark and his toggle's focus ring. The moment a warm value shows up in site chrome, the pet stops being the highest-contrast event on the screen and the palette loses its point.", "section": "colors" },
-      { "name": "The One Channel Rule", "body": "CH1 (--sig) carries every signal-bearing mark. --sig-2 is the same channel one step darker or lighter, and it is hover only. --signal is the pet's. A second hue is not available — if something needs to stand out it gets a rule weight or a tint step, never a new angle on the wheel.", "section": "colors" },
-      { "name": "The Faint-Is-Metadata Rule", "body": "--ink-faint is reserved for the axis ticks. A date, venue, author, or status is content and lives at --ink-soft or --ink. Demoting a fact to faint is how a record stops being readable.", "section": "colors" },
-      { "name": "The Two-Hairline Rule", "body": "--line is decoration (section rules, the header rule, the lane rule) and belongs to pet.css as well; --line-2 is structure (row dividers, cell gaps inside a bordered container). Do not swap them, and never delete --line to \"simplify\" — the toggle reads it.", "section": "colors" },
-      { "name": "The Twelve-Pixel Floor Rule", "body": "Nothing functional renders below 12px. 0.75rem is the floor and it is exactly 12px at the default root. Undersized UI text is designed out, not patched later.", "section": "typography" },
-      { "name": "The Aligning-Digits Rule", "body": "IBM Plex Mono is for digits and identifiers that must align in a column or read as instrument annotation: year ticks, measured values, venues, statuses, date ranges, repo slugs, and the one note. It is never prose, never decorative small-caps chrome. The previous build's two prose exceptions died with the elements that carried them; the allowance is now closed, not extended.", "section": "typography" },
-      { "name": "The Width-Not-Weight Rule", "body": "Emphasis in headings comes from the width axis (112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.", "section": "typography" },
-      { "name": "The Counting-Heading Rule", "body": "A section h2 states what is in the section and over what span — \"Six records, one first-author\", \"Four roles, 2023–2026\". It never states policy and it never introduces a legend. If a heading needs a key to be understood, the notation is wrong.", "section": "typography" },
-      { "name": "The Nine-Pixel Rhythm Rule", "body": "Section padding, band gaps, row gaps, the lane, and the footer tail are multiples of 9. Component interiors are free. A new section that isn't on the module is a mistake; a new cell that isn't, is not.", "section": "layout" },
-      { "name": "The Nothing-At-The-Bottom Rule", "body": "Nothing in this site is position: fixed or sticky at the bottom of the viewport. Top-pinned is legal; bottom-pinned is a contract violation. The bottom ~96px belongs to the dragon and to the 🔥 toggle in the bottom-left corner.", "section": "layout" },
-      { "name": "The Declared-Margin Rule", "body": "At ≥1200px the right 120px of the record column is empty by declaration, with a hairline naming the edge. Nothing prose, interactive, or plate-edged goes past it.", "section": "layout" },
-      { "name": "The No-Shadow Rule", "body": "Zero blur radius anywhere. A surface that needs to separate from its ground gets a tint step or a rule weight. The hairline-border-plus-wide-soft-shadow card is the exact tell this world was built to avoid, and one box-shadow: 0 4px 24px undoes it.", "section": "elevation" },
-      { "name": "The Earned-Cell Rule", "body": "A readout cell, a strip, or a chip appears because a real number or a real record exists behind it. Adding one to balance a row visually turns an instrument into a decoration.", "section": "components" },
-      { "name": "The Deliberate-Seam Rule", "body": "Two places break the grammar on purpose and ship with no caption, no note, and no apology: the JKAIA row, which has no artifact furniture and states in one plain sentence that the paper was non-archival and there is no link; and the DocsHunt entry, which has one readout cell and no findings list at all. They are not omissions and they are not bugs. A future edit that \"completes\" either one deletes the evidence that a person wrote this record.", "section": "components" },
-      { "name": "The Three-Cell Ceiling Rule", "body": "A strip never exceeds three cells. Study-scale numbers belong on the record row that carries the author position, not in a fourth cell.", "section": "components" }
+      {
+        "name": "The Withheld Orange Rule",
+        "body": "Orange appears nowhere on the page. --accent is declared, contrast-checked, and spent entirely on the dragon's startle mark and his toggle's focus ring. The moment a warm value shows up in site chrome, the pet stops being the highest-contrast event on the screen and the palette loses its point.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Channel Rule",
+        "body": "CH1 (--sig) carries every signal-bearing mark. --sig-2 is the same channel one step darker or lighter, and it is hover only. --signal is the pet's. A second hue is not available — if something needs to stand out it gets a rule weight or a tint step, never a new angle on the wheel.",
+        "section": "colors"
+      },
+      {
+        "name": "The Faint-Is-Metadata Rule",
+        "body": "--ink-faint is reserved for the axis ticks. A date, venue, author, or status is content and lives at --ink-soft or --ink. Demoting a fact to faint is how a record stops being readable.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Hairline Rule",
+        "body": "--line is decoration (section rules, the header rule, the lane rule) and belongs to pet.css as well; --line-2 is structure (row dividers, cell gaps inside a bordered container). Do not swap them, and never delete --line to \"simplify\" — the toggle reads it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Twelve-Pixel Floor Rule",
+        "body": "Nothing functional renders below 12px. 0.75rem is the floor and it is exactly 12px at the default root. Undersized UI text is designed out, not patched later.",
+        "section": "typography"
+      },
+      {
+        "name": "The Aligning-Digits Rule",
+        "body": "IBM Plex Mono is for digits and identifiers that must align in a column or read as instrument annotation: year ticks, measured values, venues, statuses, date ranges, repo slugs, and the one note. It is never prose, never decorative small-caps chrome. The previous build's two prose exceptions died with the elements that carried them; the allowance is now closed, not extended.",
+        "section": "typography"
+      },
+      {
+        "name": "The Width-Not-Weight Rule",
+        "body": "Emphasis in headings comes from the width axis (112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain-Heading Rule. Section headings are plain nouns (Work, Publications, Projects, Toolkit, Recognition) by the owner's decision of 2026-09-08; counts and spans live in the hero cells and the rail ticks, never in a heading, and never as a slogan.",
+        "body": "The Plain-Heading Rule. Section headings are plain nouns (Work, Publications, Projects, Toolkit, Recognition) by the owner's decision of 2026-09-08; counts and spans live in the hero cells and the rail ticks, never in a heading, and never as a slogan.",
+        "section": "typography"
+      },
+      {
+        "name": "The Nine-Pixel Rhythm Rule",
+        "body": "Section padding, band gaps, row gaps, the lane, and the footer tail are multiples of 9. Component interiors are free. A new section that isn't on the module is a mistake; a new cell that isn't, is not.",
+        "section": "layout"
+      },
+      {
+        "name": "The Nothing-At-The-Bottom Rule",
+        "body": "Nothing in this site is position: fixed or sticky at the bottom of the viewport. Top-pinned is legal; bottom-pinned is a contract violation. The bottom ~96px belongs to the dragon and to the 🔥 toggle in the bottom-left corner.",
+        "section": "layout"
+      },
+      {
+        "name": "The Declared-Margin Rule",
+        "body": "At ≥1200px the right 120px of the record column is empty by declaration, with a hairline naming the edge. Nothing prose, interactive, or plate-edged goes past it.",
+        "section": "layout"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "Zero blur radius anywhere. A surface that needs to separate from its ground gets a tint step or a rule weight. The hairline-border-plus-wide-soft-shadow card is the exact tell this world was built to avoid, and one box-shadow: 0 4px 24px undoes it.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Earned-Cell Rule",
+        "body": "A readout cell, a strip, or a chip appears because a real number or a real record exists behind it. Adding one to balance a row visually turns an instrument into a decoration.",
+        "section": "components"
+      },
+      {
+        "name": "The Deliberate-Seam Rule",
+        "body": "Two places break the grammar on purpose and ship with no caption, no note, and no apology: the JKAIA row, which has no artifact furniture and states in one plain sentence that the paper was non-archival and there is no link; and the DocsHunt entry, which has one readout cell and no findings list at all. They are not omissions and they are not bugs. A future edit that \"completes\" either one deletes the evidence that a person wrote this record.",
+        "section": "components"
+      },
+      {
+        "name": "The Three-Cell Ceiling Rule",
+        "body": "A strip never exceeds three cells. Study-scale numbers belong on the record row that carries the author position, not in a fourth cell.",
+        "section": "components"
+      }
     ],
     "dos": [
       "Do put a new band's vertical rhythm on the 9px module (45 / 54 / 27 / 18) and leave cell interiors alone.",

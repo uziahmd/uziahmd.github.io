@@ -345,7 +345,8 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .entry:first-of-type{border-top:none;padding-top:0}
 .entry-head h3{font-size:1.15rem;color:var(--ink)}
 .entry-org{margin-top:4px;font-size:.8125rem;font-weight:500;color:var(--ink-soft)}
-.entry-desc{margin-top:12px;color:var(--ink-soft);max-width:70ch}
+.entry-role{margin-top:12px;color:var(--ink);max-width:70ch}
+.entry-desc{margin-top:10px;color:var(--ink-soft);max-width:70ch}
 .findings{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:10px;max-width:74ch}
 .findings li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:.9375rem}
 .findings li::before{content:"";position:absolute;left:0;top:.42em;width:2px;height:10px;background:var(--sig)}
@@ -393,25 +394,24 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .readout-cell .l{font-size:.8125rem;color:var(--ink-soft)}
 
 /* ============================================================
-   TOOLKIT & RECOGNITION — one band, two columns
+   TOOLKIT — the key plate
    ============================================================ */
-.tk{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:27px 45px;align-items:start}
 .plate{border:1px solid var(--line-strong);background:var(--line-2);display:grid;gap:1px}
-.plate .group{padding:14px 18px;background:var(--surface);display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:baseline}
+.plate .group{padding:14px 18px;background:var(--surface);display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:baseline}
 .plate .group h3{font-size:.8125rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em}
 .plate ul{list-style:none;font-size:.9375rem;color:var(--ink);line-height:1.7}
 .plate li{display:inline}
 .plate li:not(:last-child)::after{content:"\00A0· ";color:var(--line-strong)}
+
+/* ============================================================
+   RECOGNITION — the year leads each row
+   ============================================================ */
 .markers{list-style:none;border:1px solid var(--line-strong);background:var(--surface)}
-.markers li{display:flex;align-items:baseline;gap:10px;padding:13px 18px;border-top:1px solid var(--line-2)}
+.markers li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:baseline;padding:13px 18px;border-top:1px solid var(--line-2)}
 .markers li:first-child{border-top:none}
-.markers .m-name{font-size:.9375rem;color:var(--ink-soft);flex:0 1 auto}
+.markers .m-year{font-family:var(--font-data);font-size:.8125rem;color:var(--ink-soft);white-space:nowrap}
+.markers .m-name{font-size:.9375rem;color:var(--ink-soft)}
 .markers .m-name b{color:var(--ink);font-weight:600}
-.markers .lead{flex:1 1 12px;min-width:12px;border-bottom:1px dotted var(--line-strong);height:.9em}
-.markers .m-year{font-family:var(--font-data);font-size:.8125rem;color:var(--ink-soft);white-space:nowrap;flex:0 0 auto;text-align:right}
-.markers .fold{display:block}
-.markers .fold .m-name{font-size:.8125rem;line-height:1.5}
-.markers .fold .mono{font-size:.75rem;color:var(--ink-soft)}
 
 /* ============================================================
    FOOTER — the contact bar
@@ -459,10 +459,9 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .record .pub-pos{display:block;text-align:left;margin-top:4px}
   .record .pub-authors,.record .pub-did{display:block;margin-top:4px}
   .record .pub-art{display:flex;margin-top:7px}
-  .tk{grid-template-columns:1fr}
 }
 @media (max-width:699px){
-  .bar-nav a:nth-child(2),.bar-nav a:nth-child(3),.bar-nav a:nth-child(4){display:none}
+  .bar-nav a:nth-child(3),.bar-nav a:nth-child(4){display:none}
   .strip{display:grid;grid-template-columns:repeat(3,1fr)}
   .strip .cell{min-width:0;padding:9px 10px}
   .strip .l{font-size:.75rem}
@@ -478,13 +477,17 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
 }
 @media (max-width:520px){
   .bar{gap:9px}
-  .bar-nav a{padding:5px 6px}
+  .bar-nav a{padding:5px 5px}
   .hero-thesis{max-width:100%}
   .cta-row .key{flex:1 1 auto;justify-content:center}
   .brand{font-size:.8125rem}
   .plate .group{grid-template-columns:1fr;gap:4px}
+  .markers li{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .tlink,.chip{min-height:44px}
   .pub-art{gap:6px 18px}
+}
+@media (max-width:400px){
+  .bar-nav a:nth-child(2){display:none} /* Work · Contact on the narrowest phones */
 }
 @media print{
   :root,:root[data-theme="light"],:root[data-theme="dark"]{ /* paper palette in both themes */
@@ -506,8 +509,8 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
 <header class="bar">
   <a class="brand" href="#top">Uzair Ahmed</a>
   <nav class="bar-nav" aria-label="Sections">
-    <a href="#research">Publications</a>
     <a href="#work">Work</a>
+    <a href="#research">Publications</a>
     <a href="#projects">Projects</a>
     <a href="#stack">Toolkit</a>
     <a href="#contact">Contact</a>
@@ -531,7 +534,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
             <p class="hero-thesis">I build vision-language and LLM systems that run in production, and I measure what they actually do.</p>
           </div>
           <div class="hero-more">
-            <p class="hero-lead">Right now that is a streaming vision-language model at KPST (Korea Platform Service Technology) that runs for days on an industrial camera feed without its memory growing. Everything below carries its venue, year, status, and my author position.</p>
+            <p class="hero-lead">Right now that is a streaming vision-language model at KPST (Korea Platform Service Technology) that runs for days on an industrial camera feed without its memory growing.</p>
             <ul class="annot" role="list">
               <li>AI Researcher, KPST · Daejeon, Korea</li>
               <li>B.S. Computer Science &amp; Business Technology Management, KAIST · Feb 2026</li>
@@ -553,12 +556,87 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
     </div>
   </div>
 
+  <!-- WORK -->
+  <section id="work">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2023</span></div>
+      <div>
+        <h2>Work</h2>
+
+        <!-- KPST -->
+        <article class="entry" id="work-kpst">
+          <div class="entry-head">
+            <h3>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h3>
+            <p class="entry-org">KPST · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
+          </div>
+          <p class="entry-role">I built the model side: adapting the base VLM, its two-stage LoRA training, the constrained decoding, and the data and evaluation pipeline that scores it on held-out cameras.</p>
+          <p class="entry-desc">One vision-language model reads a never-ending camera stream and emits a schema-constrained JSON hazard decision per step, straight into a live alarm: forklift entry and robot-zone intrusion, switched by prompt, no object detector in front of it.</p>
+          <ul class="findings" role="list">
+            <li>Qwen2.5-VL-7B with <strong>StreamingVLM</strong>-style attention (attention sink, sliding-window KV cache, contiguous 3D RoPE); two-stage <strong>LoRA SFT</strong> on a single V100 32 GB with the vision tower frozen; FSM-constrained decoding over a compact JSON schema, so every decision parses.</li>
+          </ul>
+          <div class="strip" role="list" aria-label="Measured results">
+            <div class="cell" role="listitem"><div class="v">83%</div><div class="l">F1 · held-out cameras</div></div>
+            <div class="cell" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision</div></div>
+            <div class="cell" role="listitem"><div class="v">O(1)</div><div class="l">memory · any stream length</div></div>
+          </div>
+          <div class="entry-links">
+            <a class="tlink" href="https://github.com/uziahmd/streaming_hazard_" target="_blank" rel="noopener">github · streaming_hazard_ <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+          </div>
+        </article>
+
+        <!-- K&D Lab -->
+        <article class="entry" id="work-kd">
+          <div class="entry-head">
+            <h3>LLM Reasoning, Safety &amp; VLM Interpretability</h3>
+            <p class="entry-org">Knowledge &amp; Democracy Lab, KAIST · Undergraduate Researcher · <span class="mono">Aug 2025 — Feb 2026</span></p>
+          </div>
+          <p class="entry-role">Undergraduate researcher across three tracks: I built the evaluation and fine-tuning pipelines behind the reasoning and safety papers below, and ran the ideology and bias probes on vision-language models over a ~550-politician multimodal set (Grad-CAM, Integrated Gradients, TCAV).</p>
+          <div class="tracks">
+            <div class="track"><h4>LLM Difficulty Perception</h4><a class="chip dot" href="#pub-difficulty"><span class="tick" aria-hidden="true"></span>working paper · in prep · author 2 / 3</a></div>
+            <div class="track"><h4>LLM Safety &amp; Introspection</h4><a class="chip" href="#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
+          </div>
+        </article>
+
+        <!-- ICLab -->
+        <article class="entry" id="work-iclab">
+          <div class="entry-head">
+            <h3>Mobile Sensing for Mental Health</h3>
+            <p class="entry-org">ICLab, KAIST · Undergraduate Researcher · <span class="mono">May 2023 — Jun 2025</span></p>
+          </div>
+          <p class="entry-role">Two years as an undergraduate researcher on in-the-wild stress prediction: I led the personalization component of the 2024 pipeline paper, designed the shift-quantification pipeline and first experiments for CrossShift, and designed the CausalCFF analysis pipeline.</p>
+          <div class="strip" role="list" aria-label="Measured results">
+            <div class="cell" role="listitem"><div class="v">+17 pts</div><div class="l">AUROC · 0.503 → 0.676 · DeepStress</div></div>
+            <div class="cell" role="listitem"><div class="v">693 users</div><div class="l">8 datasets · CrossShift</div></div>
+            <div class="cell" role="listitem"><div class="v">60 min</div><div class="l">strongest sensing window · LOSO and K-fold CV</div></div>
+          </div>
+          <div class="tracks">
+            <div class="track"><h4>Reproducible Stress-Prediction Pipeline</h4><a class="chip" href="#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
+            <div class="track"><h4>CrossShift</h4><a class="chip" href="#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
+            <div class="track"><h4>CausalCFF</h4><a class="chip" href="#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
+          </div>
+        </article>
+
+        <!-- DocsHunt -->
+        <article class="entry" id="work-docshunt">
+          <div class="entry-head">
+            <h3>Multilingual Document-Automation APIs</h3>
+            <p class="entry-org">DocsHunt AI · AI Engineer · <span class="mono">Jun 2024 — Aug 2024</span></p>
+          </div>
+          <p class="entry-role">AI Engineer for a summer: I built and productionized the multilingual document-generation pipeline (Python, Flask, LangChain, Naver Cloud Platform), and made it faster by running document sections in parallel once I saw the later sections did not need the earlier ones written first.</p>
+          <div class="entry-links">
+            <span class="readout-cell"><span class="v">10 s → 3 s</span><span class="l">average generation time per document</span></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- PUBLICATIONS -->
   <section id="research">
     <div class="row">
       <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2023</span></div>
       <div>
-        <h2>Six records, one first-author</h2>
+        <h2>Publications</h2>
         <ol class="record" role="list">
           <li id="pub-imwut26">
             <span class="pub-venue">ACM IMWUT</span>
@@ -618,86 +696,12 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
     </div>
   </section>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="row">
-      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2023</span></div>
-      <div>
-        <h2>Four roles, 2023–2026</h2>
-
-        <!-- KPST -->
-        <article class="entry" id="work-kpst">
-          <div class="entry-head">
-            <h3>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h3>
-            <p class="entry-org">KPST · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
-          </div>
-          <p class="entry-desc">One vision-language model reads a never-ending camera stream and emits a schema-constrained JSON hazard decision per step, straight into a live alarm: forklift entry and robot-zone intrusion, switched by prompt, no object detector in front of it.</p>
-          <ul class="findings" role="list">
-            <li>Qwen2.5-VL-7B with <strong>StreamingVLM</strong>-style attention (attention sink, sliding-window KV cache, contiguous 3D RoPE); two-stage <strong>LoRA SFT</strong> on a single V100 32 GB with the vision tower frozen; FSM-constrained decoding over a compact JSON schema, so every decision parses.</li>
-          </ul>
-          <div class="strip" role="list" aria-label="Measured results">
-            <div class="cell" role="listitem"><div class="v">83%</div><div class="l">F1 · held-out cameras</div></div>
-            <div class="cell" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision</div></div>
-            <div class="cell" role="listitem"><div class="v">O(1)</div><div class="l">memory · any stream length</div></div>
-          </div>
-          <div class="entry-links">
-            <a class="tlink" href="https://github.com/uziahmd/streaming_hazard_" target="_blank" rel="noopener">github · streaming_hazard_ <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
-          </div>
-        </article>
-
-        <!-- K&D Lab -->
-        <article class="entry" id="work-kd">
-          <div class="entry-head">
-            <h3>LLM Reasoning, Safety &amp; VLM Interpretability</h3>
-            <p class="entry-org">Knowledge &amp; Democracy Lab, KAIST · Undergraduate Researcher · <span class="mono">Aug 2025 — Feb 2026</span></p>
-          </div>
-          <p class="entry-desc">Besides the two papers below: ideology and bias probes for vision-language models over a ~550-politician multimodal set, localizing sensitive-attribute leakage to image regions and cross-modal tokens (Grad-CAM, Integrated Gradients, TCAV).</p>
-          <div class="tracks">
-            <div class="track"><h4>LLM Difficulty Perception</h4><a class="chip dot" href="#pub-difficulty"><span class="tick" aria-hidden="true"></span>working paper · in prep · author 2 / 3</a></div>
-            <div class="track"><h4>LLM Safety &amp; Introspection</h4><a class="chip" href="#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
-          </div>
-        </article>
-
-        <!-- ICLab -->
-        <article class="entry" id="work-iclab">
-          <div class="entry-head">
-            <h3>Mobile Sensing for Mental Health</h3>
-            <p class="entry-org">ICLab, KAIST · Undergraduate Researcher · <span class="mono">May 2023 — Jun 2025</span></p>
-          </div>
-          <p class="entry-desc">Stress prediction from phone and wearable data in the wild: a reproducible pipeline, a cross-user shift analysis, and a causal analysis of daily behavior.</p>
-          <div class="strip" role="list" aria-label="Measured results">
-            <div class="cell" role="listitem"><div class="v">+17 pts</div><div class="l">AUROC · 0.503 → 0.676 · DeepStress</div></div>
-            <div class="cell" role="listitem"><div class="v">693 users</div><div class="l">8 datasets · CrossShift</div></div>
-            <div class="cell" role="listitem"><div class="v">60 min</div><div class="l">strongest sensing window · LOSO and K-fold CV</div></div>
-          </div>
-          <div class="tracks">
-            <div class="track"><h4>Reproducible Stress-Prediction Pipeline</h4><a class="chip" href="#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
-            <div class="track"><h4>CrossShift</h4><a class="chip" href="#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
-            <div class="track"><h4>CausalCFF</h4><a class="chip" href="#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
-          </div>
-        </article>
-
-        <!-- DocsHunt -->
-        <article class="entry" id="work-docshunt">
-          <div class="entry-head">
-            <h3>Multilingual Document-Automation APIs</h3>
-            <p class="entry-org">DocsHunt AI · AI Engineer · <span class="mono">Jun 2024 — Aug 2024</span></p>
-          </div>
-          <p class="entry-desc">Built the prompt-template pipeline for multilingual document generation (Python, Flask, LangChain) and productionized it on Naver Cloud Platform. Later document sections did not need the earlier ones written first, so several model instances ran in parallel.</p>
-          <div class="entry-links">
-            <span class="readout-cell"><span class="v">10 s → 3 s</span><span class="l">average generation time per document</span></span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- PROJECTS -->
   <section id="projects">
     <div class="row">
       <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2019</span></div>
       <div>
-        <h2>Six projects, 2019–2026</h2>
+        <h2>Projects</h2>
         <ul class="ledger" role="list">
           <li id="smart-binarization">
             <div class="l-head"><h3>Smart Binarization</h3><span class="l-role">LLM quantization</span><span class="l-year">2026</span></div>
@@ -746,43 +750,48 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
     </div>
   </section>
 
-  <!-- TOOLKIT & RECOGNITION -->
+  <!-- TOOLKIT -->
   <section id="stack">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"></div>
+      <div>
+        <h2>Toolkit</h2>
+        <div class="plate">
+          <div class="group">
+            <h3>Programming</h3>
+            <ul role="list"><li>Python</li><li>C</li><li>OCaml</li><li>Kotlin</li><li>SQL</li></ul>
+          </div>
+          <div class="group">
+            <h3>Modeling</h3>
+            <ul role="list"><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>XGBoost</li><li>Hugging Face (Transformers, PEFT, TRL)</li><li>OpenCLIP</li><li>PTQ / quantization</li><li>RAG</li><li>SGLang</li></ul>
+          </div>
+          <div class="group">
+            <h3>Evaluation &amp; tooling</h3>
+            <ul role="list"><li>CKA</li><li>eval-harness design</li><li>Hydra</li><li>Weights &amp; Biases</li><li>CUDA</li><li>FFmpeg</li><li>OpenCV</li><li>REST</li><li>AWS (S3, EC2)</li></ul>
+          </div>
+          <div class="group">
+            <h3>Spoken</h3>
+            <ul role="list"><li>English (fluent)</li><li>Urdu (native)</li><li>Korean (TOPIK 2)</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
     <div class="row">
       <div class="axis-cell" aria-hidden="true"><span class="t0">2025</span><span class="t1">2018</span></div>
       <div>
-        <div class="tk">
-          <div>
-            <h2>Toolkit I actually use</h2>
-            <div class="plate">
-              <div class="group">
-                <h3>Programming</h3>
-                <ul role="list"><li>Python</li><li>C</li><li>OCaml</li><li>Kotlin</li><li>SQL</li></ul>
-              </div>
-              <div class="group">
-                <h3>Modeling</h3>
-                <ul role="list"><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>XGBoost</li><li>Hugging Face (Transformers, PEFT, TRL)</li><li>OpenCLIP</li><li>PTQ / quantization</li><li>RAG</li><li>SGLang</li></ul>
-              </div>
-              <div class="group">
-                <h3>Evaluation &amp; tooling</h3>
-                <ul role="list"><li>CKA</li><li>eval-harness design</li><li>Hydra</li><li>Weights &amp; Biases</li><li>CUDA</li><li>FFmpeg</li><li>OpenCV</li><li>REST</li><li>AWS (S3, EC2)</li></ul>
-              </div>
-              <div class="group">
-                <h3>Spoken</h3>
-                <ul role="list"><li>English (fluent)</li><li>Urdu (native)</li><li>Korean (TOPIK 2)</li></ul>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h2>Recognition, 2018–2025</h2>
-            <ul class="markers" role="list">
-              <li><span class="m-name"><b>WorldQuant Challenge</b>, Gold</span><span class="lead" aria-hidden="true"></span><span class="m-year">2025</span></li>
-              <li><span class="m-name">International Quant Competition, top 20%</span><span class="lead" aria-hidden="true"></span><span class="m-year">2025</span></li>
-              <li><span class="m-name"><b>KAIST Lean Start-up</b> Industry Cooperation, winner</span><span class="lead" aria-hidden="true"></span><span class="m-year">2024</span></li>
-              <li class="fold"><span class="m-name"><span class="mono">2018 — 2019</span> · National Mathematics Olympiad, top 5 in Pakistan · Cambridge IGCSE distinction · Google Code-in runner-up</span></li>
-            </ul>
-          </div>
-        </div>
+        <h2>Recognition</h2>
+        <ul class="markers" role="list">
+          <li><span class="m-year">2025</span><span class="m-name"><b>WorldQuant Challenge</b>, Gold</span></li>
+          <li><span class="m-year">2025</span><span class="m-name">International Quant Competition, top 20%</span></li>
+          <li><span class="m-year">2024</span><span class="m-name"><b>KAIST Lean Start-up</b> Industry Cooperation, winner</span></li>
+          <li><span class="m-year">2018–2019</span><span class="m-name"><b>National Mathematics Olympiad</b>, top 5 in Pakistan</span></li>
+          <li><span class="m-year">2018–2019</span><span class="m-name">Cambridge IGCSE, distinction and top in Pakistan in International Mathematics</span></li>
+          <li><span class="m-year">2018</span><span class="m-name"><b>Google Code-in</b>, runner-up</span></li>
+        </ul>
       </div>
     </div>
   </section>

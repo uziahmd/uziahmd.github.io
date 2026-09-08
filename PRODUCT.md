@@ -52,7 +52,7 @@ Second, structurally: he is an early-career researcher whose record is genuinely
 
 ## Capabilities and Constraints
 
-**What the site does:** one scrolling record with four bands — Publications, Work, Projects, and a merged Toolkit & Recognition — plus a hero carrying a portrait and three linked measurement cells, a footer contact bar, a light/dark theme button whose label names the theme it switches to, an active-section indicator in the header, an anchor-driven "measurement cursor" that brackets a publication row when a chip links to it (and reveals a way back to the work entry), and the Charizard pet.
+**What the site does:** one scrolling record with five bands — Work, Publications, Projects, Toolkit, Recognition — plus a hero carrying a portrait and three linked measurement cells, a footer contact bar, a light/dark theme button whose label names the theme it switches to, an active-section indicator in the header, an anchor-driven "measurement cursor" that brackets a publication row when a chip links to it (and reveals a way back to the work entry), and the Charizard pet.
 
 **Content-truth rules (binding — these govern every future edit):**
 
