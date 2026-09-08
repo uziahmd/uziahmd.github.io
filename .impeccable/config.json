@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-08T02:57:12.420Z",
+        "reason": "false positive by mechanism: body{overflow-x:clip} cannot clip its position:fixed pet nodes unless body becomes a containing block, which PRODUCT.md preservation clause 10 forbids"
+      }
+    ]
+  }
+}

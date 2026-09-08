@@ -1,6 +1,6 @@
 ---
 name: Timebase
-description: One continuous instrument record — a live graticule field on which every claim is placed as a measured event.
+description: One continuous instrument record — every claim placed as a measured event, on a page whose only fixed line is the dragon's ground.
 colors:
   field: "#edf1f3"
   surface: "#f8fafb"
@@ -9,55 +9,82 @@ colors:
   ink-soft: "#3a4a54"
   ink-faint: "#566772"
   line: "#d2dade"
+  line-2: "#b9c4ca"
   line-strong: "#74838e"
   sig: "#0a6f80"
-  sig-2: "#5b3fd0"
+  sig-2: "#063f4a"
   signal: "#b3186b"
   accent: "#a04708"
-  grid-minor: "#e4e9ec"
-  grid-major: "#e0e6e9"
   sel: "rgba(10,111,128,.18)"
+  print-field: "#ffffff"
+  print-surface-2: "#f2f2f2"
+  print-ink: "#000000"
+  print-ink-soft: "#333333"
+  print-ink-faint: "#555555"
+  print-line: "#cccccc"
+  print-line-2: "#bbbbbb"
+  print-line-strong: "#888888"
+  print-sig: "#0a5563"
+  print-url: "#444444"
 typography:
   display:
     fontFamily: "Archivo, Archivo Fallback, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(3rem, 7.2vw, 5.6rem)"
+    fontSize: "clamp(56px, 7.2vw, 90px)"
     fontWeight: 640
     lineHeight: 1.04
     letterSpacing: "-0.02em"
     fontVariation: "wdth 125"
   headline:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "clamp(1.45rem, 2.6vw, 1.95rem)"
+    fontSize: "1.45rem"
     fontWeight: 640
     lineHeight: 1.08
     letterSpacing: "-0.02em"
     fontVariation: "wdth 118"
+  lead:
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "clamp(1.2rem, 2vw, 1.5rem)"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "normal"
+    fontVariation: "wdth 100"
   title:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.3rem"
-    fontWeight: 640
-    lineHeight: 1.08
-    letterSpacing: "-0.02em"
-    fontVariation: "wdth 118"
+    fontSize: "1.15rem"
+    fontWeight: 600
+    lineHeight: 1.35
+    letterSpacing: "-0.01em"
+    fontVariation: "wdth 112"
   body:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "17px"
+    fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.62
     letterSpacing: "normal"
     fontVariation: "wdth 100"
+  secondary:
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.62
+    letterSpacing: "normal"
   label:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "12.5px"
+    fontSize: "0.8125rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.01em"
   data:
     fontFamily: "IBM Plex Mono, ui-monospace, Consolas, monospace"
-    fontSize: "13px"
+    fontSize: "0.8125rem"
     fontWeight: 500
     letterSpacing: "0.02em"
     fontFeature: "tabular-nums"
+  tick:
+    fontFamily: "IBM Plex Mono, ui-monospace, Consolas, monospace"
+    fontSize: "0.75rem"
+    fontWeight: 500
+    letterSpacing: "0.02em"
 rounded:
   square: "0"
   focus-plate: "2px"
@@ -66,11 +93,19 @@ spacing:
   tick: "9px"
   unit: "18px"
   step: "27px"
-  band: "36px"
-  section-top: "63px"
+  band: "45px"
+  section: "54px"
   major: "72px"
   lane: "150px"
 components:
+  key:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.key}"
+    padding: "0 22px"
+    height: "44px"
+  key-hover:
+    textColor: "{colors.sig}"
   key-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.field}"
@@ -80,22 +115,15 @@ components:
   key-primary-hover:
     backgroundColor: "{colors.ink-soft}"
     textColor: "{colors.field}"
-  key-ghost:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.key}"
-    padding: "0 22px"
-    height: "44px"
-  key-ghost-hover:
-    textColor: "{colors.sig}"
-  rocker:
+  theme-button:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink-soft}"
+    typography: "{typography.label}"
     rounded: "{rounded.key}"
+    padding: "0 11px"
     height: "30px"
-  rocker-cell-active:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.field}"
+  theme-button-hover:
+    textColor: "{colors.sig}"
   chip:
     backgroundColor: "transparent"
     textColor: "{colors.sig}"
@@ -103,94 +131,125 @@ components:
     rounded: "{rounded.square}"
     padding: "2px 9px"
     height: "24px"
-  plate-cell:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.square}"
-    padding: "20px 22px"
   strip-cell:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
     rounded: "{rounded.square}"
     padding: "12px 16px"
-  tag:
-    backgroundColor: "{colors.surface-2}"
+  strip-cell-hero:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.square}"
+    padding: "16px 18px"
+  readout-cell:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.square}"
+    padding: "4px 12px"
+  plate-group:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.square}"
+    padding: "14px 18px"
+  marker-row:
+    backgroundColor: "{colors.surface}"
     textColor: "{colors.ink-soft}"
     rounded: "{rounded.square}"
-    padding: "3px 10px"
-    height: "24px"
+    padding: "13px 18px"
 ---
 
 # Design System: Timebase
 
-Recorded from the shipped artifact (`index.html`), not from the brief. Where the direction and the build diverge, the build is written down and the divergence is noted.
+Recorded from the shipped artifact (`index.html`), not from the brief. Where the direction and the build diverge, the build is written down and the divergence is noted. That rule is the file's own, and it survives this rewrite.
 
-The frontmatter above is normative and carries the **light** value of each token — light is the primary theme. Dark values cannot live in the frontmatter schema, so the token table in **Colors** carries both; it is the one place a value appears twice, and the pairs must be kept in sync.
+The frontmatter above is normative and carries the **light** value of each token — light is the primary theme and gets the rigor. Dark values cannot live in the frontmatter schema, so the token table in **Colors** carries both; it is the one place a value appears twice, and the pairs must be kept in sync.
 
 ## Overview
 
 **Creative North Star: "Timebase"**
 
-The page is one continuous instrument record. A live graticule runs edge to edge behind everything, and every claim is placed on it as a measured event — value, unit, date, venue, author position, status — so that nothing is asserted without its measurement beside it. The reader is not being sold to; they are reading a trace off a panel.
+The page is one continuous instrument record. Every claim is placed on it as a measured event — value, unit, scope, date, venue, author position, status — so nothing is asserted without its measurement beside it. The reader is not being sold to; they are reading a trace off a panel.
 
-The owned idea is one line: **a signal at rest is a straight line at the bottom of the frame**, and that line is simultaneously the page's structural baseline and the dragon's ground. The Charizard walks the design instead of standing in front of it. Everything else follows from taking that literally — the grid is anchored to the viewport bottom rather than the document top, the hero name sits *on* a rule that steps high at its right end, and the bottom lane of the viewport is kept empty on purpose.
+The owned idea is one line: **a signal at rest is a straight line at the bottom of the frame**, and that line is simultaneously the page's structural baseline and the dragon's ground. The Charizard walks the design instead of standing in front of it. The hero name sits *on* a rule that steps high at its right end; the bottom lane of the viewport is kept empty on purpose; at wide widths the right margin is *declared* with a hairline rather than left as slack.
 
-The world refuses the category's arrangement wholesale: no near-black-plus-one-neon chrome, no zero-padded section numbers standing in for structure, no auto-fill grid of equal cards, no fade-up reveals, no hairline-plus-wide-shadow card. Density is deliberately uneven — Selected Work is the dense passage, Stack is the reader's breath — because a real record is not uniformly interesting.
+The previous build painted a fixed graticule field behind everything. **The owner removed it.** `body::before` and the four `--grat` data URIs are gone, and with them the `grid-minor` / `grid-major` colors, which were never custom properties — they were literal strokes inside those URIs. The 9px module and the ground line stayed. The world lost its wallpaper and kept its geometry, and it reads quieter for it.
+
+One device, repeated, is the handwriting: **the measurement strip / readout cell / leader tick family** appears in the hero, in two work entries, on four project rows and once in DocsHunt. Density is deliberately uneven — Publications is the dense passage, the merged Toolkit & Recognition band is the reader's breath — because a real record is not uniformly interesting, and two places break the grammar on purpose with no caption.
 
 **Key Characteristics:**
 
-- A fixed graticule at two frequencies (9px minor, 72px major), anchored bottom-left, stopping 12px above the viewport floor.
-- One committed channel color (CH1 teal-cyan) carrying traces, axis, links, cursors, and focus — roughly 40% of the surface reads cool.
+- No background field, no wallpaper, no texture: `--field` is bare, and the only fixed painted mark on the page is the 2px ground line at `bottom: 12px`.
+- One committed channel color (CH1 teal-cyan) carries traces, axis, links, cursors, chips and focus; `--sig-2` is a darker/lighter *step of the same channel*, not a second hue.
 - Orange is withheld from the entire page. It means only "Charizard is here."
-- Zero shadows. Depth is three tint steps and three rule weights.
+- Zero shadows. Depth is tint steps and rule weights.
 - Status is coded by dash pattern before it is coded by color.
 - A width axis, not a second font family, is the voice.
 - Nothing is fixed or sticky at the bottom of the viewport, ever.
 
 ## Colors
 
-A lit, paper-pale instrument panel with one saturated channel; dark is the same instrument with its backlight turned down.
+A paper-pale instrument panel with one saturated channel; dark is the same instrument with its backlight turned down.
 
 ### Token table
 
-Every custom property on `:root`, both themes, with its role. **RENAME-FORBIDDEN** marks the six tokens `assets/pet.css` reads by name — their values may be retuned, their names may never change (Charizard contract, clause 4).
+Every custom property on `:root`, both themes, with its role. **RENAME-FORBIDDEN** marks the six tokens `assets/pet.css` reads by name — their values may be retuned, their names may never change (PRODUCT.md Brand Commitments, clause 4).
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--field` | `#edf1f3` | `#141c22` | Page ground: instrument paper, never pure white. Also the text color inside inverted keys and the focus inner ring. |
-| `--surface` | `#f8fafb` | `#1c262e` | **RENAME-FORBIDDEN.** Plates, record rows, ledger readout cells, strip cells, the rocker, ghost keys, the pet toggle's ground. |
-| `--surface-2` | `#e2e8ec` | `#232f38` | Tinted step: stack tags only. The third tint, used sparingly. |
-| `--ink` | `#101a20` | `#e7eef2` | Display, titles, emphasized values, and the primary key's ground. |
-| `--ink-soft` | `#3a4a54` | `#a8b8c2` | Body prose, descriptions, dates, venues, authors, status text, nav at rest, scrollbar thumb on hover. |
-| `--ink-faint` | `#566772` | `#8ba0ad` | **RENAME-FORBIDDEN.** Axis ticks, section legends, title-block field labels — *and nothing else*. Never dates, venues, authors, or status. Also the pet's sleep z's. |
-| `--line` | `#d2dade` | `#2b3944` | **RENAME-FORBIDDEN.** Hairline rules between rows, sections, and plate cells; decorative separation only. Also the pet toggle's resting edge in pet.css. |
-| `--line-strong` | `#74838e` | `#6b7f8d` | **RENAME-FORBIDDEN.** Every control and container edge, the ground line under the graticule, leader-tick horizontals, the scrollbar thumb. Also the pet toggle's chrome. |
-| `--sig` | `#0a6f80` | `#5fd0e6` | **CH1, the committed channel.** Traces, axis cursors, every link, chip edges, focus ring, the primary key's under-edge, caret and accent-color. |
-| `--sig-2` | `#5b3fd0` | `#b0a2ff` | **CH2.** Hover state for links, chips, nav, and tlinks. Second series only — never a resting state. |
-| `--signal` | `#b3186b` | `#ff8fc4` | **RENAME-FORBIDDEN. CH3 — the pet's hearts.** Declared for pet.css and used nowhere on the page. |
+| `--field` | `#edf1f3` | `#141c22` | Page ground: instrument paper, never pure white. Also the text color inside inverted keys, the focus inner ring, the skip link's text, and the hover ground of a linked strip cell. |
+| `--surface` | `#f8fafb` | `#1c262e` | **RENAME-FORBIDDEN.** Strip cells, readout cells, plate groups, marker rows, the contact bar, ghost keys, the theme button, the targeted record row, and the pet toggle's ground. |
+| `--surface-2` | `#e2e8ec` | `#232f38` | The third tint step. **Declared in all four `:root` blocks and in the print override, and currently spent on nothing.** It is kept as the ladder's top rung for a future surface; it is not a rule that anything must use it. |
+| `--ink` | `#101a20` | `#e7eef2` | Display, section headings, titles, emphasized values, marker names, the identity line, and the primary key's ground. |
+| `--ink-soft` | `#3a4a54` | `#a8b8c2` | Body prose, descriptions, dates, venues, authors, statuses, contribution clauses, nav at rest, group headings, the pet toggle's resting edge (site-side override), scrollbar thumb on hover. |
+| `--ink-faint` | `#566772` | `#8ba0ad` | **RENAME-FORBIDDEN.** Axis ticks (`.t0` / `.t1`) — *and nothing else on the page*. Also the pet's sleep z's. |
+| `--line` | `#d2dade` | `#2b3944` | **RENAME-FORBIDDEN.** Decorative hairlines only: the header's bottom rule, section top rules, work-entry and track rules, the declared lane rule at ≥1200px. Also the pet toggle's resting edge in `pet.css`. |
+| `--line-2` | `#b9c4ca` | `#3b4c58` | **Structural hairlines.** Record-row dividers, ledger-row dividers, marker rows, and the ground behind `gap: 1px` inside the strip and the plate. Introduced so `--line` could keep its pet-facing job while structural divisions got a heavier, legible step. |
+| `--line-strong` | `#74838e` | `#6b7f8d` | **RENAME-FORBIDDEN.** Every control and container edge, the axis gutter's right border, the ground line, leader-tick horizontals, the dotted marker leader, the scrollbar thumb. Also the pet toggle's chrome. |
+| `--sig` | `#0a6f80` | `#5fd0e6` | **CH1, the committed channel.** The hero trace and step, axis brackets, every link, chip borders and text, artifact-link underlines, tick marks, the primary key's under-edge, the measurement cursors, the focus ring, `caret-color` and `accent-color`. |
+| `--sig-2` | `#063f4a` | `#a5e8f5` | **A darker (light) / lighter (dark) step of CH1.** Link, chip, nav and artifact-link hover only. It was blue-violet in the previous build; it is no longer a second hue, and it must not become one again. |
+| `--signal` | `#b3186b` | `#ff8fc4` | **RENAME-FORBIDDEN. The pet's hearts.** Declared for `pet.css` and used nowhere on the page. |
 | `--accent` | `#a04708` | `#ffab5c` | **RENAME-FORBIDDEN.** The only warm value in the system. Colors the pet's startle "!" and its toggle focus ring. Used nowhere on the page. |
 | `--sel` | `rgba(10,111,128,.18)` | `rgba(95,208,230,.24)` | `::selection` ground. Text color is left inherited so selected text stays `--ink`. |
-| `--grat` | *(SVG data URI)* | *(SVG data URI)* | The graticule tile itself — a 72×72 inline SVG, re-declared per theme. |
 | `--maxw` | `1180px` | — | Sheet width. |
-| `--gutter` | `132px` | — | Axis-gutter column width. |
-| `--font-voice` / `--font-data` | — | — | The two families (see Typography). |
+| `--gutter` | `132px` | — | Axis-gutter column width. *Divergence: the plan banked a 132 → 108 reduction; the build ships 132 and takes its horizontal room from deleting the hero's rail instead.* |
 
-Two colors in the frontmatter, **`grid-minor` (`#e4e9ec` / `#1a232a`)** and **`grid-major` (`#e0e6e9` / `#222d35`)**, are not custom properties in the build: they are literal `stroke` values inside the `--grat` data URI, once per theme (three copies each, counting the `data-theme` override blocks). Changing the graticule ink means editing four data URIs. *Divergence from the brief, which specified a `--grid-major` of `#d6dee2`; the build ships `#e0e6e9`, a quieter major.* The brief's `--baseline` token was never created — the ground line uses `--line-strong` and the hero rule uses `--ink`.
+There is no `--grat` and no graticule layer. The paper palette for print is a fifth override block, not a token set: `@media print` rewrites `--field`, `--surface`, `--surface-2`, `--ink`, `--ink-soft`, `--ink-faint`, `--line`, `--line-2`, `--line-strong`, `--sig` and `--sig-2` for **both** themes at once, and collapses `--sig-2` onto `--sig` so hover ink cannot print as a second value.
 
 ### Named Rules
 
-**The Withheld Orange Rule.** Orange appears nowhere on the page. `--accent` is declared, contrast-checked, and spent entirely on the dragon's startle mark and his toggle's focus ring. The moment a warm value shows up in site chrome, the pet stops being the highest-contrast event on the screen and the whole palette loses its point.
+**The Withheld Orange Rule.** Orange appears nowhere on the page. `--accent` is declared, contrast-checked, and spent entirely on the dragon's startle mark and his toggle's focus ring. The moment a warm value shows up in site chrome, the pet stops being the highest-contrast event on the screen and the palette loses its point.
 
-**The One Channel Rule.** CH1 (`--sig`) carries every signal-bearing mark: traces, axis, cursors, links, focus, chip edges. CH2 (`--sig-2`) is hover only. CH3 (`--signal`) is the pet's. A fourth accent is not available; if something needs to stand out, it gets a rule weight or a tint step, not a new hue.
+**The One Channel Rule.** CH1 (`--sig`) carries every signal-bearing mark. `--sig-2` is the same channel one step darker or lighter, and it is hover only. `--signal` is the pet's. **A second hue is not available** — if something needs to stand out it gets a rule weight or a tint step, never a new angle on the wheel.
 
-**The Faint-Is-Metadata Rule.** `--ink-faint` is reserved for axis ticks, legends, and field labels. A date, venue, author, or status is content and moves up to `--ink-soft` or `--ink`. Demoting a fact to faint is how a record stops being readable.
+**The Faint-Is-Metadata Rule.** `--ink-faint` is reserved for the axis ticks. A date, venue, author, or status is content and lives at `--ink-soft` or `--ink`. Demoting a fact to faint is how a record stops being readable.
+
+**The Two-Hairline Rule.** `--line` is decoration (section rules, the header rule, the lane rule) and belongs to `pet.css` as well; `--line-2` is structure (row dividers, cell gaps inside a bordered container). Do not swap them, and never delete `--line` to "simplify" — the toggle reads it.
 
 ## Typography
 
 **Display / Body Font:** Archivo Variable (`wdth 62..125, wght 100..900`), with `"Archivo Fallback"`, Helvetica Neue, Arial.
 **Data Font:** IBM Plex Mono (400, 500), with ui-monospace, Consolas.
 
-**Character:** One family, two widths. The world is a single instrument rendered at two scales, and a real instrument writes the same letterforms wide-engraved on the panel and narrow in the manual — so the voice is a *width axis*, not a second family. Headings are pushed wide (118–125%) and set tight (−0.02em); body sits at normal width, 17px on a 1.62 lead. One variable file, one request.
+**Character:** One family, two widths. A real instrument writes the same letterforms wide-engraved on the panel and narrow in the manual, so the voice is a *width axis*, not a second family. Headings are pushed wide (112–125%) and set tight (−0.02em); body sits at normal width on a 1.62 lead. One variable file, one request.
+
+### The ramp
+
+`html { font-size: 100% }` and every size but one is a `rem`, so the ramp scales with a reader's preference. **Eight rendered sizes, and that is the whole ramp:**
+
+| Role | Size | Where |
+|---|---|---|
+| Display | `clamp(56px, 7.2vw, 90px)` | the hero name, once |
+| Headline | `1.45rem` | every section `h2` |
+| Lead | `clamp(1.2rem, 2vw, 1.5rem)` | the hero thesis, once |
+| Title | `1.15rem` | publication titles, work-entry `h3` |
+| Body | `1.0625rem` | default; also the wordmark and ledger `h3` |
+| Secondary | `0.9375rem` | contribution clauses, author lists, descriptions, findings, plate items, marker names, ledger prose, key labels |
+| Label | `0.8125rem` | nav, annotations, strip labels, org lines, statuses, venues, years, notes, colophon |
+| Tick | `0.75rem` | axis ticks, chips, the folded marker's mono span |
+
+**The display size is the one exception and it is deliberate.** `.hero h1` is `clamp(56px, 7.2vw, 90px)` in **px, never rem**, because a 24px browser default would otherwise wrap the name into the perch. PRODUCT.md clause 14 makes this testable.
+
+Weights: 640 for headings on the width axis, 600 for emphasis and control labels, 500 for mono and labels, 400 for prose. Widths: `wdth 125` on the h1, `118%` on `h1,h2,h3` and the wordmark, `112%` on titles, group headings and track headings.
 
 ### The metric-matched fallback
 
@@ -200,59 +259,62 @@ Two colors in the frontmatter, **`grid-minor` (`#e4e9ec` / `#1a232a`)** and **`g
   size-adjust:132.8%; }
 ```
 
-This exists for one reason and it is not aesthetic. **`pet.js` measures the hero name with a `Range` over its text node at spawn time — potentially before the webfont has swapped in — to decide where Charizard perches.** If the fallback's advance widths don't match Archivo at `wdth 125`, the measured right edge is wrong and the dragon lands in the middle of the name or off in space. `size-adjust:132.8%` holds the fallback at Archivo-wdth-125 scale so the perch never drifts. The `.hero h1` font stack is the only stack in the file that names `"Archivo Fallback"`, and it must stay there.
+This exists for one reason and it is not aesthetic. **`pet.js` measures the hero name with a `Range` over its text node at spawn time — potentially before the webfont has swapped in — to decide where Charizard perches.** If the fallback's advance widths don't match Archivo at `wdth 125`, the measured right edge is wrong and the dragon lands in the middle of the name or off in space. `size-adjust: 132.8%` holds the fallback at Archivo-wdth-125 scale. `.hero h1` is the only stack in the file that names `"Archivo Fallback"`, and it must stay there.
 
-### Hierarchy
+### Measures
 
-- **Display** (`wdth 125`, 640, `clamp(3rem, 7.2vw, 5.6rem)`, lh 1.04, −0.02em, uppercase): the hero name, once. Sits directly on a 2px `--ink` rule with 10px of padding beneath it.
-- **Headline** (`wdth 118`, 640, `clamp(1.45rem, 2.6vw, 1.95rem)`, lh 1.08): section `h2`. Also the footer close line at `clamp(1.6rem, 3.6vw, 2.4rem)`.
-- **Title** (`wdth 118`, 640, 1.3rem): work-entry `h3`. Ledger `h3` and track `h4` step down to `wdth 112` at 1.08rem / 1.02rem.
-- **Lead** (400, `clamp(1.2rem, 2vw, 1.5rem)`, lh 1.5, max 38ch): the hero thesis, in `--ink-soft` with two `--ink` 600 phrases carrying the claim.
-- **Body** (400, 17px, lh 1.62): default. Prose measures are capped — About at 64ch, entry descriptions at 70ch, findings at 74ch. Secondary prose 15–16px.
-- **Label** (500, 12.5–13.5px): readout labels, annotations, nav, tags, roles.
-- **Data** (IBM Plex Mono 500, tabular): 17px for headline values, 15px in readout cells, 12–13px for ticks, venues, statuses, years, and legends.
+The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry descriptions at 70ch, contribution clauses at 72ch, findings and ledger prose at 74ch.
 
 ### Named Rules
 
-**The Twelve-Pixel Floor Rule.** Nothing functional renders below 12px. Axis ticks and legends sit at exactly 12px; labels at 12.5–13.5px. The undersized-UI-text problem is designed out, not patched later.
+**The Twelve-Pixel Floor Rule.** Nothing functional renders below 12px. `0.75rem` is the floor and it is exactly 12px at the default root. Undersized UI text is designed out, not patched later.
 
-**The Aligning-Digits Rule.** IBM Plex Mono is for digits that must align on an axis or in a column: year ticks, measured values, status years, date ranges, repo slugs. It is never prose and never decorative small-caps chrome. *The build admits two non-digit exceptions — the title block's field labels (`NAME` / `ROLE` / `LOCATION`) and the selectable email address under the hero — where mono reads as engineering-drawing annotation rather than as text. Those two are the whole allowance; do not extend it.*
+**The Aligning-Digits Rule.** IBM Plex Mono is for digits and identifiers that must align in a column or read as instrument annotation: year ticks, measured values, venues, statuses, date ranges, repo slugs, and the one `.note`. It is never prose, never decorative small-caps chrome. The previous build's two prose exceptions (labelled title-block fields, the mono email) died with the elements that carried them; **the allowance is now closed, not extended.**
 
-**The Width-Not-Weight Rule.** Emphasis in headings comes from the width axis (`font-stretch` 112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.
+**The Width-Not-Weight Rule.** Emphasis in headings comes from the width axis (112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.
+
+**The Counting-Heading Rule.** A section `h2` states what is in the section and over what span — "Six records, one first-author", "Four roles, 2023–2026", "Six projects, 2019–2026", "Recognition, 2018–2025". It never states policy and it never introduces a legend. If a heading needs a key to be understood, the notation is wrong.
 
 ## Layout
 
-**The sheet.** `max-width: 1180px`, centered, with `clamp(14px, 3vw, 36px)` side padding. The header and footer use the same padding so every vertical rule lines up.
+**The sheet.** `max-width: 1180px`, centered, `padding: 0 clamp(14px, 3vw, 36px)`. The header and the footer use the same padding so every vertical rule lines up.
 
-**The 9px module.** Every spacing value in the file is a multiple of 9 — 9, 18, 27, 36, 45, 54, 63, 72, 90, 99, 150 — because 9px is the graticule's minor pitch. Padding, gaps, and section rhythm land on grid lines rather than floating over them. Sections are `padding: 63px 0 72px` with a 1px `--line` top rule; the hero is `clamp(54px, 9vh, 99px) 0 90px` with no top rule.
+**The 9px module.** The vertical rhythm and every macro measurement is a multiple of 9: sections are `45px 0 54px` (36 / 45 at ≤699px), the hero is `clamp(45px, 7vh, 72px) 0 45px`, the row gap is 27px, the hero body gaps 18/54, the footer rule 45px above and 150px below, `scroll-padding-top: 72px`. **Component interiors are not on the module** — cell padding is 12/16, 16/18, 14/18, 13/18, 4/12; key padding is `0 22px`; gaps are 10, 11, 14, 20, 22. That is the honest state of the build: *the module governs the page's vertical rhythm and its lanes, not the inside of a cell.* Do not "correct" the interiors to multiples of 9; do not let a section's rhythm drift off them.
 
-**The two-column row.** Every section body is `.row` — `grid-template-columns: 132px minmax(0,1fr)` with a 27px gap. The left column is the **axis gutter**: a `--line-strong` right border, a 2px CH1 span bracket inset 6px top and bottom, and one or two mono ticks (`t0` at the top, `t1` absolutely positioned at the bottom) reading the section's real date span. Small-multiples logic — each section carries its own local time axis, so sequence is carried by years that mean something rather than by section numbers.
+**The two-column row.** Each of the four sections is `.row` — `grid-template-columns: 132px minmax(0,1fr)`, `gap: 0 27px`. The left column is the **axis gutter**: a `--line-strong` right border, a 2px CH1 span bracket inset 6px top and bottom, and two mono ticks — `t0` at the top and `t1` pinned to the bottom — reading that section's real date span. Small-multiples logic: each band carries its own local time axis, so sequence is carried by years that mean something rather than by section numbers.
 
-**The header.** 46px minimum height, `position: sticky; top: 0`, `z-index: 10`, on `--field` with a 1px `--line` bottom rule. Brand (an 8px CH1 square plus the name) at left, section jumps pushed right by `margin-left: auto`, theme rocker at the far right. The nav is a horizontally scroll-snapped row with its scrollbar hidden — it survives every width instead of collapsing into a menu. `scroll-padding-top: 72px` keeps anchored targets clear of it.
+**The hero has no rail.** `.hero .row { display: block }`. The name owns the whole measure, which is what buys the perch its clear space. Below it, `.hero-body` is a two-column grid with named areas — `"left proof" / "more proof" / "cta proof"` at `minmax(0,1fr) 360px` — so the portrait and thesis, the lead and annotations, and the two keys stack in the left column while the vertical measurement strip holds the right one at full height.
+
+**The declared lane (≥1200px).** `.row > :last-child { max-width: calc(100% - 120px); padding-right: 9px; border-right: 1px solid var(--line) }`. The record column stops 120px short of the sheet's right edge and declares that stop with a hairline; content stops a further 9px short of the rule, so no plate edge ever coincides with it. **The band beyond the rule is the dragon's, and it is marked rather than merely empty.**
+
+**The header.** 46px minimum height, `position: sticky; top: 0`, `z-index: 10`, on `--field` with a 1px `--line` bottom rule. Wordmark as real text at left in a 44px target, five section links pushed right by `margin-left: auto`, one theme button at the far right.
 
 **Responsive.**
 
-- **≤900px** — the axis gutter collapses: `.row` becomes one column and `.axis-cell` flips to a full-width bottom-bordered strip with its two ticks pushed apart (`justify-content: space-between`), so chronology survives as an inline dated rule above each section. The hero's axis cell and the trace step are hidden; `.hero-line` becomes `display: block` and the h1 is allowed to wrap. Publication rows unstack from a 4-column grid to a block flow, and the hidden word "author" (`.pub-pos .pl`) becomes visible now that the column label is gone. The title block goes to one column.
-- **≤520px** — the thesis drops its 38ch cap, the CTA keys go full-width, the hero readouts flip from a left-bordered column to a top-bordered row, and the brand name hides leaving only the CH1 swatch.
+- **≤900px** — the axis gutter collapses: `.row` becomes one column and `.axis-cell` flips to a full-width bottom-bordered strip with its two ticks pushed apart, so chronology survives as an inline dated rule above each band. `.hero-line` goes block and the h1 is allowed to wrap; `.step` is hidden and **the trace survives as a pseudo-element on `.hero-line`** — a 24px low run with a right-hand riser, both 2px CH1. `.hero-body` becomes one column ordered left / proof / more / cta, so the three proofs come before the keys. Record rows unstack to block flow. The Toolkit band goes single-column.
+- **≤699px** — nav drops to two links (Publications, Contact); strips become a 3-column grid (1 column in the hero); the footer's bottom lane drops 150px → 63px, because **that is the same predicate `pet.css` uses to hide the pet and his toggle**; the colophon swaps to its narrow, width-honest sentence.
+- **≤520px** — the thesis drops its measure cap, the CTA keys go full-width, the wordmark drops to label size, plate groups go single-column, and chips and artifact links grow to a 44px target.
 
-**The bottom lane.** The footer carries `padding-bottom: 150px`. The last content block ends well clear of the viewport floor so Charizard always has empty graticule to walk on.
+**Print.** A paper palette overrides both themes at once; the ground line, the pet, his toggle, the skip link and the theme button are hidden; the header un-sticks; every `--surface` container goes white; external `href`s print after their link text; the bottom lane goes to zero.
 
 ### Named Rules
 
-**The Nine-Pixel Rule.** Every spacing value is a multiple of 9. If a number isn't, it's a mistake or it's a 1px rule.
+**The Nine-Pixel Rhythm Rule.** Section padding, band gaps, row gaps, the lane, and the footer tail are multiples of 9. Component interiors are free. A new *section* that isn't on the module is a mistake; a new *cell* that isn't, is not.
 
 **The Nothing-At-The-Bottom Rule.** Nothing in this site is `position: fixed` or `sticky` at the bottom of the viewport. Top-pinned is legal; bottom-pinned is a contract violation. The bottom ~96px belongs to the dragon and to the 🔥 toggle in the bottom-left corner.
 
+**The Declared-Margin Rule.** At ≥1200px the right 120px of the record column is empty by declaration, with a hairline naming the edge. Nothing prose, interactive, or plate-edged goes past it.
+
 ## Elevation & Depth
 
-**There are no shadows.** Not on cards, not on the sticky header, not on hover, not on the plates. Depth is built from exactly two materials:
+**There are no shadows.** Not on containers, not on the sticky header, not on hover, not on the plate. Depth is built from exactly two materials:
 
-- **Three tint steps:** `--field` (page) → `--surface` (plates, rows, keys) → `--surface-2` (tags). A container is "raised" by being lighter than its ground, nothing more.
-- **Three rule weights:** 1px `--line` (hairline, decorative separation) → 1px `--line-strong` (structural edge, every container and control) → 2px `--sig` (a trace, an axis, a cursor, a live edge).
+- **Tint steps:** `--field` (page) → `--surface` (cells, rows, plates, keys) → `--surface-2` (unspent). A container is "raised" by being lighter than its ground, nothing more.
+- **Three rule weights:** 1px `--line` (decorative separation) → 1px `--line-2` / `--line-strong` (structural divider, then container and control edge) → 2px `--sig` (a trace, an axis, a cursor, a live edge). The 3px CH1 under-edge on the primary key is the one heavier mark, and it is a key's own trace.
 
-Multi-cell containers get their internal dividers for free: the plate and the measurement strip use `background: var(--line)` with `gap: 1px`, so the ground shows through as hairlines between `--surface` cells. One border, no per-cell rules.
+Multi-cell containers get their internal dividers for free: `.strip` and `.plate` set `background: var(--line-2)` with `gap: 1px`, so the ground shows through as hairlines between `--surface` cells. One border, no per-cell rules.
 
-The only `box-shadow` in the file is `0 0 0 1px var(--field)` on `:focus-visible` — a hard inner ring, not depth. It carries no blur and no offset by design.
+The only `box-shadow` in the file is `0 0 0 1px var(--field)` on `:focus-visible` — a hard inner ring so focus survives every ground. It carries no blur and no offset by design.
 
 ### Named Rule
 
@@ -262,106 +324,135 @@ The only `box-shadow` in the file is `0 0 0 1px var(--field)` on `:focus-visible
 
 **Corner language splits on a real affordance.** Everything you read is square; everything you press is a 7px key.
 
-- **Square (radius 0):** plates, measurement strips, record rows, ledger rows, marker tables, tracks, tags, chips, the title block, every rule and cell. 1px `--line-strong` edges.
-- **Key (radius 7px):** the three hero keys, the four footer contact keys, the theme rocker, the skip link (`0 0 7px 7px`), and — critically — **`#pet-toggle`**, whose 7px radius is hardcoded in `pet.css`. The radius was chosen to match it, so the dragon's toggle joins a family instead of being the one round object on the page.
+- **Square (radius 0):** strips, cells, plates, marker tables, record rows, ledger rows, chips, the contact bar, the portrait, every rule and divider. 1px `--line-strong` edges.
+- **Key (radius 7px):** the two hero keys, the six footer contact keys, the theme button, the skip link (`0 0 7px 7px`), and — critically — **`#pet-toggle`**, whose 7px radius is hardcoded in `pet.css`. The radius was chosen to match it, so the dragon's toggle joins a family instead of being the one round object on the page.
 - **2px:** the focus-ring radius on non-key elements, and the scrollbar thumb.
 
-**The graticule tile.** A 72×72 inline SVG data URI: seven vertical and seven horizontal 1px `grid-minor` strokes at 9px intervals, plus one `grid-major` stroke at `71.5` in each direction closing the tile. Painted on `body::before` — `position: fixed`, `inset: 0 0 12px 0`, `z-index: -1`, `pointer-events: none`, `background-position: left bottom`. It is anchored to the viewport's bottom-left, so the grid holds still while the record scrolls over it, and it can never occlude anything.
+**The ground line.** `body::after` — a fixed 2px `--line-strong` bar at `bottom: 12px`, full width, `z-index: -1`, `pointer-events: none`. It is the page's only fixed painted mark and it is exactly where `pet.js` puts Charizard's feet (`groundY = vh − BOX_H − GROUND_PAD`, `GROUND_PAD = 12`). The same weight reappears once in the hero as the 2px `--ink` rule under the name — one line, seen twice.
 
-**The ground line.** `body::after` — a fixed 2px `--line-strong` bar at `bottom: 12px`, full width, `z-index: -1`. This is the lowest division of the graticule and it is exactly where `pet.js` puts Charizard's feet (`groundY = vh − BOX_H − GROUND_PAD`). The same weight reappears once in the hero as the 2px rule under the name — one line, seen twice.
+**The trace.** Beside the hero name, `.step` draws a 2px CH1 low run to `min(130px, 42%)`, a 42px riser, then a high line running out to the right and ending open. Below 900px it becomes a full-width rule that steps up at its right end. The signal is never closed off with a terminal.
 
-**Leader ticks instead of bullets.** Hero annotations and work findings use a two-pseudo-element connector: a 2px × 8–10px CH1 vertical mark at `left: 0`, plus a 13px × 1px `--line-strong` horizontal running into the text at `left: 4px`. No disc bullets, and the connector retires most em-dashes.
+**Leader ticks instead of bullets.** Hero annotations and work findings use a two-pseudo-element connector: a 2px × 8–10px CH1 vertical mark at `left: 0`, plus a 13px × 1px `--line-strong` horizontal running into the text at `left: 4px`. No disc bullets. The marker rows use the same idea horizontally: a 1px dotted `--line-strong` leader stretching from the name to a right-aligned year.
 
-**Dash-pattern status coding.** Traces carry state in their line style before they carry it in color: `border-top-style` on a 14–16px `.tick` span — **solid = published / accepted**, **dashed = under review**, **dotted = in preparation**. Applied identically on `.chip` (in Selected Work) and `.pub-status` (in the record), with a written legend in the section head. The record stays legible with all color removed.
+**Dash-pattern status coding.** State is carried in line style before it is carried in color: `border-top-style` on a 14–16px `.tick` span — **solid = published / accepted**, **dashed = under review**, **dotted = in preparation**. Applied identically on `.chip` (Work, Projects) and `.pub-status` (the record). There is no printed legend; the coding is redundant with the written status beside it, which is why it needs none. The record stays legible with all color removed.
 
 ## Components
 
 ### Keys (buttons and button-shaped links)
 
-- **Shape:** 7px radius, 44px minimum height, `0 22px` padding, 9px gap for the `↗` glyph.
-- **Primary:** `--ink` ground, `--field` text, and a **3px `--sig` bottom edge** — the key's own trace. Hover swaps the ground to `--ink-soft` and keeps the CH1 under-edge.
-- **Ghost:** `--surface` ground, `--ink` text, 1px `--line-strong` edge. Hover moves both edge and text to `--sig`.
-- **Focus:** 2px `--sig` outline at 2px offset, plus the 1px `--field` inner ring, with the radius bumped back to 7px.
-- Transitions are 0.16s ease on border, color, and background. Nothing moves, scales, or lifts.
+- **Shape:** 7px radius, 44px minimum height, `0 22px` padding, 9px gap before the `↗` glyph.
+- **Ghost (default):** `--surface` ground, `--ink` text, 1px `--line-strong` edge. Hover moves both edge and text to `--sig`.
+- **Primary:** `--ink` ground, `--field` text, and a **3px `--sig` bottom edge** — the key's own trace. It is used exactly twice, both times labelled with the literal email address, and both carry `user-select: all` so the address can be lifted in one gesture. Hover swaps the ground to `--ink-soft` and keeps the CH1 under-edge.
+- **Focus:** 2px `--sig` outline at 2px offset plus the 1px `--field` inner ring, radius bumped back to 7px.
+- Transitions are 0.16s ease on border, color and background. Nothing moves, scales, or lifts.
 
-### Theme rocker
+### Theme button
 
-A two-cell segmented switch, not an icon toggle. `--surface` ground, 1px `--line-strong` edge, 7px radius, cells divided by a `--line-strong` rule, labels "Light" / "Dark" at 12.5px/600. The active cell inverts to `--ink` on `--field`. It is `role="switch"` with `aria-checked` reflecting resolved state, and it drives `data-theme` on `<html>` plus the `theme` localStorage key. Three CSS blocks resolve the active cell across explicit-light, explicit-dark, and system-default states.
+**One button, not a rocker.** `--surface` ground, 1px `--line-strong` edge, 7px radius, 30px min-height, label at 13px/600. **Its visible label names the theme it switches to** ("Dark" while light, "Light" while dark); the words "Switch to " are screen-reader-only. There is no `role="switch"` and no `aria-checked` — the label carries the whole state. `reflect()` writes only that label and **never** `data-theme`, so an unset preference stays unset and keeps tracking the OS; `apply()` is the only writer, and it writes on click alone.
 
 ### Nav links (header)
 
-13.5px/500 in `--ink-soft`, 5px/9px padding, 28px minimum height. The active section is bracketed by **two 1px `--sig` cursor rules** — transparent left and right borders that take color on `.active` — and the text goes to `--ink`. Driven by an IntersectionObserver at `rootMargin: -45% 0px -50% 0px`; `aria-current="true"` moves with the bracket. Hover is `--sig-2`.
+13px/500 in `--ink-soft`, 5px/9px padding, 28px minimum height. The active section is bracketed by **two 1px `--sig` cursor rules** — transparent left and right borders that take color on `.active` — and the text goes to `--ink`. Driven by an IntersectionObserver at `rootMargin: -45% 0px -50% 0px`; `aria-current="true"` moves with the bracket. Hover is `--sig-2`. Below 700px the middle three links are hidden, leaving Publications and Contact; the row never becomes a clipped scroller and never becomes a menu.
 
 ### Measurement strip
 
-The dense-result component in Selected Work. A flex-wrap container with `background: var(--line)` and `gap: 1px` inside a 1px `--line-strong` border; each cell is `--surface`, `min-width: 118px`, `12px/16px` padding, carrying a 17px mono value over a 12.5px label. `role="list"` / `role="listitem"` with an `aria-label`.
+**The repeated device — the site's handwriting.** A flex container with `background: var(--line-2)` and `gap: 1px` inside a 1px `--line-strong` border; each cell is `--surface`, `min-width: 118px`, carrying a mono value over a label. Capped at **three cells**, always the entry's headline results.
+
+- **In the hero** it turns vertical (`flex-direction: column`, 360px column, 16/18 padding, 1.15rem values) and every cell is an **anchor into its own evidence**, marked with a `↓`; hovering a cell drops its ground to `--field` and takes the value to `--sig`. It sits in a `role="group"` labelled "Three measured results".
+- **In a work entry** it is horizontal and static, `role="list"` / `role="listitem"`.
+- **Below 700px** it becomes a 3-column grid (single column in the hero) so cells never fall to one word per line.
+
+**`.readout-cell` is the same idea at one cell:** an inline `--surface` box with a `--line-strong` edge, `4px 12px`, mono value beside a label. It is what a ledger row or a bare entry gets when there is exactly one number to state.
 
 ### Record row (publications)
 
-`grid-template-columns: 118px 148px minmax(0,1fr) 78px` with a 1px `--line` top rule and baseline alignment. Venue (mono), status (mono + dash-coded tick), title (600, `--ink`), author position (`N / M`, right-aligned, his index bold in `--ink`), then authors on a second line in column 3 with his name in `.me` (600, `--ink`), then the artifact link. Below 900px it unstacks to block flow and the word "author" appears.
+`grid-template-columns: 118px 148px minmax(0,1fr) 96px`, `18px 10px` padding, baseline-aligned, divided by 1px `--line-2` top rules. Venue (mono), status (mono + dash-coded tick), title (600, `--ink`, 1.15rem, `wdth 112`, its link underlined in CH1), and author position right-aligned in the 96px column. Then, in column three: the author list with his name at `--ink` 600, **a first-person contribution clause (`.pub-did`, 72ch) naming what he built**, and a row of artifact links plus an optional mono `.note`.
+
+**The author position is visible at every width.** `author N / M` — the word included, not a `title` attribute, not hidden by a column label. Below 900px the row unstacks to block flow and the same string simply moves down.
+
+### Work entry
+
+Compact: `h3` at title size, an org line at label size with a mono date range, a description ≤70ch, an optional single findings bullet, an optional three-cell strip, and artifact links. **Tracks are flattened to hairline rows** — an `h4` at secondary size plus one chip carrying `venue · status · author N / M`, which anchors down to the record row it names.
 
 ### Ledger row (projects)
 
-Not a card. `24px 0` padding, 1px `--line` top rule. A head line of title + role + right-pushed mono year, a 74ch description, then a foot of readout cells and links. **A readout cell only appears where a real measured number exists** — three of six rows have one, and that unevenness is the design.
+Not a card. `18px 0`, 1px `--line-2` top rule. A head line of title + role + right-pushed mono year, a 74ch description, then a foot of readout cells, chips and artifact links. **A readout cell appears only where a real measured number exists**; four of six rows have one, and that unevenness is the design.
 
-### Plate (stack)
+### Plate and markers (Toolkit & Recognition)
 
-One bordered container, `repeat(auto-fit, minmax(230px, 1fr))`, `gap: 1px` over a `--line` ground so every group is separated by a hairline. Group headings are 13px/600 at `wdth 112` with 0.04em tracking in `--ink-soft`; items are inline list items joined by a `·` separator drawn in `--line-strong` via `::after`. Emphasized items go `--sig` 600.
+One band, two columns (`3fr 2fr`, 27/45 gaps), each with its own `h2`. **Left:** a bordered plate of four `label + list` groups on a `--line-2` ground with `gap: 1px`; each group is a 118px heading column beside inline items joined by a `·` drawn in `--line-strong` via `::after`. **Right:** a bordered marker table — name, a dotted `--line-strong` leader that stretches, then a right-aligned mono year in a fixed column — closed by one folded "Earlier" row at label size that carries three older items in a single sentence rather than three more rows.
 
-### Chip / trace link
+### Chip / artifact link
 
-A mono 12.5px inline link with a 1px `--sig` border, square, 24px minimum height, carrying the 14px dash-coded `.tick`. In Selected Work it anchors down to its publication record — this is what fires the measurement cursor.
+`.chip` is a mono 12px inline link with a 1px `--sig` border, square, 24px minimum (44px below 520px), carrying the dash-coded tick. `.tlink` is a 13px/600 CH1 link with a 1px CH1 underline. Both hover to `--sig-2`. In Work and Projects a chip anchors down to its publication record — this is what fires the measurement cursor.
 
-### Title block (footer)
+### Contact bar (footer)
 
-An engineering-drawing title block: a 3-column bordered plate of labelled cells (NAME / ROLE / LOCATION), with a full-width bottom cell carrying the contact keys and a right-pushed "↑ Top of record". Field labels are 12px mono in `--ink-faint` with 0.05em tracking; values 15px/500 in `--ink`.
+A single bordered `--surface` block: the identity line (`Uzair Ahmed · AI / ML Researcher & Engineer · Daejeon, Korea`) over a wrapping row of six keys — email primary, then GitHub, Google Scholar, ORCID, LinkedIn, Résumé. Beneath it, outside the box, the colophon at label size: the Charizard sentence, width-honest in two variants, then the record's currency date. Then 150px of empty lane.
 
 ### Signature: the measurement cursor
 
-The one piece of delight, and it is pure CSS. Clicking a venue chip in Selected Work targets its record row, and `.record li:target` fires two 2px `--sig` cursor rules that sweep in from the left and right margins (`translateX(∓50vw)`), converge to bracket that single row, hold, and fade — a 1.9s `ease-out` pair of keyframes — while the row itself lifts to `--surface`. It is the literal gesture of dropping cursors on a trace to read a value. It needs no JavaScript, so it cannot fight `pet.js`. Under `prefers-reduced-motion` the animation is dropped and the brackets simply appear at `opacity: 1`. The header's active-section bracket is the same idiom running continuously.
+The one piece of delight, and it is pure CSS. A chip targets its record row, and `.record li:target` fires two 2px `--sig` cursor rules that sweep in from the left and right margins (`translateX(∓50vw)`) and **stop, bracketing the row and staying there** while the row itself lifts to `--surface`. It is the literal gesture of dropping cursors on a trace to read a value — and a dropped cursor does not fade, which is why the 1.1s `ease-out` keyframes end at rest rather than at zero opacity. The same `:target` reveals a `.back` link into the work entry the chip came from, so the way back exists only when someone was brought here. It needs no JavaScript, so it cannot fight `pet.js`. Under `prefers-reduced-motion` the animation drops and the brackets simply appear. The header's active-section bracket is the same idiom running continuously.
 
-### Named Rule
+### Named Rules
 
-**The Earned-Cell Rule.** A readout cell, a measurement strip, or a chip appears because a real number or a real record exists behind it. Adding one to balance a row visually is the fastest way to turn an instrument into a decoration.
+**The Earned-Cell Rule.** A readout cell, a strip, or a chip appears because a real number or a real record exists behind it. Adding one to balance a row visually turns an instrument into a decoration. (PRODUCT.md content-truth rule 6 says the same thing about content; this is its visual half.)
+
+**The Deliberate-Seam Rule.** Two places break the grammar on purpose and ship with **no caption, no note, and no apology**: the **JKAIA row**, which has no artifact furniture and states in one plain sentence that the paper was non-archival and there is no link; and the **DocsHunt entry**, which has one readout cell and no findings list at all. They are not omissions and they are not bugs. A future edit that "completes" either one deletes the evidence that a person wrote this record. (K&D having no strip is a migration consequence, not a seam — do not count it and do not fix it either way.)
+
+**The Three-Cell Ceiling Rule.** A strip never exceeds three cells. Study-scale numbers belong on the record row that carries the author position, not in a fourth cell.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** anchor anything new to the 9px module and let the graticule show through — spacing lands on grid lines.
-- **Do** give every container a 1px `--line-strong` edge and a `--surface` ground, and separate its cells with `gap: 1px` over a `--line` background.
-- **Do** code state with a line pattern first (solid / dashed / dotted) and color second, so the record survives desaturation.
+- **Do** put a new band's vertical rhythm on the 9px module (45 / 54 / 27 / 18) and leave cell interiors alone.
+- **Do** give every container a 1px `--line-strong` edge and a `--surface` ground, and separate its cells with `gap: 1px` over a `--line-2` background.
+- **Do** code state with a line pattern first (solid / dashed / dotted) and color second, so the record survives desaturation — and write the status in words beside it.
+- **Do** reuse the measurement strip / readout cell / leader tick family for anything new that is measured. Repetition is the point; a new device is not.
 - **Do** keep every interactive element on the 7px key radius and everything readable square.
-- **Do** put mono only where digits must align, and keep the type floor at 12px.
-- **Do** keep prose measured — 38ch for the lead, 64ch for About, 70–74ch elsewhere.
-- **Do** keep the hero name as real uppercase text in `.hero h1` with the `"Archivo Fallback"` stack intact, sitting in the first viewport with clear space to its right.
+- **Do** put mono only where digits, dates, venues, statuses or repo slugs align, and keep the type floor at 0.75rem.
+- **Do** give a section heading a count and a span, and let the notation explain itself.
+- **Do** keep the hero name as real uppercase text in `.hero h1` — one text node, no child elements, no pseudo-element, `.step` a sibling — with the `"Archivo Fallback"` stack and the `px` clamp intact, in the first viewport, with clear space to its right.
 
 ### Don't:
 
 - **Don't** add a `box-shadow` with any blur or offset. The only shadow in this file is the focus inner ring.
 - **Don't** introduce orange, amber, or any warm hue into page chrome. `--accent` belongs to the dragon.
-- **Don't** use `z-index ≥ 999` — or, honestly, above 20. Current ceiling: skip link 20, header 10, graticule −1.
-- **Don't** fix or stick anything to the bottom of the viewport, and don't let content encroach on the bottom ~96px lane.
-- **Don't** add an uppercase kicker or eyebrow above a heading. The old one's words live in the hero annotations and the header; the device itself is gone.
-- **Don't** number the sections (`01`, `02`). Sequence is carried by real year ticks on the axis gutter.
-- **Don't** convert Projects or Publications into a card grid, and don't equalize the density of the sections — unevenness is load-bearing.
-- **Don't** add fade-up, parallax, or scroll-triggered reveal animations. Motion in this world is a cursor sweep and a 0.16s color change.
+- **Don't** make `--sig-2` a second hue again. It is a lightness step of CH1, and dark `--sig` is pinned to cyan (hue ~188–200°) because `pet.css` hardcodes `rgba(96,205,255)` for the tail glow.
+- **Don't** re-introduce a background field, wallpaper, texture, or graticule layer. The owner removed it; `--field` is bare.
+- **Don't** use `z-index ≥ 999` — or, honestly, above 20. Current ceiling: skip link 20, header 10, ground line −1.
+- **Don't** fix or stick anything to the bottom of the viewport, and don't let content encroach on the bottom lane or on the declared 120px right margin at ≥1200px.
+- **Don't** add an uppercase kicker or eyebrow above a heading, a legend line that explains the page's own notation, a tag-pill row, or a labelled NAME/ROLE/LOCATION grid. All four were removed; do not bring the devices back under new names.
+- **Don't** number the sections (`01`, `02`). Sequence is carried by real year ticks in the axis gutter.
+- **Don't** convert Projects or Publications into a card grid, and don't equalize section density — unevenness is load-bearing.
+- **Don't** add fade-up, parallax, or scroll-triggered reveals. Motion in this world is one cursor sweep that stops, and a 0.16s color change.
 - **Don't** demote a date, venue, author, or status to `--ink-faint`, and don't spend `--signal` or `--accent` on the page.
 - **Don't** add a third font family or reach for a heavier weight — emphasis comes from the width axis.
+- **Don't** hide the author position, the status, or the `N / M` string at any width, and don't turn any of them into a `title` attribute.
+- **Don't** add any `<input>`, `<textarea>`, `contenteditable`, or free-text `<select>`, ever, and don't take `:target` away from `.record li`.
 
 ## Maintenance
 
-**What a future edit must never break.** These are not style preferences; they are the Charizard preservation contract expressed as design constraints. The full contract is authoritative; this is the short form.
+**What a future edit must never break.** These are not style preferences; they are the Charizard preservation contract expressed as design constraints. PRODUCT.md's Brand Commitments are authoritative; this is the short form.
 
 1. **`assets/` is frozen.** `pet.js`, `pet.css`, and the 14 GIFs in `assets/charizard/` are not modified, renamed, or moved.
 2. **The hooks stay.** `<link rel="stylesheet" href="assets/pet.css">` in `<head>`; `<script src="assets/pet.js" defer>` before `</body>`.
-3. **`.hero h1` stays real text.** His name, in a `.hero h1`, in the first viewport, with clear space to its right. `pet.js` ranges over that text node to find the perch. Keep the `"Archivo Fallback"` `size-adjust: 132.8%` stack — without it the perch drifts before the webfont swaps.
-4. **Both themes stay fully authored.** `data-theme="light|dark"` on `<html>`, persisted to localStorage `theme`, `prefers-color-scheme` respected when unset. The rocker's three-block CSS must keep resolving all three states.
-5. **Six token names are permanent:** `--signal`, `--ink-faint`, `--accent`, `--surface`, `--line`, `--line-strong`. Retune the values if a theme changes; never rename, never delete, and never leave one undefined in either theme. `pet.css` reads them for the hearts, the sleep z's, the startle mark, the toggle ground, and the toggle chrome.
-6. **`z-index` ceiling.** Nothing ≥ 999. The pet sits at 999, his toggle at 1000, his particles at 999.
-7. **IBM Plex Mono stays loaded** even if the page's mono usage shrinks to zero — the pet's particles request that family by name.
-8. **The bottom lane stays clear.** No fixed or sticky element at the viewport bottom; the footer keeps its 150px bottom padding; the bottom-left corner belongs to the 🔥 toggle alone. The graticule layer stays `z-index: -1`, `pointer-events: none`.
-9. **The ground line stays put.** `body::after` at `bottom: 12px` is where his feet land. Moving it moves him off the design.
-10. **Don't fight `pet.js`.** No global listeners or rAF loops that compete with it, no pointer interception over his area. The signature interaction is CSS-only for exactly this reason.
-11. **`#pet-toggle { border-color: var(--line-strong) }`** is the only site rule that touches pet chrome. It works on source order (site CSS loads after `pet.css`); keep the `<link>` order if you keep the rule.
-12. **localStorage keys `theme` and `charizard-pet-enabled`** keep their exact semantics.
+3. **`.hero h1` stays real text.** His name, in a `.hero h1`, in the first viewport, one text node with no child elements and no pseudo-element (a `Range` unions every child rect, and a pseudo-element is invisible to it), `.step` a sibling, with clear space to its right. Keep the `"Archivo Fallback"` `size-adjust: 132.8%` stack — without it the perch drifts before the webfont swaps.
+4. **Both themes stay fully authored, and the control is one button.** `data-theme="light|dark"` on `<html>`, persisted to localStorage `theme`, `prefers-color-scheme` respected when unset; the pre-paint boot script stays. There is no rocker and no `role="switch"`: **the button's visible label names the destination theme, and `reflect()` writes only that label — never `data-theme`** — so an unset preference stays unset and keeps following the OS. Every click is therefore a real change, which is what makes the pet's theme-change sneeze always intentional.
+5. **Six token names are permanent:** `--signal`, `--ink-faint`, `--accent`, `--surface`, `--line`, `--line-strong`. Retune the values if a theme changes; never rename, never delete, never leave one undefined in any of the four `:root` blocks. `pet.css` reads them for the hearts, the sleep z's, the startle mark, the toggle ground, and the toggle chrome. `--line-2` exists precisely so `--line` could keep its pet-facing job — do not "consolidate" them.
+6. **`z-index` ceiling.** Nothing ≥ 999. The pet sits at 999, his toggle at 1000, his particles at 999. No `<dialog>.showModal()`, no Popover API, no overlay: top-layer content renders above every legal z-index.
+7. **IBM Plex Mono stays loaded** even if the page's mono usage shrinks to zero — the pet's particles request that family by name. One Google Fonts request, two families, no third face.
+8. **The bottom lane stays clear.** No fixed or sticky element at the viewport bottom; the footer keeps `padding-bottom: 150px`, dropping to 63px only inside `@media (max-width: 699px)` — the same predicate `pet.css` uses to hide him, so no fractional width can collapse the lane while the button still renders. There is **no graticule layer** any more; the only fixed painted mark is `body::after`. At ≥1200px the lane also has a horizontal half: `.row > :last-child` gives back 120px on the right and declares the edge with a 1px `--line` rule — that band stays free of prose and controls.
+9. **The ground line stays put.** `body::after` at `bottom: 12px` is where his feet land (`GROUND_PAD = 12`). Moving it moves him off the design. Only `@media print` may hide it.
+10. **Don't fight `pet.js`.** No global listeners or rAF loops that compete with it, no pointer interception over his area, no class ever added to `#pet-charizard` (pet.js overwrites the whole className on every theme change). The signature interaction is CSS-only for exactly this reason; the script budget is two listeners and one IntersectionObserver.
+11. **Four site rules touch pet chrome, plus the print block:** `#pet-toggle { border-color: var(--ink-soft); opacity: .85 }`, `#pet-toggle:hover { border-color: var(--ink); opacity: 1 }`, `#pet-toggle[aria-pressed="false"] { opacity: .75 }`, and the `@media print` rule that hides `#pet-toggle`, `#pet-charizard` and `#pet-fx`. They work on source order at equal specificity — `pet.css` uses the `border` shorthand, so if the `<link>` ever loads after this `<style>` block, all four silently stop applying with no error. The off state keeps `pet.css`'s own grayscale as its signal; only opacity moves.
+12. **localStorage keys `theme` and `charizard-pet-enabled`** keep their exact semantics. No third key — there is no view state to store.
+13. **No containing-block property on `html` or `body`.** `transform`, `filter`, `backdrop-filter`, `perspective`, `contain`, and `will-change` make `body` the containing block for all three pet nodes and un-fix the dragon and his ground line from the viewport together, silently, visible only after a scroll. Page-level effects go on `main`, `header`, or a wrapper. PRODUCT.md clause 10 carries the whole-file grep guard (the line-based form does not fire on this file's multi-line `body{`).
+14. **Dark `--sig` is pinned to cyan** (hue ~188–200°): `pet.css` hardcodes `rgba(96,205,255)` for the tail glow. Retune lightness and chroma only; light `--sig` is unconstrained. PRODUCT.md clause 11.
+15. **No form controls, ever.** No `<input>`, `<textarea>`, `contenteditable`, or free-text `<select>`. The "fire" secret is a `window` keydown with no target check, so typing inside a field would breathe fire instead of being swallowed. A filter, if one is ever added, is `<button>` chips. PRODUCT.md clause 12.
+16. **`:target` belongs to `.record li` alone** — never tab, panel, or view state — **and the perch is a testable inequality, not prose.** PRODUCT.md clause 14: at every viewport width from 700 to 1920px and at browser default font sizes of 16, 20 and 24px, the hero name renders on one line (`getClientRects().length === 1`) at 56px or larger — 64px or larger at 900px and above — and
+
+    `textRight + 124 <= innerWidth`
+
+    where `textRight` is the right edge of a `Range` over the `.hero h1` text node. This is why the h1's `clamp()` bounds are written in `px` and never `rem`.
