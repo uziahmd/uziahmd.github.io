@@ -251,13 +251,8 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
   max-width:40ch;font-weight:400;
 }
 .hero-lead{max-width:52ch;color:var(--ink-soft)}
-.annot{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:8px}
-.annot li{
-  position:relative;padding-left:24px;font-size:.8125rem;color:var(--ink-soft);
-  letter-spacing:.01em;
-}
-.annot li::before{content:"";position:absolute;left:0;top:.36em;width:2px;height:8px;background:var(--sig)}
-.annot li::after{content:"";position:absolute;left:4px;top:.62em;width:13px;height:1px;background:var(--line-strong)}
+.annot{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:6px}
+.annot li{font-size:.8125rem;color:var(--ink-soft);letter-spacing:.01em}
 
 .cta-row{grid-area:cta;display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:9px}
 .key{
@@ -534,17 +529,17 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
             <p class="hero-thesis">I build vision-language and LLM systems that run in production, and I measure what they actually do.</p>
           </div>
           <div class="hero-more">
-            <p class="hero-lead">Right now that is a streaming vision-language model at KPST (Korea Platform Service Technology) that runs for days on an industrial camera feed without its memory growing.</p>
+            <p class="hero-lead">Currently shipping an industrial-safety streaming VLM at KPST that monitors continuous CCTV feeds with constant memory usage to trigger live hazard alarms.</p>
             <ul class="annot" role="list">
-              <li>AI Researcher, KPST · Daejeon, Korea</li>
-              <li>B.S. Computer Science &amp; Business Technology Management, KAIST · Feb 2026</li>
+              <li>AI Researcher @ KPST (Daejeon)</li>
+              <li>B.S. Computer Science &amp; Business Tech, KAIST ('26)</li>
             </ul>
           </div>
           <div class="hero-proof">
             <div class="strip" role="group" aria-label="Three measured results">
-              <a class="cell" href="#work-kpst"><span class="v">83%</span><span class="l">F1 on held-out cameras · streaming hazard VLM on one V100<span class="arw" aria-hidden="true">↓</span></span></a>
-              <a class="cell" href="#pub-emnlp26"><span class="v">27.3%</span><span class="l">of cases a model claimed an injected reply as its own · 10 open-weight LLMs, 3B–70B, four safety benchmarks · EMNLP 2026<span class="arw" aria-hidden="true">↓</span></span></a>
-              <a class="cell" href="#research"><span class="v">6 records</span><span class="l">5 published or accepted · 1 in preparation · 1 first-author<span class="arw" aria-hidden="true">↓</span></span></a>
+              <a class="cell" href="#work-kpst"><span class="v">83% F1</span><span class="l">Industrial hazard detection on held-out camera streams (single V100)<span class="arw" aria-hidden="true">↓</span></span></a>
+              <a class="cell" href="#pub-emnlp26"><span class="v">27.3%</span><span class="l">Self-report failure rate: LLMs claimed adversarially injected responses as their own, across 10 models (EMNLP 2026)<span class="arw" aria-hidden="true">↓</span></span></a>
+              <a class="cell" href="#research"><span class="v">5 papers</span><span class="l">Published or accepted at EMNLP, ACM IMWUT and CHI EA<span class="arw" aria-hidden="true">↓</span></span></a>
             </div>
           </div>
           <div class="cta-row">
@@ -567,7 +562,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
         <article class="entry" id="work-kpst">
           <div class="entry-head">
             <h3>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h3>
-            <p class="entry-org">KPST · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
+            <p class="entry-org">KPST (Korea Platform Service Technology) · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
           </div>
           <p class="entry-role">I built the model side: adapting the base VLM, its two-stage LoRA training, the constrained decoding, and the data and evaluation pipeline that scores it on held-out cameras.</p>
           <p class="entry-desc">One vision-language model reads a never-ending camera stream and emits a schema-constrained JSON hazard decision per step, straight into a live alarm: forklift entry and robot-zone intrusion, switched by prompt, no object detector in front of it.</p>

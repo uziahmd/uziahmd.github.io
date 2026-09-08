@@ -332,7 +332,7 @@ The only `box-shadow` in the file is `0 0 0 1px var(--field)` on `:focus-visible
 
 **The trace.** Beside the hero name, `.step` draws a 2px CH1 low run to `min(130px, 42%)`, a 42px riser, then a high line running out to the right and ending open. Below 900px it becomes a full-width rule that steps up at its right end. The signal is never closed off with a terminal.
 
-**Leader ticks instead of bullets.** Hero annotations and work findings use a two-pseudo-element connector: a 2px × 8–10px CH1 vertical mark at `left: 0`, plus a 13px × 1px `--line-strong` horizontal running into the text at `left: 4px`. No disc bullets. The marker rows use the same idea horizontally: a 1px dotted `--line-strong` leader stretching from the name to a right-aligned year.
+**Leader ticks instead of bullets.** Work findings use a two-pseudo-element connector: a 2px × 8–10px CH1 vertical mark at `left: 0`, plus a 13px × 1px `--line-strong` horizontal running into the text at `left: 4px`. No disc bullets. The marker rows use the same idea horizontally: a 1px dotted `--line-strong` leader stretching from the name to a right-aligned year.
 
 **Dash-pattern status coding.** State is carried in line style before it is carried in color: `border-top-style` on a 14–16px `.tick` span — **solid = published / accepted**, **dashed = under review**, **dotted = in preparation**. Applied identically on `.chip` (Work, Projects) and `.pub-status` (the record). There is no printed legend; the coding is redundant with the written status beside it, which is why it needs none. The record stays legible with all color removed.
 
