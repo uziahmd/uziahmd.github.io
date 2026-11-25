@@ -456,6 +456,9 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .plate .group{grid-template-columns:1fr;gap:4px}
   .markers li{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .tlink,.chip{min-height:44px}
+  /* a details link sits inside its sentence: keep the line closed and give it the 44px target with a hit area instead */
+  .ledger p .tlink{min-height:24px;position:relative}
+  .ledger p .tlink::after{content:"";position:absolute;inset:-12px -6px}
   .pub-art{gap:6px 18px}
 }
 @media (max-width:400px){
