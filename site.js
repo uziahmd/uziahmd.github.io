@@ -4,10 +4,12 @@
   /* ---------- a hashed arrival lands at once ----------
      A link from another page, or an emailed #pub-* link, loads this page at a fragment.
      Jump there before pet.js starts, so the dragon measures the page where the reader
-     actually is, instead of perching beside a name that is about to scroll away. */
+     actually is, instead of perching beside a name that is about to scroll away.
+     Only on a fresh navigation: on Back or reload the browser restores the reader's place. */
   try{
+    var nav=performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];
     var frag=location.hash.slice(1);
-    var landing=frag&&document.getElementById(decodeURIComponent(frag));
+    var landing=frag&&(!nav||nav.type==="navigate")&&document.getElementById(decodeURIComponent(frag));
     if(landing)landing.scrollIntoView({behavior:"instant",block:"start"});
   }catch(e){}
 
