@@ -18,16 +18,17 @@
     walk:    { src: "assets/charizard/charizard_walk.gif",    w: 93 },
     flap:    { src: "assets/charizard/charizard_flap.gif",    w: 92 },
     idle:    { src: "assets/charizard/charizard_idle.gif",    w: 90 },
-    /* interaction set — same art scale: css width = canvas_w x 0.577 */
-    sleep:   { src: "assets/charizard/charizard_sleep.gif",   w: 58 },
-    wake:    { src: "assets/charizard/charizard_wake.gif",    w: 59 },
-    startle: { src: "assets/charizard/charizard_startle.gif", w: 73 },
-    wave:    { src: "assets/charizard/charizard_wave.gif",    w: 72 },
-    pet:     { src: "assets/charizard/charizard_pet.gif",     w: 63 },
-    fire:    { src: "assets/charizard/charizard_fire.gif",    w: 101 },
+    /* interaction set — redrawn Nov 2026; each width is set so his body matches
+       idle's size and his far foot lands where idle's does (no pop on a swap) */
+    sleep:   { src: "assets/charizard/charizard_sleep.gif",   w: 125 },
+    wake:    { src: "assets/charizard/charizard_wake.gif",    w: 131 },
+    startle: { src: "assets/charizard/charizard_startle.gif", w: 128 },
+    wave:    { src: "assets/charizard/charizard_wave.gif",    w: 115 },
+    pet:     { src: "assets/charizard/charizard_pet.gif",     w: 119 },
+    fire:    { src: "assets/charizard/charizard_fire.gif",    w: 164 },
     /* directional theme transitions, straight from the two toggle sheets */
-    shiftdark:  { src: "assets/charizard/charizard_shift_dark.gif",  w: 73 },
-    shiftlight: { src: "assets/charizard/charizard_shift_light.gif", w: 65 },
+    shiftdark:  { src: "assets/charizard/charizard_shift_dark.gif",  w: 126 },
+    shiftlight: { src: "assets/charizard/charizard_shift_light.gif", w: 148 },
     /* single-frame idle pose — the only sprite allowed under reduced motion */
     still:   { src: "assets/charizard/charizard_still.gif",   w: 90 }
   };
@@ -54,7 +55,7 @@
   var PET_LINGER_S = 1.0;        // s of slow lingering before petting starts
   var PET_COOLDOWN = 4;          // s after a pet session
   var SLEEP_AFTER_S = 60;        // s of user inactivity before napping
-  var ONESHOT_S = { startle: 0.62, wake: 0.45, wave: 1.5, fire: 2.8,
+  var ONESHOT_S = { startle: 0.62, wake: 1.1, wave: 1.5, fire: 2.8,
                     shiftdark: 1.8, shiftlight: 1.2 };
   var SECRET = ["f", "i", "r", "e"];  /* easter egg: just type "fire" */
   var LAUNCH_PERCH_S = 1.3;      // s standing on the name before first takeoff
