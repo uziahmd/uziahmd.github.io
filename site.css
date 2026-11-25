@@ -16,8 +16,9 @@
    - assets/pet.css stays linked BEFORE site.css on every page, or the #pet-toggle
      overrides near the end silently stop applying
    - "IBM Plex Mono" stays loaded; his particles request it by name
-   - html and body never carry transform, filter, backdrop-filter, perspective,
-     contain or will-change: any of them un-fixes him from the viewport
+   - html and body never carry transform (or translate, rotate, scale,
+     transform-style), filter, backdrop-filter, perspective, contain or
+     will-change, prefixed or not: any of them un-fixes him from the viewport
    ============================================================ */
 :root{
   color-scheme:light;
@@ -316,7 +317,7 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .entry-role{margin-top:12px;color:var(--ink);max-width:70ch}
 .entry-desc{margin-top:10px;color:var(--ink-soft);max-width:70ch}
 .findings{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:10px;max-width:74ch}
-.findings li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:.9375rem}
+.findings li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:.9375rem;text-wrap:pretty}
 .findings li::before{content:"";position:absolute;left:0;top:.42em;width:2px;height:10px;background:var(--sig)}
 .findings li::after{content:"";position:absolute;left:4px;top:.68em;width:13px;height:1px;background:var(--line-strong)}
 .entry-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
@@ -333,7 +334,7 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 /* A long entry groups its projects as blocks: a track row as the heading, then prose and findings. */
 .block{margin-top:30px}
 .block>.tracks{margin-top:0}
-.block .track h4{font-size:1.0625rem}
+.block .track h4{font-size:1.0625rem;line-height:1.25;text-wrap:balance}
 .chip{
   display:inline-flex;align-items:center;gap:6px;min-height:24px;
   font-family:var(--font-data);font-size:.75rem;font-weight:500;letter-spacing:.02em;
@@ -356,7 +357,9 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .ledger h3{font-size:1.0625rem;font-stretch:112%}
 .ledger .l-role{font-size:.8125rem;font-weight:600;color:var(--ink-soft)}
 .ledger .l-year{font-family:var(--font-data);font-size:.8125rem;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
-.ledger p{margin-top:6px;font-size:.9375rem;color:var(--ink-soft);max-width:74ch}
+.ledger p{margin-top:6px;font-size:.9375rem;color:var(--ink-soft);max-width:74ch;text-wrap:pretty}
+/* A link that closes a band sits in its own row under the dated axis, so the last tick stays on the last dated item. */
+.row.after .entry-links{margin-top:0;padding-top:14px}
 .ledger .l-foot{margin-top:10px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
 .readout-cell{
   display:inline-flex;align-items:baseline;gap:8px;
@@ -409,7 +412,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
    RESPONSIVE
    ============================================================ */
 @media (max-width:900px){
-  .row{grid-template-columns:1fr}
+  .row{grid-template-columns:minmax(0,1fr)} /* minmax: a no-wrap chip must not widen the column past the screen */
   .axis-cell{
     border-right:none;border-bottom:1px solid var(--line-strong);
     padding:0 0 6px;margin-bottom:18px;display:flex;justify-content:space-between;
@@ -456,13 +459,14 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .plate .group{grid-template-columns:1fr;gap:4px}
   .markers li{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .tlink,.chip{min-height:44px}
-  /* a details link sits inside its sentence: keep the line closed and give it the 44px target with a hit area instead */
-  .ledger p .tlink{min-height:24px;position:relative}
-  .ledger p .tlink::after{content:"";position:absolute;inset:-12px -6px}
+  /* a details link sits inside its sentence, and the back link closes a band: keep the line closed and give each its 44px target with a hit area instead */
+  .ledger p .tlink,.row.after .tlink{min-height:24px;position:relative}
+  .ledger p .tlink::after,.row.after .tlink::after{content:"";position:absolute;inset:-12px -6px}
   .pub-art{gap:6px 18px}
 }
 @media (max-width:400px){
   .bar-nav a:nth-child(2){display:none} /* Work · Contact on the narrowest phones */
+  .chip{white-space:normal}
 }
 @media print{
   :root,:root[data-theme="light"],:root[data-theme="dark"]{ /* paper palette in both themes */

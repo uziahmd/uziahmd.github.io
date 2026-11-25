@@ -1,6 +1,16 @@
 (function(){
   "use strict";
 
+  /* ---------- a hashed arrival lands at once ----------
+     A link from another page, or an emailed #pub-* link, loads this page at a fragment.
+     Jump there before pet.js starts, so the dragon measures the page where the reader
+     actually is, instead of perching beside a name that is about to scroll away. */
+  try{
+    var frag=location.hash.slice(1);
+    var landing=frag&&document.getElementById(decodeURIComponent(frag));
+    if(landing)landing.scrollIntoView({behavior:"instant",block:"start"});
+  }catch(e){}
+
   /* ---------- theme button: its label is the theme it switches to ---------- */
   var root=document.documentElement;
   var toggle=document.getElementById("themeToggle");

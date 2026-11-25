@@ -10,10 +10,11 @@ To update: edit the page (styles in `site.css`), commit, push. The live site fol
 - When the job changes: the hero affiliation line and lead, the home Work row, the `work.html` entry, and the meta and Open Graph descriptions of both pages.
 - Every edit: change the "Record current to" line in both footers together.
 
-Before pushing, run these from the repo root. The first two must print nothing; the third (the `PRODUCT.md` clause-10 guard over `site.css` and every root page) must print `0` for every file.
+Before pushing, run these from the repo root. The first three must print nothing (the second compares the two headers with their link targets blanked, since those differ by design); the fourth (the `PRODUCT.md` clause-10 guard over `site.css` and every root page) must print `0` for every file.
 
 ```bash
 diff <(sed -n '/<footer class="plate-wrap">/,/<\/footer>/p' index.html) <(sed -n '/<footer class="plate-wrap">/,/<\/footer>/p' work.html)
+diff <(sed -n '/<header class="bar">/,/<\/header>/p' index.html | sed -E 's/href="[^"]*"/href=""/g') <(sed -n '/<header class="bar">/,/<\/header>/p' work.html | sed -E 's/href="[^"]*"/href=""/g')
 grep -nE '<input|<textarea|contenteditable|<select|<dialog|popover|style="' site.css *.html
-grep -Pzoc '(?s)(?:^|[}>,{\n])[ \t]*(?:html|body|:root)\b[^{};/]*\{[^}]*?(?<=[;{\s])(?:transform|filter|backdrop-filter|perspective|contain|will-change)\s*:[^}]*\}' site.css *.html
+grep -Pzoc '(?s)(?:^|[}>,{\n])[ \t]*(?:html|body|:root)\b[^{};/]*\{[^}]*?(?<=[;{\s])(?:-(?:webkit|moz|ms|o)-)?(?:transform(?:-style)?|translate|rotate|scale|filter|backdrop-filter|perspective|contain|will-change)\s*:[^}]*\}' site.css *.html
 ```

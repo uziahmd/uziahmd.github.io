@@ -90,7 +90,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 
           <div class="block" id="kpst-drone">
             <div class="tracks"><div class="track"><h4>Drone Fault-Diagnosis Desktop App for ETRI</h4></div></div>
-            <p class="entry-desc">I built a Windows and Ubuntu desktop app that diagnoses drone faults from flight logs, from scratch to delivery, implementing design elements and specifications from a KPST designer and refining it with ETRI's feedback. Users label ArduPilot logs, train LSTM, GRU, CNN-LSTM or BiLSTM classifiers in TensorFlow or PyTorch, replay flights with per-class predictions in 3D, and monitor a live drone over MAVLink with RTSP video.</p>
+            <p class="entry-desc">From scratch to delivery, I built a Windows and Ubuntu desktop app that diagnoses drone faults from flight logs, implementing design elements and specifications from a KPST designer and refining it with ETRI's feedback. Users label ArduPilot logs, train LSTM, GRU, CNN-LSTM or BiLSTM classifiers in TensorFlow or PyTorch, replay flights with per-class predictions in 3D, and monitor a live drone over MAVLink with RTSP video.</p>
             <ul class="findings" role="list">
               <li>After a live demo at ETRI on July 2, 2026, I <strong>delivered</strong> the app on August 4, 2026, with source, two trained models, datasets, Korean manuals and a walkthrough video.</li>
               <li>A GPS-jamming CNN-LSTM trained through the app reached <strong>99.5%</strong> per-window accuracy (100% recall, 98.4% precision) on held-out flight logs, scored against rule-derived labels.</li>
@@ -101,7 +101,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 
           <div class="block" id="kpst-vlm">
             <div class="tracks"><div class="track"><h4>VLM Benchmark and Fine-Tuning for Factory-Safety Cameras</h4></div></div>
-            <p class="entry-desc">I tested and trained open vision-language models for two factory CCTV alarms: a worker inside a robot cell while the arm is moving, and a forklift entering through a gate. I built a zero-shot benchmark of 416 five-second windows, screening 15 model families for fit on one 32 GB GPU, then the fine-tuning stack (extended labeling tool, label audit, clip datasets, LoRA training, evaluation), and trained adapters for both alarms on a 9B open model.</p>
+            <p class="entry-desc">I tested and trained open vision-language models for two factory CCTV alarms: a worker inside a robot cell while the arm is moving, and a forklift entering through a gate. I built a zero-shot benchmark of 416 five-second windows and screened 15 model families for fit on one 32 GB GPU. I then built the fine-tuning stack (extended labeling tool, label audit, clip datasets, LoRA training, evaluation) and trained adapters for both alarms on a 9B open model.</p>
             <ul class="findings" role="list">
               <li>The robot-cell adapter reached hazard F1 <strong>0.853</strong> on 3,002 test clips from 10 held-out videos of the training camera, against 0.507 for flagging every clip.</li>
               <li>A frame-difference label audit, with every flip reviewed by hand, corrected the labels on <strong>6,885</strong> robot-cell frames (about 3%).</li>
@@ -206,9 +206,9 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
             </div>
           </li>
         </ul>
-        <div class="entry-links"><a class="tlink" href="index.html"><span class="arw" aria-hidden="true">←</span> Back to the home page</a></div>
       </div>
     </div>
+    <div class="row after"><div aria-hidden="true"></div><div class="entry-links"><a class="tlink" href="index.html"><span class="arw" aria-hidden="true">←</span> Back to the home page</a></div></div>
   </section>
 
 </main>
