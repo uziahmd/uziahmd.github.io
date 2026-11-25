@@ -227,9 +227,9 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
 .portrait-fig figcaption{margin-top:6px;font-size:.75rem;color:var(--ink-soft);letter-spacing:.01em;line-height:1.4}
 .hero-thesis{
   font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.5;color:var(--ink-soft);
-  max-width:40ch;font-weight:400;
+  max-width:40ch;font-weight:400;text-wrap:pretty;
 }
-.hero-lead{max-width:52ch;color:var(--ink-soft)}
+.hero-lead{max-width:52ch;color:var(--ink-soft);text-wrap:pretty}
 .annot{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:6px}
 .annot li{font-size:.8125rem;color:var(--ink-soft);letter-spacing:.01em}
 
@@ -302,24 +302,26 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
 .pub-did a{display:inline;padding-block:4px;border-bottom:1px solid var(--sig)} /* inline so it wraps; the padding still extends the hit area to 24px */
 .pub-art{grid-column:3;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
 /* The home page carries the record in brief: venue, status, title, author position. The full row lives on publications.html. */
-.record.brief li{grid-template-columns:minmax(min-content,104px) minmax(min-content,138px) minmax(0,1fr) 88px;gap:6px 16px;padding:12px 10px}
-.record.brief .pub-title{font-size:1rem}
+.record.brief li{grid-template-columns:minmax(min-content,104px) minmax(min-content,148px) minmax(0,1fr) 88px;gap:6px 16px;padding:12px 10px}
+.record.brief .pub-status{white-space:nowrap}
+.record.brief .pub-title{font-size:1rem;text-wrap:pretty}
 .record li .back{display:none}
 .record li:target .back{display:inline-flex} /* the way back appears only when a chip brought you here */
 
 /* ============================================================
    WORK — four roles, a compact index
    ============================================================ */
-.entry{padding:27px 0;border-top:1px solid var(--line)}
+.entry{padding:45px 0;border-top:1px solid var(--line)} /* more air between workplaces than between the projects inside one */
 .entry:first-of-type{border-top:none;padding-top:0}
 .entry-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px} /* the workplace, the role, then the dates pushed right: the same head line as its home row */
 .entry-head h3{font-size:1.3rem;color:var(--ink)}
 .entry-head .l-role{font-size:.875rem;font-weight:600;color:var(--ink-soft)}
 .entry-head .l-year{font-family:var(--font-data);font-size:.875rem;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
-.entry-role{margin-top:12px;color:var(--ink);max-width:70ch}
-.entry-desc{margin-top:10px;color:var(--ink-soft);max-width:70ch}
+.entry-role{margin-top:12px;color:var(--ink);max-width:70ch;text-wrap:pretty}
+.entry-desc{margin-top:10px;color:var(--ink-soft);max-width:70ch;text-wrap:pretty}
 .findings{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:10px;max-width:74ch}
 .findings li{position:relative;padding-left:24px;color:var(--ink-soft);font-size:.9375rem;text-wrap:pretty}
+.findings strong{white-space:nowrap}
 .findings li::before{content:"";position:absolute;left:0;top:.42em;width:2px;height:10px;background:var(--sig)}
 .findings li::after{content:"";position:absolute;left:4px;top:.68em;width:13px;height:1px;background:var(--line-strong)}
 .entry-links{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
@@ -336,6 +338,9 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
 /* Under its workplace an entry holds one block per project: a track row as the project heading (h4), then prose, findings and paper tracks (h5). */
 .block{margin-top:30px}
 .block>.tracks:first-child{margin-top:0}
+.entry-head+.block{margin-top:18px} /* the first project sits close under its workplace */
+.block>.tracks:last-child>.track:last-child{border-bottom:none} /* no double rule where an entry ends on a track row */
+section h2+.entry{margin-top:9px}
 .block .track h4{font-size:1.0625rem;line-height:1.25;text-wrap:balance}
 .chip{
   display:inline-flex;align-items:center;gap:6px;min-height:24px;
@@ -413,6 +418,9 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width:1010px){
+  .entry-head .l-year{margin-left:0;flex-basis:100%} /* the dates stay under the workplace, never alone at the far edge */
+}
 @media (max-width:900px){
   .row{grid-template-columns:minmax(0,1fr)} /* minmax: a no-wrap chip must not widen the column past the screen */
   .axis-cell{
@@ -449,7 +457,11 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .colophon .wide{display:none}
   .colophon .narrow{display:inline}
 }
+@media (max-width:725px){
+  .cta-row .key.primary{flex-basis:100%;justify-content:center} /* email on its own row, the other three keys together */
+}
 @media (max-width:520px){
+  .cta-row .key:nth-child(2){flex-basis:100%} /* then the résumé, so Work and Publications share a row */
   .bar{gap:9px}
   .bar-nav a{padding:5px 5px}
   .hero-thesis{max-width:100%}
@@ -467,6 +479,9 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
 @media (max-width:400px){
   .bar-nav a:nth-child(2){display:none} /* Work · Contact on the narrowest phones */
   .chip{white-space:normal}
+  .strip .v{font-size:.9375rem}
+  .strip .cell{padding:9px 8px}
+  .readout-cell .v{white-space:nowrap}
 }
 @media print{
   :root,:root[data-theme="light"],:root[data-theme="dark"]{ /* paper palette in both themes */

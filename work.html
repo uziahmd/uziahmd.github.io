@@ -81,10 +81,10 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 
           <div class="block" id="kpst-security">
             <div class="tracks"><div class="track"><h4>CCTV Security: Real-Time Loitering, Intrusion and Fire Detection</h4></div></div>
-            <p class="entry-desc">Starting from an empty folder, I built a real-time CCTV pipeline for loitering and intrusion alarms: a D-FINE-L detector (DETR family) on TensorRT, OC-SORT tracking, zone rules and per-person state machines. I then took a fire and smoke detector from an aerial-footage baseline to a ground-level CCTV alarm in about five days: the same detector fine-tuned on leak-checked, site-split data, with tiled detection, a motion gate and a temporal event rule that gives one deterministic alarm per video.</p>
+            <p class="entry-desc">Starting from an empty folder, I built a real-time CCTV pipeline for loitering and intrusion alarms: a D-FINE-L detector (DETR family) on TensorRT, OC-SORT tracking, zone rules and per-person state machines. I then took a fire and smoke detector from an aerial-footage baseline to a ground-level CCTV alarm in about five days: a D-FINE-L detector fine-tuned on leak-checked, site-split data, with tiled detection, a motion gate and a temporal event rule that gives one deterministic alarm per video.</p>
             <ul class="findings" role="list">
               <li>Detected <strong>58 of 60</strong> intrusion and loitering events with 6 false alarms (1.14 per hour) on the 60 clips the rules were tuned on.</li>
-              <li>Averaged <strong>11.6 ms</strong> per frame across the 60 development clips on an NVIDIA H200, and about 18.8 ms in a live demo on a shared H200, against a 33.3 ms budget.</li>
+              <li>Averaged <strong>11.6 ms</strong> per frame across the same 60 clips on an NVIDIA H200, and about 18.8 ms in a live demo on a shared H200, against a 33.3 ms budget.</li>
               <li>Found and fixed a TensorRT miscompile that had cut confident-detection recall to 0.9191 against the reference runtime, restoring it to 1.0000.</li>
               <li>Built a pre-registered video stress test with byte-reproducible replay and scoring: <strong>2,169</strong> test units across 25 camera conditions, run on the pipeline's own tuning clips.</li>
             </ul>
@@ -121,7 +121,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
             <p class="entry-role">Undergraduate researcher across three tracks: I built the evaluation and fine-tuning pipelines behind the reasoning and safety papers, and ran the ideology and bias probes on vision-language models over a ~550-politician multimodal set (Grad-CAM, Integrated Gradients, TCAV).</p>
             <div class="tracks">
               <div class="track"><h5>LLM Difficulty Perception</h5><span class="note">project</span></div>
-              <div class="track"><h5>LLM Safety &amp; Introspection</h5><a class="chip" href="publications.html#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
+              <div class="track"><h5>LLM Safety &amp; Introspection</h5><a class="chip" href="publications.html#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · author 2 / 3</a></div>
             </div>
           </div>
         </article>
@@ -141,7 +141,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
             </div>
             <div class="tracks">
               <div class="track"><h5>Reproducible Stress-Prediction Pipeline</h5><a class="chip" href="publications.html#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
-              <div class="track"><h5>CrossShift</h5><a class="chip" href="publications.html#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
+              <div class="track"><h5>CrossShift</h5><a class="chip" href="publications.html#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · author 5 / 9</a></div>
               <div class="track"><h5>CausalCFF</h5><a class="chip" href="publications.html#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
             </div>
           </div>
