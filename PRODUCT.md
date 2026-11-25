@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Static HTML/CSS/JS, no build step, no dependencies, no trackers. One file — `index.html` — carries the entire site (markup, stylesheet, and behavior script inline). Deployed as a GitHub Pages **user site** from the repo root: `https://uziahmd.github.io`. Sibling assets: `Uzair_Ahmed_Resume.pdf`, and `assets/` (the Charizard pet — see Brand Commitments).
+Static HTML/CSS/JS, no build step, no dependencies, no trackers. Two hand-edited pages at the repo root, `index.html` (the home page) and `work.html` (every work entry and project in full), share `site.css` and `site.js`; each keeps the two-line theme-boot script inline in its `<head>`, the footer is copied between the pages byte for byte, and the header differs only in where its links point. Every page stays at the root because `assets/pet.js` loads its sprites by relative URL. Deployed as a GitHub Pages **user site** from the repo root: `https://uziahmd.github.io`. Sibling assets: `site.css`, `site.js`, `Uzair_Ahmed_Resume.pdf`, and `assets/` (the Charizard pet — see Brand Commitments).
 
 ## Users
 
@@ -24,7 +24,7 @@ Every one of them arrives cold, stays briefly, and leaves with either a decision
 
 ## Product Purpose
 
-A single-page professional record that proves, to a stranger with twenty seconds, that Uzair Ahmed builds production AI/ML systems **and** the evaluation that shows they work — and that gives a reviewer who stays five minutes a citable, verifiable publication record.
+A short home page, with every work entry and project in full one click away on `work.html`, that proves, to a stranger with twenty seconds, that Uzair Ahmed builds production AI/ML systems **and** the evaluation that shows they work — and that gives a reviewer who stays five minutes a citable, verifiable publication record.
 
 What the site must prove, in order:
 
@@ -48,11 +48,11 @@ Second, structurally: he is an early-career researcher whose record is genuinely
 - **Read cold, once, briefly.** No onboarding, no return visits, no account. First viewport must carry claim + evidence + contact.
 - **Read alongside the résumé PDF.** The site and `Uzair_Ahmed_Resume.pdf` must not contradict each other. When the résumé changes, the site's facts change with it.
 - **Read on a laptop, mostly.** Desktop is the decision context; mobile is the follow-up glance. The layout must not lose chronology when the axis gutter collapses.
-- **Facts age.** Statuses move (under review → accepted → published), roles change, new venues land. The record is expected to be edited by hand in `index.html`, by its owner, without a build step.
+- **Facts age.** Statuses move (under review → accepted → published), roles change, new venues land. The record is expected to be edited by hand in `index.html`, `work.html` and `site.css`, by its owner, without a build step. An item keeps the same id on both pages.
 
 ## Capabilities and Constraints
 
-**What the site does:** one scrolling record with five bands — Work, Publications, Projects, Toolkit, Recognition — plus a hero carrying a portrait and three linked measurement cells, a footer contact bar, a light/dark theme button whose label names the theme it switches to, an active-section indicator in the header, an anchor-driven "measurement cursor" that brackets a publication row when a chip links to it (and reveals a way back to the work entry), and the Charizard pet.
+**What the site does:** a home page with five bands — Work and Projects as one line per item, each linking to its full entry on `work.html` (the Allah-u-Allam row carries no link, per rule 7); Publications in full; Toolkit; Recognition — plus a hero carrying a portrait and three linked measurement cells, a footer contact bar, a light/dark theme button whose label names the theme it switches to, an active-section indicator in the header, an anchor-driven "measurement cursor" that brackets a publication row when a chip links to it (chips on `work.html` link to `index.html#pub-*`, and the cursor fires on arrival; the row's back link returns to the lab's home row), and the Charizard pet on both pages.
 
 **Content-truth rules (binding — these govern every future edit):**
 
@@ -67,8 +67,8 @@ Second, structurally: he is an early-career researcher whose record is genuinely
 
 **Technical constraints:**
 
-- Single file, no build, no framework, no bundler. An edit is a text edit plus a `git push`.
-- Two webfont families only (Archivo variable, IBM Plex Mono), one Google Fonts request. IBM Plex Mono must stay loaded regardless of page use — the pet's particles request it (see Brand Commitments).
+- HTML pages at the repo root plus `site.css` and `site.js`; no build, no framework, no bundler, no includes. An edit is a text edit plus a `git push`.
+- Two webfont families only (Archivo variable, IBM Plex Mono), one Google Fonts request. IBM Plex Mono must stay loaded on every page regardless of page use — the pet's particles request it (see Brand Commitments).
 - `assets/pet.js`, `assets/pet.css`, and `assets/charizard/` are frozen third-party-shaped code: not to be modified, renamed, or moved.
 - No analytics, no cookies, no third-party scripts beyond the font stylesheet.
 - `_config.yml` keeps `DESIGN.md`, `PRODUCT.md`, `README.md`, `.impeccable/` and `.claude/` out of the GitHub Pages build; they stay tracked in the repo by the owner's choice.
@@ -78,38 +78,38 @@ Second, structurally: he is an early-career researcher whose record is genuinely
 
 ## Brand Commitments
 
-**Name and voice.** "Uzair Ahmed", set as real text (never an image, never a logotype file). Role line: *AI / ML Researcher & Engineer* — it lives in `<title>` and in the footer contact bar's identity line; the hero annotation carries his actual employer title, *AI Researcher, KPST*. Location: *Daejeon, Korea*. Voice is plain, first-person, technically specific, and unhedged about numbers — never marketing-superlative, never "passionate about".
+**Name and voice.** "Uzair Ahmed", set as real text (never an image, never a logotype file). Role line: *AI / ML Researcher & Engineer* — it lives in the home page's `<title>` and in the footer contact bar's identity line; the hero annotation carries his actual employer title, *AI Researcher, KPST*. Location: *Daejeon, Korea*. Voice is plain, first-person, technically specific, and unhedged about numbers — never marketing-superlative, never "passionate about".
 
-**The Charizard pet is permanent product truth, not decoration.** A pixel-art Charizard lives on the page: he glides, hovers, walks the bottom of the viewport, startles at fast cursors, gets petted by lingering ones, waves on first landing, naps after 60s idle, wakes on activity, breathes fire when the visitor types "fire", sneezes when the theme changes, carries a dark-mode tail glow, perches beside the hero name on load, and can be switched off with a 🔥 toggle in the bottom-left corner. He is the site's most-loved asset and the single piece of personality in an otherwise measured document. The colophon says so out loud: *"A Charizard lives here. Type "fire", or switch him off with the 🔥 button in the bottom-left corner."* (and, below 700px where he is hidden, tells the reader to open the site on a laptop).
+**The Charizard pet is permanent product truth, not decoration.** A pixel-art Charizard lives on every page: he glides, hovers, walks the bottom of the viewport, startles at fast cursors, gets petted by lingering ones, waves on first landing, naps after 60s idle, wakes on activity, breathes fire when the visitor types "fire", sneezes when the theme changes, carries a dark-mode tail glow, perches beside the hero name when the home page loads (on `work.html`, which has no hero, he arrives in flight), and can be switched off with a 🔥 toggle in the bottom-left corner. He is the site's most-loved asset and the single piece of personality in an otherwise measured document. The colophon says so out loud: *"A Charizard lives here. Type "fire", or switch him off with the 🔥 button in the bottom-left corner."* (and, below 700px where he is hidden, tells the reader to open the site on a laptop).
 
 **Preservation contract (summary — the full text is authoritative; every clause is non-negotiable):**
 
-1. `assets/pet.css` linked in `<head>`; `assets/pet.js` deferred before `</body>`. Neither file, nor the 14 GIFs in `assets/charizard/`, may be modified.
-2. A `.hero h1` containing his name as **real text**, sitting in the first viewport with clear space to its right — pet.js measures a Range over that text to place the perch.
-3. A working light/dark toggle setting `data-theme="light|dark"` on `<html>`, persisted to localStorage key `theme`, respecting `prefers-color-scheme` when unset. Both themes fully authored.
+1. On every page: `assets/pet.css` linked in `<head>`; `assets/pet.js` deferred before `</body>`. Neither file, nor the 14 GIFs in `assets/charizard/`, may be modified. `assets/pet.css` is linked before `site.css`, and `site.js` loads before `assets/pet.js`.
+2. On `index.html`: a `.hero h1` containing his name as **real text**, sitting in the first viewport with clear space to its right — pet.js measures a Range over that text to place the perch. No other page carries an element with class `hero`; there he spawns in flight.
+3. A working light/dark toggle on every page, setting `data-theme="light|dark"` on `<html>`, persisted to localStorage key `theme`, respecting `prefers-color-scheme` when unset. Both themes fully authored.
 4. Six CSS custom properties must exist on `:root`, by these exact names, in both themes, with adequate contrast: `--signal`, `--ink-faint`, `--accent`, `--surface`, `--line`, `--line-strong`. pet.css reads them.
 5. No `z-index ≥ 999` anywhere in site CSS. The pet sits at 999, his toggle at 1000.
-6. `"IBM Plex Mono"` stays loaded — his particles request it.
+6. `"IBM Plex Mono"` stays loaded on every page — his particles request it.
 7. The bottom ~96px of the viewport stays clear of fixed/sticky elements, and the palette must not clash with an orange dragon in either theme.
 8. No global listeners or rAF loops that fight pet.js; no pointer interception over his area; no renaming or moving `assets/`.
 9. localStorage keys `theme` and `charizard-pet-enabled` keep their exact semantics.
-10. `html` and `body` never carry `transform`, `filter`, `backdrop-filter`, `perspective`, `contain`, or `will-change`. Any of them makes `body` the containing block for the three pet nodes, so the dragon and his ground line un-fix from the viewport together, silently, visible only after a scroll. Page-level effects go on `main`, `header`, or a wrapper, never on a pet ancestor. Guard, whole-file because `body{` is multi-line here: `grep -Pzoc '(?s)(?:^|[}>\n])[ \t]*(?:html|body)[ \t]*\{[^}]*?(?:transform|filter|backdrop-filter|perspective|contain|will-change)[^}]*\}' index.html` must print `0`.
+10. `html` and `body` never carry `transform`, `filter`, `backdrop-filter`, `perspective`, `contain`, or `will-change`. Any of them makes `body` the containing block for the three pet nodes, so the dragon and his ground line un-fix from the viewport together, silently, visible only after a scroll. Page-level effects go on `main`, `header`, or a wrapper, never on a pet ancestor. Guard, whole-file because `body{` is multi-line in `site.css`: `grep -Pzoc '(?s)(?:^|[}>,{\n])[ \t]*(?:html|body|:root)\b[^{};/]*\{[^}]*?(?<=[;{\s])(?:transform|filter|backdrop-filter|perspective|contain|will-change)\s*:[^}]*\}' site.css *.html` must print `0` for every file.
 11. Dark `--sig` stays in the cyan neighbourhood (hue roughly 188–200°). `assets/pet.css` hardcodes `rgba(96,205,255)` for the dark tail glow, so the dark channel may be retuned in lightness and chroma but never moved off hue. Light `--sig` is unconstrained.
-12. No `<input>`, `<textarea>`, `contenteditable`, or free-text `<select>` anywhere on the page. The "fire" listener is on `window` with no target check, so typing f-i-r-e inside any field breathes fire rather than being swallowed. A filter, if one is ever added, is `<button>` chips.
-13. `:target` belongs to `.record li` alone (the measurement cursor). It is never used for tab, panel, or view state; a hash-driven view switcher must reveal its destination panel before the hash lands.
-14. The perch is a testable line, not prose: at every viewport width from 700 to 1920px and at browser default font sizes of 16, 20, and 24px, the hero name renders on one line at 56px or larger (64px or larger at 900px and above; at 700px a 64px name leaves no room for the perch), and `textRight + 124 <= innerWidth`, where `textRight` is the right edge of a `Range` over the `.hero h1` text node. The h1's `clamp()` bounds are written in `px`, never `rem`, so a reader's font-size preference cannot overflow or wrap the name into the perch.
+12. No `<input>`, `<textarea>`, `contenteditable`, or free-text `<select>` on any page. The "fire" listener is on `window` with no target check, so typing f-i-r-e inside any field breathes fire rather than being swallowed. A filter, if one is ever added, is `<button>` chips.
+13. `:target` belongs to `.record li` alone (the measurement cursor, on `index.html`; `work.html` uses no `:target` styling). It is never used for tab, panel, or view state; a hash-driven view switcher must reveal its destination panel before the hash lands.
+14. On `index.html`, the perch is a testable line, not prose: at every viewport width from 700 to 1920px and at browser default font sizes of 16, 20, and 24px, the hero name renders on one line at 56px or larger (64px or larger at 900px and above; at 700px a 64px name leaves no room for the perch), and `textRight + 124 <= innerWidth`, where `textRight` is the right edge of a `Range` over the `.hero h1` text node. The h1's `clamp()` bounds are written in `px`, never `rem`, so a reader's font-size preference cannot overflow or wrap the name into the perch.
 
 A redesign that breaks any clause is a failed redesign, regardless of how it looks.
 
 ## Evidence on Hand
 
-**Real and verifiable (in `index.html`):**
+**Real and verifiable (in the published pages):**
 
 - 6 publication records: ACM IMWUT 2026 (accepted), EMNLP 2026 (accepted — decision 20 Aug 2026; the conference has not been held yet, so arXiv's comments field may still read "In submission". The owner's confirmation governs; do **not** demote this back to *under review* from an online source), a 2026 working paper (in prep), CHI EA 2025, ACM IMWUT 2024, JKAIA 2023 (first author). Four titles are live links — `doi.org/10.1145/3831954` (CrossShift; correct per the camera-ready, and expected to 404 until ACM registers the Sep 2026 issue — do not remove it as dead), `arxiv.org/abs/2606.23671` (EMNLP), `dl.acm.org/doi/full/10.1145/3706599.3719776` (CausalCFF), `dl.acm.org/doi/10.1145/3678578` (IMWUT 2024). Three records also carry a code repo (`Kaist-ICLab/CrossShift`, `ngqm/prefill-introspection`, `Kaist-ICLab/CausalCFF`) and CausalCFF carries a talk/teaser video.
 - 4 work entries with measured results: KPST (Feb 2026 – present), KAIST K&D Lab (Aug 2025 – Feb 2026), KAIST ICLab (May 2023 – Jun 2025), DocsHunt AI (Jun – Aug 2024).
 - 6 projects, 4 with public GitHub repos: `streaming_hazard_`, `smart_bin`, `Siguature_Verification`, `AlphaHand`; plus `Kaist-ICLab/CausalCFF`.
 - 6 recognitions, 2018–2025.
-- `Uzair_Ahmed_Resume.pdf` at the repo root, linked twice.
+- `Uzair_Ahmed_Resume.pdf` at the repo root, linked twice on `index.html` (hero and footer) and once on `work.html` (footer).
 - Contact: `uziahmd@outlook.com`, `github.com/uziahmd`, `linkedin.com/in/uziahmd`.
 
 **Owner-supplied 2026-09-08 (verbatim; never re-derive any of these from a search):**
@@ -126,6 +126,8 @@ A redesign that breaks any clause is a failed redesign, regardless of how it loo
 - Availability: the owner chose **not** to state availability or an ask. No availability line ships; absent, not vague.
 - Recognition: the site keeps all six entries with years; the owner will bring the résumé into line.
 
+**Owner-supplied 2026-11-25:** the KPST detail copy on `work.html` (figures, the ETRI client name, the drone-app authorship line) is published on the owner's word.
+
 **Known absences future work must not fabricate:** no citation counts, no h-index, no reference letters, no testimonials, no employer logos, no press coverage, no hosted PDFs of the unlinked papers.
 
 **Not an absence — do not delete as invented:** the CausalCFF talk/teaser video, `https://www.youtube.com/watch?v=7Ov20nvivYU`, is real and verified, and is linked as `video ↗` on the CHI EA 2025 record. It is the only recording that exists; no other talk video may be added.
@@ -136,11 +138,11 @@ A redesign that breaks any clause is a failed redesign, regardless of how it loo
 2. **State the status; never blur it.** Accepted, under review, and in preparation are different words with different weights, and a reader who catches the site blurring them stops trusting all of it.
 3. **Twenty seconds is the design budget.** Claim, evidence, and contact must land in the first viewport; everything after is for the reader who chose to stay.
 4. **The dragon is a feature, not a liability.** Every layout, palette, and z-index decision is made around him. When personality and layout convenience conflict, personality wins.
-5. **One file, no build, owner-editable.** Any improvement that requires a toolchain to update a date has made the site worse.
+5. **Few files, no build, owner-editable.** Styles and behaviour live once, in `site.css` and `site.js`; header and footer markup is copied by hand between pages and checked with `diff`, never generated. Any improvement that requires a toolchain to update a date has made the site worse.
 
 ## Accessibility & Inclusion
 
-- Skip-to-content is the first focusable element; `main` is the target.
+- Skip-to-content is the first focusable element on every page; `main` is the target.
 - Every interactive element has a visible focus ring that survives both themes and all three grounds.
 - Nothing functional renders below 12px; interactive hit areas are ≥24px, primary keys 44px.
 - Status is coded by line pattern (solid / dashed / dotted) **before** it is coded by color, so the record survives desaturation and colorblindness.
