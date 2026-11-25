@@ -168,7 +168,13 @@ a:focus-visible,button:focus-visible{
 .sheet{max-width:var(--maxw);margin:0 auto;padding:0 clamp(14px,3vw,36px)}
 section{padding:45px 0 54px;border-top:1px solid var(--line)}
 section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
-h1.sr+section{border-top:none} /* a page with no hero opens on its first band: no second rule under the header */
+/* A detail page opens with a way home and its title, not a hero. */
+.page-head{padding:36px 0 30px}
+.page-head h1{font-size:clamp(1.9rem,4vw,2.5rem);color:var(--ink);margin-top:10px}
+/* A band's heading row: the title, and one key that opens the band in full on its own page. */
+.band-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:9px 18px;margin-bottom:18px}
+.band-head h2{margin-bottom:0}
+.key.sm{min-height:36px;padding:0 16px;font-size:.8125rem}
 
 .row{display:grid;grid-template-columns:var(--gutter) minmax(0,1fr);gap:0 27px}
 .axis-cell{position:relative;border-right:1px solid var(--line-strong);padding-right:14px}
@@ -207,13 +213,12 @@ h1.sr+section{border-top:none} /* a page with no hero opens on its first band: n
 }
 
 .hero-body{
-  display:grid;grid-template-columns:minmax(0,1fr) 360px;
-  grid-template-areas:"left proof" "more proof" "cta proof";
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-areas:"left more" "cta cta";
   gap:18px 54px;margin-top:27px;align-items:start;
 }
 .hero-left{grid-area:left;min-width:0;display:grid;grid-template-columns:108px minmax(0,1fr);gap:18px;align-items:start}
 .hero-more{grid-area:more;min-width:0}
-.hero-proof{grid-area:proof;min-width:0}
 .portrait-fig{margin:0;width:108px}
 .portrait{
   display:block;width:108px;height:108px;object-fit:cover;object-position:50% 20%;
@@ -244,8 +249,7 @@ h1.sr+section{border-top:none} /* a page with no hero opens on its first band: n
 .key.primary:hover{background:var(--ink-soft);border-color:var(--ink-soft);border-bottom-color:var(--sig);color:var(--field)}
 .key .arw{font-weight:400}
 
-/* The measurement strip: value over label, hairline gaps, one border.
-   In the hero it stands vertical and every cell is a link into its evidence. */
+/* The measurement strip: value over label, hairline gaps, one border. */
 .strip{
   margin-top:18px;display:flex;flex-wrap:wrap;gap:1px;
   border:1px solid var(--line-strong);background:var(--line-2);
@@ -256,13 +260,6 @@ h1.sr+section{border-top:none} /* a page with no hero opens on its first band: n
 .strip .v,.strip .l{display:block}
 .strip .v{font-family:var(--font-data);font-weight:500;font-size:1.0625rem;color:var(--ink);letter-spacing:-.01em}
 .strip .l{margin-top:2px;font-size:.8125rem;color:var(--ink-soft);line-height:1.4}
-.hero .strip{flex-direction:column;margin-top:0}
-.hero .strip .cell{padding:16px 18px}
-.hero .strip .v{font-size:1.15rem}
-a.cell{color:inherit;transition:background .16s ease}
-a.cell:hover{background:var(--field)}
-a.cell:hover .v{color:var(--sig)}
-a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 
 @media (min-width:1200px){ /* the declared margin: the band beyond this rule is the dragon's */
   .row>:last-child{max-width:calc(100% - 120px);padding-right:9px;border-right:1px solid var(--line)} /* content stops 9px short of the rule, so no plate edge coincides with it */
@@ -304,6 +301,9 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .pub-did{grid-column:3;margin-top:6px;font-size:.9375rem;color:var(--ink-soft);max-width:72ch}
 .pub-did a{display:inline;padding-block:4px;border-bottom:1px solid var(--sig)} /* inline so it wraps; the padding still extends the hit area to 24px */
 .pub-art{grid-column:3;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+/* The home page carries the record in brief: venue, status, title, author position. The full row lives on publications.html. */
+.record.brief li{grid-template-columns:minmax(min-content,104px) minmax(min-content,138px) minmax(0,1fr) 88px;gap:6px 16px;padding:12px 10px}
+.record.brief .pub-title{font-size:1rem}
 .record li .back{display:none}
 .record li:target .back{display:inline-flex} /* the way back appears only when a chip brought you here */
 
@@ -312,8 +312,10 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
    ============================================================ */
 .entry{padding:27px 0;border-top:1px solid var(--line)}
 .entry:first-of-type{border-top:none;padding-top:0}
-.entry-head h3{font-size:1.15rem;color:var(--ink)}
-.entry-org{margin-top:4px;font-size:.8125rem;font-weight:500;color:var(--ink-soft)}
+.entry-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px} /* the workplace, the role, then the dates pushed right: the same head line as its home row */
+.entry-head h3{font-size:1.3rem;color:var(--ink)}
+.entry-head .l-role{font-size:.875rem;font-weight:600;color:var(--ink-soft)}
+.entry-head .l-year{font-family:var(--font-data);font-size:.875rem;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
 .entry-role{margin-top:12px;color:var(--ink);max-width:70ch}
 .entry-desc{margin-top:10px;color:var(--ink-soft);max-width:70ch}
 .findings{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:10px;max-width:74ch}
@@ -330,10 +332,10 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 
 .tracks{margin-top:14px;border-top:1px solid var(--line)}
 .track{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
-.track h4{font-size:.9375rem;font-weight:600;font-stretch:112%;letter-spacing:-.01em}
-/* A long entry groups its projects as blocks: a track row as the heading, then prose and findings. */
+.track h4,.track h5{font-size:.9375rem;font-weight:600;font-stretch:112%;letter-spacing:-.01em}
+/* Under its workplace an entry holds one block per project: a track row as the project heading (h4), then prose, findings and paper tracks (h5). */
 .block{margin-top:30px}
-.block>.tracks{margin-top:0}
+.block>.tracks:first-child{margin-top:0}
 .block .track h4{font-size:1.0625rem;line-height:1.25;text-wrap:balance}
 .chip{
   display:inline-flex;align-items:center;gap:6px;min-height:24px;
@@ -426,7 +428,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
     content:"";display:block;height:24px;margin-right:27px;
     border-bottom:2px solid var(--sig);border-right:2px solid var(--sig);
   }
-  .hero-body{grid-template-columns:1fr;grid-template-areas:"left" "proof" "more" "cta";gap:27px}
+  .hero-body{grid-template-columns:1fr;grid-template-areas:"left" "more" "cta";gap:27px}
   .hero-left{grid-template-columns:1fr}
   .record li{display:block;padding:16px 10px}
   .record .pub-status{margin-left:10px}
@@ -440,12 +442,9 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .strip{display:grid;grid-template-columns:repeat(3,1fr)}
   .strip .cell{min-width:0;padding:9px 10px}
   .strip .l{font-size:.75rem}
-  .hero .strip{grid-template-columns:1fr}
-  .hero .strip .cell{padding:12px 14px}
-  .hero .strip .l{font-size:.8125rem}
   section{padding:36px 0 45px}
   .record li{padding:14px 10px}
-  .ledger .l-year{margin-left:0}
+  .ledger .l-year,.entry-head .l-year{margin-left:0}
   footer.plate-wrap{padding-bottom:63px} /* the pet and his toggle are hidden below 700px (pet.js / pet.css) */
   .colophon .wide{display:none}
   .colophon .narrow{display:inline}
@@ -459,9 +458,10 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .plate .group{grid-template-columns:1fr;gap:4px}
   .markers li{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .tlink,.chip{min-height:44px}
-  /* a details link sits inside its sentence, and the back link closes a band: keep the line closed and give each its 44px target with a hit area instead */
-  .ledger p .tlink,.row.after .tlink{min-height:24px;position:relative}
-  .ledger p .tlink::after,.row.after .tlink::after{content:"";position:absolute;inset:-12px -6px}
+  /* a lone text link (the back link that closes a band, the way home on a detail page): keep its underline under the text and give it the 44px target with a hit area instead */
+  .row.after .tlink,.page-head .tlink{min-height:24px;position:relative}
+  .row.after .tlink::after,.page-head .tlink::after{content:"";position:absolute;inset:-12px -6px}
+  .key.sm{min-height:44px}
   .pub-art{gap:6px 18px}
 }
 @media (max-width:400px){

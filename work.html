@@ -34,7 +34,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
   <a class="brand" href="index.html">Uzair Ahmed</a>
   <nav class="bar-nav" aria-label="Sections">
     <a href="#work">Work</a>
-    <a href="index.html#research">Publications</a>
+    <a href="publications.html#research">Publications</a>
     <a href="#projects">Projects</a>
     <a href="index.html#stack">Toolkit</a>
     <a href="#contact">Contact</a>
@@ -43,7 +43,10 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 </header>
 
 <main class="sheet" id="main" tabindex="-1">
-  <h1 class="sr">Uzair Ahmed: work and projects in detail</h1>
+  <div class="page-head">
+    <a class="tlink" href="index.html"><span class="arw" aria-hidden="true">←</span>Home</a>
+    <h1>Work and Projects</h1>
+  </div>
 
   <!-- WORK -->
   <section id="work">
@@ -55,10 +58,9 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
         <!-- KPST -->
         <article class="entry" id="work-kpst">
           <div class="entry-head">
-            <h3>Video AI for Security and Factory-Safety Cameras, and a Drone Fault-Diagnosis App for ETRI</h3>
-            <p class="entry-org">KPST (Korea Platform Service Technology) · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
+            <h3>KPST (Korea Platform Service Technology)</h3><span class="l-role">AI Researcher</span><span class="l-year">Feb 2026 — Present</span>
           </div>
-          <p class="entry-role">At KPST I work on video AI for security and factory-safety cameras: a streaming vision-language model for industrial hazard detection, CCTV security alarms and fine-tuned vision-language models. I also built and delivered a drone fault-diagnosis app for ETRI. Other work covered model serving, continual-learning detectors and an edge-AI design.</p>
+          <p class="entry-role">At KPST I work on video AI for security and factory-safety cameras: a streaming vision-language model for industrial hazard detection, real-time CCTV security alarms and fine-tuned vision-language models. I also built and delivered a drone fault-diagnosis app for ETRI. Other work covered model serving, continual-learning detectors and an edge-AI design.</p>
 
           <div class="block" id="kpst-streaming">
             <div class="tracks"><div class="track"><h4>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h4></div></div>
@@ -78,8 +80,8 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
           </div>
 
           <div class="block" id="kpst-security">
-            <div class="tracks"><div class="track"><h4>CCTV Intrusion, Loitering and Fire Alarms</h4></div></div>
-            <p class="entry-desc">Starting from an empty folder, I built a real-time CCTV pipeline for intrusion and loitering alarms: a DETR-family detector on TensorRT, multi-object tracking, zone rules and per-person state machines. I then took a fire and smoke detector from an aerial-footage baseline to a ground-level CCTV alarm in about five days.</p>
+            <div class="tracks"><div class="track"><h4>CCTV Security: Real-Time Loitering, Intrusion and Fire Detection</h4></div></div>
+            <p class="entry-desc">Starting from an empty folder, I built a real-time CCTV pipeline for loitering and intrusion alarms: a D-FINE-L detector (DETR family) on TensorRT, OC-SORT tracking, zone rules and per-person state machines. I then took a fire and smoke detector from an aerial-footage baseline to a ground-level CCTV alarm in about five days: the same detector fine-tuned on leak-checked, site-split data, with tiled detection, a motion gate and a temporal event rule that gives one deterministic alarm per video.</p>
             <ul class="findings" role="list">
               <li>Detected <strong>58 of 60</strong> intrusion and loitering events with 6 false alarms (1.14 per hour) on the 60 clips the rules were tuned on.</li>
               <li>Averaged <strong>11.6 ms</strong> per frame across the 60 development clips on an NVIDIA H200, and about 18.8 ms in a live demo on a shared H200, against a 33.3 ms budget.</li>
@@ -90,7 +92,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 
           <div class="block" id="kpst-drone">
             <div class="tracks"><div class="track"><h4>Drone Fault-Diagnosis Desktop App for ETRI</h4></div></div>
-            <p class="entry-desc">From scratch to delivery, I built a Windows and Ubuntu desktop app that diagnoses drone faults from flight logs, implementing design elements and specifications from a KPST designer and refining it with ETRI's feedback. Users label ArduPilot logs, train LSTM, GRU, CNN-LSTM or BiLSTM classifiers in TensorFlow or PyTorch, replay flights with per-class predictions in 3D, and monitor a live drone over MAVLink with RTSP video.</p>
+            <p class="entry-desc">From scratch to delivery, I built a Windows and Ubuntu desktop app in which users define their own custom models and train them to detect anything they label in drone flight logs; the app is the infrastructure for that. It covers labeling ArduPilot logs, generating datasets, training in TensorFlow or PyTorch (LSTM, GRU, CNN-LSTM and BiLSTM classifiers are included), replaying flights with per-class predictions in 3D, and monitoring a live drone over MAVLink with RTSP video. I implemented design elements and specifications from a KPST designer and refined the app with ETRI's feedback.</p>
             <ul class="findings" role="list">
               <li>After a live demo at ETRI on July 2, 2026, I <strong>delivered</strong> the app on August 4, 2026, with source, two trained models, datasets, Korean manuals and a walkthrough video.</li>
               <li>A GPS-jamming CNN-LSTM trained through the app reached <strong>99.5%</strong> per-window accuracy (100% recall, 98.4% precision) on held-out flight logs, scored against rule-derived labels.</li>
@@ -112,44 +114,50 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
         <!-- K&D Lab -->
         <article class="entry" id="work-kd">
           <div class="entry-head">
-            <h3>LLM Reasoning, Safety &amp; VLM Interpretability</h3>
-            <p class="entry-org">Knowledge &amp; Democracy Lab, KAIST · Undergraduate Researcher · <span class="mono">Aug 2025 — Feb 2026</span></p>
+            <h3>Knowledge &amp; Democracy Lab, KAIST</h3><span class="l-role">Undergraduate Researcher</span><span class="l-year">Aug 2025 — Feb 2026</span>
           </div>
-          <p class="entry-role">Undergraduate researcher across three tracks: I built the evaluation and fine-tuning pipelines behind the reasoning and safety papers, and ran the ideology and bias probes on vision-language models over a ~550-politician multimodal set (Grad-CAM, Integrated Gradients, TCAV).</p>
-          <div class="tracks">
-            <div class="track"><h4>LLM Difficulty Perception</h4><a class="chip dot" href="index.html#pub-difficulty"><span class="tick" aria-hidden="true"></span>working paper · in prep · author 2 / 3</a></div>
-            <div class="track"><h4>LLM Safety &amp; Introspection</h4><a class="chip" href="index.html#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
+          <div class="block">
+            <div class="tracks"><div class="track"><h4>LLM Reasoning, Safety &amp; VLM Interpretability</h4></div></div>
+            <p class="entry-role">Undergraduate researcher across three tracks: I built the evaluation and fine-tuning pipelines behind the reasoning and safety papers, and ran the ideology and bias probes on vision-language models over a ~550-politician multimodal set (Grad-CAM, Integrated Gradients, TCAV).</p>
+            <div class="tracks">
+              <div class="track"><h5>LLM Difficulty Perception</h5><span class="note">working paper · in prep · author 2 / 3</span></div>
+              <div class="track"><h5>LLM Safety &amp; Introspection</h5><a class="chip" href="publications.html#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
+            </div>
           </div>
         </article>
 
         <!-- ICLab -->
         <article class="entry" id="work-iclab">
           <div class="entry-head">
-            <h3>Mobile Sensing for Mental Health</h3>
-            <p class="entry-org">ICLab, KAIST · Undergraduate Researcher · <span class="mono">May 2023 — Jun 2025</span></p>
+            <h3>ICLab, KAIST</h3><span class="l-role">Undergraduate Researcher</span><span class="l-year">May 2023 — Jun 2025</span>
           </div>
-          <p class="entry-role">Two years as an undergraduate researcher on in-the-wild stress prediction: I led the personalization component of the 2024 pipeline paper, designed the shift-quantification pipeline and first experiments for CrossShift, and designed the CausalCFF analysis pipeline.</p>
-          <div class="strip" role="list" aria-label="Measured results">
-            <div class="cell" role="listitem"><div class="v">+17 pts</div><div class="l">AUROC · 0.503 → 0.676 · DeepStress</div></div>
-            <div class="cell" role="listitem"><div class="v">693 users</div><div class="l">8 datasets · CrossShift</div></div>
-            <div class="cell" role="listitem"><div class="v">60 min</div><div class="l">strongest sensing window · LOSO and K-fold CV</div></div>
-          </div>
-          <div class="tracks">
-            <div class="track"><h4>Reproducible Stress-Prediction Pipeline</h4><a class="chip" href="index.html#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
-            <div class="track"><h4>CrossShift</h4><a class="chip" href="index.html#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
-            <div class="track"><h4>CausalCFF</h4><a class="chip" href="index.html#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
+          <div class="block">
+            <div class="tracks"><div class="track"><h4>Mobile Sensing for Mental Health</h4></div></div>
+            <p class="entry-role">Two years as an undergraduate researcher on in-the-wild stress prediction: I led the personalization component of the 2024 pipeline paper, designed the shift-quantification pipeline and first experiments for CrossShift, and designed the CausalCFF analysis pipeline.</p>
+            <div class="strip" role="list" aria-label="Measured results">
+              <div class="cell" role="listitem"><div class="v">+17 pts</div><div class="l">AUROC · 0.503 → 0.676 · DeepStress</div></div>
+              <div class="cell" role="listitem"><div class="v">693 users</div><div class="l">8 datasets · CrossShift</div></div>
+              <div class="cell" role="listitem"><div class="v">60 min</div><div class="l">strongest sensing window · LOSO and K-fold CV</div></div>
+            </div>
+            <div class="tracks">
+              <div class="track"><h5>Reproducible Stress-Prediction Pipeline</h5><a class="chip" href="publications.html#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
+              <div class="track"><h5>CrossShift</h5><a class="chip" href="publications.html#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
+              <div class="track"><h5>CausalCFF</h5><a class="chip" href="publications.html#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
+            </div>
           </div>
         </article>
 
         <!-- DocsHunt -->
         <article class="entry" id="work-docshunt">
           <div class="entry-head">
-            <h3>Multilingual Document-Automation APIs</h3>
-            <p class="entry-org">DocsHunt AI · AI Engineer · <span class="mono">Jun 2024 — Aug 2024</span></p>
+            <h3>DocsHunt AI</h3><span class="l-role">AI Engineer</span><span class="l-year">Jun 2024 — Aug 2024</span>
           </div>
-          <p class="entry-role">AI Engineer for a summer: I built and productionized the multilingual document-generation pipeline (Python, Flask, LangChain, Naver Cloud Platform), and made it faster by running document sections in parallel once I saw the later sections did not need the earlier ones written first.</p>
-          <div class="entry-links">
-            <span class="readout-cell"><span class="v">10 s → 3 s</span><span class="l">average generation time per document</span></span>
+          <div class="block">
+            <div class="tracks"><div class="track"><h4>Multilingual Document-Automation APIs</h4></div></div>
+            <p class="entry-role">AI Engineer for a summer: I built and productionized the multilingual document-generation pipeline (Python, Flask, LangChain, Naver Cloud Platform), and made it faster by running document sections in parallel once I saw the later sections did not need the earlier ones written first.</p>
+            <div class="entry-links">
+              <span class="readout-cell"><span class="v">10 s → 3 s</span><span class="l">average generation time per document</span></span>
+            </div>
           </div>
         </article>
       </div>
@@ -190,7 +198,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
             <div class="l-foot">
               <span class="readout-cell"><span class="v">+16.8%</span><span class="l">METEOR · Hindi · vs. single-pass</span></span>
               <span class="readout-cell"><span class="v">+15.1%</span><span class="l">reasoning exact match · vs. single-pass</span></span>
-              <a class="chip" href="index.html#pub-jkaia23"><span class="tick" aria-hidden="true"></span>JKAIA 2023 · author 1 / 5</a>
+              <a class="chip" href="publications.html#pub-jkaia23"><span class="tick" aria-hidden="true"></span>JKAIA 2023 · author 1 / 5</a>
             </div>
           </li>
           <li id="alphahand">
