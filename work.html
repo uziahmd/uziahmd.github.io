@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Uzair Ahmed — Work and projects</title>
+<meta name="description" content="Uzair Ahmed&#x27;s work and projects in full: video AI for security and factory-safety cameras at KPST, a drone fault-diagnosis app delivered to ETRI, LLM and mobile-sensing research at KAIST, document automation, and six projects." />
+<meta name="author" content="Uzair Ahmed" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Uzair Ahmed — Work and projects" />
+<meta property="og:description" content="Uzair Ahmed&#x27;s work and projects in full: video AI for security and factory-safety cameras at KPST, a drone fault-diagnosis app delivered to ETRI, LLM and mobile-sensing research at KAIST, document automation, and six projects." />
+<meta property="og:url" content="https://uziahmd.github.io/work.html" />
+<meta property="og:image" content="https://uziahmd.github.io/uzi_img.jpeg" />
+
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#edf1f3" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141c22" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/pet.css" />
+
+<script>/* theme boot — before first paint so a stored choice never flashes */
+try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a class="brand" href="index.html">Uzair Ahmed</a>
+  <nav class="bar-nav" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="index.html#research">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="index.html#stack">Toolkit</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="themeToggle" class="tbtn" type="button"><span class="sr">Switch to </span><span class="tlabel">Dark</span></button>
+</header>
+
+<main class="sheet" id="main" tabindex="-1">
+  <h1 class="sr">Uzair Ahmed: work and projects in detail</h1>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2023</span></div>
+      <div>
+        <h2>Work</h2>
+
+        <!-- KPST -->
+        <article class="entry" id="work-kpst">
+          <div class="entry-head">
+            <h3>Video AI for Security and Factory-Safety Cameras, and a Drone Fault-Diagnosis App for ETRI</h3>
+            <p class="entry-org">KPST (Korea Platform Service Technology) · AI Researcher · <span class="mono">Feb 2026 — Present</span></p>
+          </div>
+          <p class="entry-role">At KPST I work on video AI for security and factory-safety cameras: a streaming vision-language model for industrial hazard detection, CCTV security alarms and fine-tuned vision-language models. I also built and delivered a drone fault-diagnosis app for ETRI. Other work covered model serving, continual-learning detectors and an edge-AI design.</p>
+
+          <div class="block" id="kpst-streaming">
+            <div class="tracks"><div class="track"><h4>Infinite-Memory Streaming VLM for Industrial Hazard Detection</h4></div></div>
+            <p class="entry-role">I built the model side: adapting the base VLM, its two-stage LoRA training, the constrained decoding, and the data and evaluation pipeline that scores it on held-out cameras.</p>
+            <p class="entry-desc">One vision-language model reads a never-ending camera stream and emits a schema-constrained JSON hazard decision per step, straight into a live alarm: forklift entry and robot-zone intrusion, switched by prompt, no object detector in front of it.</p>
+            <ul class="findings" role="list">
+              <li>Qwen2.5-VL-7B with <strong>StreamingVLM</strong>-style attention (attention sink, sliding-window KV cache, contiguous 3D RoPE); two-stage <strong>LoRA SFT</strong> on a single V100 32 GB with the vision tower frozen; FSM-constrained decoding over a compact JSON schema, so every decision parses.</li>
+            </ul>
+            <div class="strip" role="list" aria-label="Measured results">
+              <div class="cell" role="listitem"><div class="v">83%</div><div class="l">F1 · held-out cameras</div></div>
+              <div class="cell" role="listitem"><div class="v">~2 Hz</div><div class="l">per-step decision</div></div>
+              <div class="cell" role="listitem"><div class="v">O(1)</div><div class="l">memory · any stream length</div></div>
+            </div>
+            <div class="entry-links">
+              <a class="tlink" href="https://github.com/uziahmd/streaming_hazard_" target="_blank" rel="noopener">github · streaming_hazard_ <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+            </div>
+          </div>
+
+          <div class="block" id="kpst-security">
+            <div class="tracks"><div class="track"><h4>CCTV Intrusion, Loitering and Fire Alarms</h4></div></div>
+            <p class="entry-desc">Starting from an empty folder, I built a real-time CCTV pipeline for intrusion and loitering alarms: a DETR-family detector on TensorRT, multi-object tracking, zone rules and per-person state machines. I then took a fire and smoke detector from an aerial-footage baseline to a ground-level CCTV alarm in about five days.</p>
+            <ul class="findings" role="list">
+              <li>Detected <strong>58 of 60</strong> intrusion and loitering events with 6 false alarms (1.14 per hour) on the 60 clips the rules were tuned on.</li>
+              <li>Averaged <strong>11.6 ms</strong> per frame across the 60 development clips on an NVIDIA H200, and about 18.8 ms in a live demo on a shared H200, against a 33.3 ms budget.</li>
+              <li>Found and fixed a TensorRT miscompile that had cut confident-detection recall to 0.9191 against the reference runtime, restoring it to 1.0000.</li>
+              <li>Built a pre-registered video stress test with byte-reproducible replay and scoring: <strong>2,169</strong> test units across 25 camera conditions, run on the pipeline's own tuning clips.</li>
+            </ul>
+          </div>
+
+          <div class="block" id="kpst-drone">
+            <div class="tracks"><div class="track"><h4>Drone Fault-Diagnosis Desktop App for ETRI</h4></div></div>
+            <p class="entry-desc">I built a Windows and Ubuntu desktop app that diagnoses drone faults from flight logs, from scratch to delivery, implementing design elements and specifications from a KPST designer and refining it with ETRI's feedback. Users label ArduPilot logs, train LSTM, GRU, CNN-LSTM or BiLSTM classifiers in TensorFlow or PyTorch, replay flights with per-class predictions in 3D, and monitor a live drone over MAVLink with RTSP video.</p>
+            <ul class="findings" role="list">
+              <li>After a live demo at ETRI on July 2, 2026, I <strong>delivered</strong> the app on August 4, 2026, with source, two trained models, datasets, Korean manuals and a walkthrough video.</li>
+              <li>A GPS-jamming CNN-LSTM trained through the app reached <strong>99.5%</strong> per-window accuracy (100% recall, 98.4% precision) on held-out flight logs, scored against rule-derived labels.</li>
+              <li>Traced a cold-boot crash to a known Qt race; after a library upgrade, crashes under a synthetic repro fell from 3 of 10 launches to 0 of 20.</li>
+              <li>Wrote a one-command GPU/CPU installer; a headless end-to-end test on Windows passed <strong>10 of 10</strong> stages.</li>
+            </ul>
+          </div>
+
+          <div class="block" id="kpst-vlm">
+            <div class="tracks"><div class="track"><h4>VLM Benchmark and Fine-Tuning for Factory-Safety Cameras</h4></div></div>
+            <p class="entry-desc">I tested and trained open vision-language models for two factory CCTV alarms: a worker inside a robot cell while the arm is moving, and a forklift entering through a gate. I built a zero-shot benchmark of 416 five-second windows, screening 15 model families for fit on one 32 GB GPU, then the fine-tuning stack (extended labeling tool, label audit, clip datasets, LoRA training, evaluation), and trained adapters for both alarms on a 9B open model.</p>
+            <ul class="findings" role="list">
+              <li>The robot-cell adapter reached hazard F1 <strong>0.853</strong> on 3,002 test clips from 10 held-out videos of the training camera, against 0.507 for flagging every clip.</li>
+              <li>A frame-difference label audit, with every flip reviewed by hand, corrected the labels on <strong>6,885</strong> robot-cell frames (about 3%).</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- K&D Lab -->
+        <article class="entry" id="work-kd">
+          <div class="entry-head">
+            <h3>LLM Reasoning, Safety &amp; VLM Interpretability</h3>
+            <p class="entry-org">Knowledge &amp; Democracy Lab, KAIST · Undergraduate Researcher · <span class="mono">Aug 2025 — Feb 2026</span></p>
+          </div>
+          <p class="entry-role">Undergraduate researcher across three tracks: I built the evaluation and fine-tuning pipelines behind the reasoning and safety papers, and ran the ideology and bias probes on vision-language models over a ~550-politician multimodal set (Grad-CAM, Integrated Gradients, TCAV).</p>
+          <div class="tracks">
+            <div class="track"><h4>LLM Difficulty Perception</h4><a class="chip dot" href="index.html#pub-difficulty"><span class="tick" aria-hidden="true"></span>working paper · in prep · author 2 / 3</a></div>
+            <div class="track"><h4>LLM Safety &amp; Introspection</h4><a class="chip" href="index.html#pub-emnlp26"><span class="tick" aria-hidden="true"></span>EMNLP 2026 · accepted · author 2 / 3</a></div>
+          </div>
+        </article>
+
+        <!-- ICLab -->
+        <article class="entry" id="work-iclab">
+          <div class="entry-head">
+            <h3>Mobile Sensing for Mental Health</h3>
+            <p class="entry-org">ICLab, KAIST · Undergraduate Researcher · <span class="mono">May 2023 — Jun 2025</span></p>
+          </div>
+          <p class="entry-role">Two years as an undergraduate researcher on in-the-wild stress prediction: I led the personalization component of the 2024 pipeline paper, designed the shift-quantification pipeline and first experiments for CrossShift, and designed the CausalCFF analysis pipeline.</p>
+          <div class="strip" role="list" aria-label="Measured results">
+            <div class="cell" role="listitem"><div class="v">+17 pts</div><div class="l">AUROC · 0.503 → 0.676 · DeepStress</div></div>
+            <div class="cell" role="listitem"><div class="v">693 users</div><div class="l">8 datasets · CrossShift</div></div>
+            <div class="cell" role="listitem"><div class="v">60 min</div><div class="l">strongest sensing window · LOSO and K-fold CV</div></div>
+          </div>
+          <div class="tracks">
+            <div class="track"><h4>Reproducible Stress-Prediction Pipeline</h4><a class="chip" href="index.html#pub-imwut24"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2024 · author 4 / 5</a></div>
+            <div class="track"><h4>CrossShift</h4><a class="chip" href="index.html#pub-imwut26"><span class="tick" aria-hidden="true"></span>ACM IMWUT 2026 · accepted · author 5 / 9</a></div>
+            <div class="track"><h4>CausalCFF</h4><a class="chip" href="index.html#pub-chiea25"><span class="tick" aria-hidden="true"></span>CHI EA 2025 · author 3 / 4</a></div>
+          </div>
+        </article>
+
+        <!-- DocsHunt -->
+        <article class="entry" id="work-docshunt">
+          <div class="entry-head">
+            <h3>Multilingual Document-Automation APIs</h3>
+            <p class="entry-org">DocsHunt AI · AI Engineer · <span class="mono">Jun 2024 — Aug 2024</span></p>
+          </div>
+          <p class="entry-role">AI Engineer for a summer: I built and productionized the multilingual document-generation pipeline (Python, Flask, LangChain, Naver Cloud Platform), and made it faster by running document sections in parallel once I saw the later sections did not need the earlier ones written first.</p>
+          <div class="entry-links">
+            <span class="readout-cell"><span class="v">10 s → 3 s</span><span class="l">average generation time per document</span></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2019</span></div>
+      <div>
+        <h2>Projects</h2>
+        <ul class="ledger" role="list">
+          <li id="smart-binarization">
+            <div class="l-head"><h3>Smart Binarization</h3><span class="l-role">LLM quantization</span><span class="l-year">2026</span></div>
+            <p>Activation-aware selective binarization (GPTQ-based post-training quantization): the salient weights stay high-precision, the rest go binary.</p>
+            <div class="l-foot">
+              <span class="readout-cell"><span class="v">64×</span><span class="l">smaller perplexity gap than magnitude-only · Gemma-3-1B · 50% salient</span></span>
+              <a class="tlink" href="https://github.com/uziahmd/smart_bin" target="_blank" rel="noopener">github <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+            </div>
+          </li>
+          <li id="hierarchical-rag">
+            <div class="l-head"><h3>Allah-u-Allam</h3><span class="l-role">Hierarchical RAG · Freelance</span><span class="l-year">2025</span></div>
+            <p>Air-gapped hierarchical RAG over 96+ canonical texts: FAISS (HNSW, IVF-PQ), semantic chunking, LangGraph planning, and a fine-tuned 70B-class model served offline through Ollama, Dockerized.</p>
+            <div class="l-foot"><span class="note">client work · NDA</span></div>
+          </li>
+          <li id="signature-verification">
+            <div class="l-head"><h3>Signature Forgery Verification</h3><span class="l-role">ViT &amp; CNNs</span><span class="l-year">2024</span></div>
+            <p>Pair verification over 10,242 signatures from 500 identities with ResNet50, Inception-ResNet and ViT embeddings and cosine similarity.</p>
+            <div class="l-foot">
+              <span class="readout-cell"><span class="v">85.3%</span><span class="l">accuracy · best: Inception-ResNet</span></span>
+              <a class="tlink" href="https://github.com/uziahmd/Siguature_Verification" target="_blank" rel="noopener">github <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+            </div>
+          </li>
+          <li id="pivot-assisted">
+            <div class="l-head"><h3>Pivot-Assisted Consensus</h3><span class="l-role">KAIST</span><span class="l-year">2023</span></div>
+            <p>Zero-shot routing of low-resource inputs through high-resource pivots, aggregated to a consensus, across MGSM, XQuAD and XNLI.</p>
+            <div class="l-foot">
+              <span class="readout-cell"><span class="v">+16.8%</span><span class="l">METEOR · Hindi · vs. single-pass</span></span>
+              <span class="readout-cell"><span class="v">+15.1%</span><span class="l">reasoning exact match · vs. single-pass</span></span>
+              <a class="chip" href="index.html#pub-jkaia23"><span class="tick" aria-hidden="true"></span>JKAIA 2023 · author 1 / 5</a>
+            </div>
+          </li>
+          <li id="alphahand">
+            <div class="l-head"><h3>AlphaHand</h3><span class="l-role">Vision + control</span><span class="l-year">2023</span></div>
+            <p>A rock-paper-scissors robot: real-time hand-gesture recognition driving a physical actuator.</p>
+            <div class="l-foot"><a class="tlink" href="https://github.com/uziahmd/AlphaHand" target="_blank" rel="noopener">github <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a></div>
+          </li>
+          <li id="hsn-academy">
+            <div class="l-head"><h3>HSN Academy</h3><span class="l-role">Growth &amp; operations</span><span class="l-year">2019 — 2022</span></div>
+            <p>Helped scale my brother's online K-12 academy: the funnel, enrollment operations, and the systems behind repeatable growth.</p>
+            <div class="l-foot">
+              <span class="readout-cell"><span class="v">~$40K</span><span class="l">ARR · the academy, bootstrapped</span></span>
+            </div>
+          </li>
+        </ul>
+        <div class="entry-links"><a class="tlink" href="index.html"><span class="arw" aria-hidden="true">←</span> Back to the home page</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER — the contact bar -->
+<footer class="plate-wrap">
+  <div class="sheet"><div class="foot-rule">
+    <div class="contact" id="contact">
+      <p class="who">Uzair Ahmed · AI / ML Researcher &amp; Engineer · Daejeon, Korea</p>
+      <div class="keys">
+        <a class="key primary" href="mailto:uziahmd@outlook.com?subject=From%20your%20site">uziahmd@outlook.com</a>
+        <a class="key" href="https://github.com/uziahmd" target="_blank" rel="noopener">GitHub <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+        <a class="key" href="https://scholar.google.com/citations?user=iYROzvkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+        <a class="key" href="https://orcid.org/0009-0001-9824-2838" target="_blank" rel="noopener">ORCID <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+        <a class="key" href="https://www.linkedin.com/in/uziahmd/" target="_blank" rel="noopener">LinkedIn <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+        <a class="key" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+      </div>
+    </div>
+    <p class="colophon">
+      <span class="wide">A Charizard lives here. <span class="fire">Type&nbsp;"fire"</span>, or switch him off with the 🔥 button in the bottom-left corner.</span><span class="narrow">A Charizard lives here on screens wider than 700px. Open this on a laptop and <span class="fire">type&nbsp;"fire"</span>.</span><br>
+      Record current to November 2026.
+    </p>
+  </div></div>
+</footer>
+
+<script src="site.js"></script>
+<script src="assets/pet.js" defer></script>
+</body>
+</html>

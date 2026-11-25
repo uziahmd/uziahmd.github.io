@@ -167,6 +167,7 @@ a:focus-visible,button:focus-visible{
 .sheet{max-width:var(--maxw);margin:0 auto;padding:0 clamp(14px,3vw,36px)}
 section{padding:45px 0 54px;border-top:1px solid var(--line)}
 section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
+h1.sr+section{border-top:none} /* a page with no hero opens on its first band: no second rule under the header */
 
 .row{display:grid;grid-template-columns:var(--gutter) minmax(0,1fr);gap:0 27px}
 .axis-cell{position:relative;border-right:1px solid var(--line-strong);padding-right:14px}
@@ -329,6 +330,10 @@ a.cell .l .arw{color:var(--sig);font-weight:400;margin-left:4px}
 .tracks{margin-top:14px;border-top:1px solid var(--line)}
 .track{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
 .track h4{font-size:.9375rem;font-weight:600;font-stretch:112%;letter-spacing:-.01em}
+/* A long entry groups its projects as blocks: a track row as the heading, then prose and findings. */
+.block{margin-top:30px}
+.block>.tracks{margin-top:0}
+.block .track h4{font-size:1.0625rem}
 .chip{
   display:inline-flex;align-items:center;gap:6px;min-height:24px;
   font-family:var(--font-data);font-size:.75rem;font-weight:500;letter-spacing:.02em;
