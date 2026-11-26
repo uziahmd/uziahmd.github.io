@@ -212,26 +212,24 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
   content:"";position:absolute;left:var(--run);right:0;top:8px;height:2px;background:var(--sig);
 }
 
+/* One column of text beside the portrait: the thesis, what he is doing now, one affiliation line. The two keys run under both. */
 .hero-body{
-  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
-  grid-template-areas:"left more" "cta cta";
-  gap:18px 54px;margin-top:27px;align-items:start;
+  display:grid;grid-template-columns:108px minmax(0,1fr);
+  grid-template-areas:"pic text" "cta cta";
+  gap:18px;margin-top:27px;align-items:start;
 }
-.hero-left{grid-area:left;min-width:0;display:grid;grid-template-columns:108px minmax(0,1fr);gap:18px;align-items:start}
-.hero-more{grid-area:more;min-width:0}
-.portrait-fig{margin:0;width:108px}
+.portrait-fig{grid-area:pic;margin:0;width:108px}
 .portrait{
   display:block;width:108px;height:108px;object-fit:cover;object-position:50% 20%;
   border:1px solid var(--line-strong);
 }
-.portrait-fig figcaption{margin-top:6px;font-size:.75rem;color:var(--ink-soft);letter-spacing:.01em;line-height:1.4}
+.hero-text{grid-area:text;min-width:0}
 .hero-thesis{
   font-size:clamp(1.2rem,2vw,1.5rem);line-height:1.5;color:var(--ink-soft);
   max-width:40ch;font-weight:400;text-wrap:pretty;
 }
-.hero-lead{max-width:52ch;color:var(--ink-soft);text-wrap:pretty}
-.annot{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:6px}
-.annot li{font-size:.8125rem;color:var(--ink-soft);letter-spacing:.01em}
+.hero-lead{margin-top:12px;color:var(--ink);text-wrap:pretty}
+.annot{margin-top:6px;font-size:.8125rem;color:var(--ink-soft);letter-spacing:.01em}
 
 .cta-row{grid-area:cta;display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:9px}
 .key{
@@ -244,8 +242,9 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
 .key:hover{border-color:var(--sig);color:var(--sig)}
 .key.primary{
   background:var(--ink);color:var(--field);border-color:var(--ink);
-  border-bottom:3px solid var(--sig);user-select:all;
+  border-bottom:3px solid var(--sig);
 }
+.key[href^="mailto:"]{user-select:all} /* the address lifts in one gesture, whichever key carries it */
 .key.primary:hover{background:var(--ink-soft);border-color:var(--ink-soft);border-bottom-color:var(--sig);color:var(--field)}
 .key .arw{font-weight:400}
 
@@ -301,10 +300,11 @@ section h2{font-size:1.45rem;color:var(--ink);margin-bottom:18px}
 .pub-did{grid-column:3;margin-top:6px;font-size:.9375rem;color:var(--ink-soft);max-width:72ch}
 .pub-did a{display:inline;padding-block:4px;border-bottom:1px solid var(--sig)} /* inline so it wraps; the padding still extends the hit area to 24px */
 .pub-art{grid-column:3;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
-/* The home page carries the record in brief: venue, status, title, author position. The full row lives on publications.html. */
-.record.brief li{grid-template-columns:minmax(min-content,104px) minmax(min-content,148px) minmax(0,1fr) 88px;gap:6px 16px;padding:12px 10px}
+/* The home page carries the record in brief: venue, status, the title linked to the paper, the author list. The full row lives on publications.html. */
+.record.brief li{grid-template-columns:minmax(min-content,104px) minmax(min-content,148px) minmax(0,1fr);gap:0 16px;padding:12px 10px}
 .record.brief .pub-status{white-space:nowrap}
 .record.brief .pub-title{font-size:1rem;text-wrap:pretty}
+.record.brief .pub-authors{font-size:.875rem}
 .record li .back{display:none}
 .record li:target .back{display:inline-flex} /* the way back appears only when a chip brought you here */
 
@@ -376,17 +376,7 @@ section h2+.entry{margin-top:9px}
 .readout-cell .l{font-size:.8125rem;color:var(--ink-soft)}
 
 /* ============================================================
-   TOOLKIT — the key plate
-   ============================================================ */
-.plate{border:1px solid var(--line-strong);background:var(--line-2);display:grid;gap:1px}
-.plate .group{padding:14px 18px;background:var(--surface);display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:baseline}
-.plate .group h3{font-size:.8125rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em}
-.plate ul{list-style:none;font-size:.9375rem;color:var(--ink);line-height:1.7}
-.plate li{display:inline}
-.plate li:not(:last-child)::after{content:"\00A0· ";color:var(--line-strong)}
-
-/* ============================================================
-   RECOGNITION — the year leads each row
+   NEWS, RECOGNITION — the date leads each row
    ============================================================ */
 .markers{list-style:none;border:1px solid var(--line-strong);background:var(--surface)}
 .markers li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:baseline;padding:13px 18px;border-top:1px solid var(--line-2)}
@@ -436,8 +426,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
     content:"";display:block;height:24px;margin-right:27px;
     border-bottom:2px solid var(--sig);border-right:2px solid var(--sig);
   }
-  .hero-body{grid-template-columns:1fr;grid-template-areas:"left" "more" "cta";gap:27px}
-  .hero-left{grid-template-columns:1fr}
+  .hero-body{grid-template-columns:minmax(0,1fr);grid-template-areas:"pic" "text" "cta";gap:27px}
   .record li{display:block;padding:16px 10px}
   .record .pub-status{margin-left:10px}
   .record .pub-title{display:block;margin-top:5px}
@@ -446,7 +435,6 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .record .pub-art{display:flex;margin-top:7px}
 }
 @media (max-width:699px){
-  .bar-nav a:nth-child(3),.bar-nav a:nth-child(4){display:none}
   .strip{display:grid;grid-template-columns:repeat(3,1fr)}
   .strip .cell{min-width:0;padding:9px 10px}
   .strip .l{font-size:.75rem}
@@ -457,17 +445,13 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .colophon .wide{display:none}
   .colophon .narrow{display:inline}
 }
-@media (max-width:725px){
-  .cta-row .key.primary{flex-basis:100%;justify-content:center} /* email on its own row, the other three keys together */
-}
 @media (max-width:520px){
-  .cta-row .key:nth-child(2){flex-basis:100%} /* then the résumé, so Work and Publications share a row */
+  .bar-nav a[href$="#news"]{display:none} /* Work · Publications · Contact on phones; matched by target, because the three pages write the same links with different hrefs */
   .bar{gap:9px}
   .bar-nav a{padding:5px 5px}
   .hero-thesis{max-width:100%}
   .cta-row .key{flex:1 1 auto;justify-content:center}
   .brand{font-size:.8125rem}
-  .plate .group{grid-template-columns:1fr;gap:4px}
   .markers li{grid-template-columns:84px minmax(0,1fr);gap:12px}
   .tlink,.chip{min-height:44px}
   /* a lone text link (the back link that closes a band, the way home on a detail page): keep its underline under the text and give it the 44px target with a hit area instead */
@@ -477,7 +461,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   .pub-art{gap:6px 18px}
 }
 @media (max-width:400px){
-  .bar-nav a:nth-child(2){display:none} /* Work · Contact on the narrowest phones */
+  .bar-nav a[href$="#research"]{display:none} /* Work · Contact on the narrowest phones */
   .chip{white-space:normal}
   .strip .v{font-size:.9375rem}
   .strip .cell{padding:9px 8px}
@@ -491,7 +475,7 @@ footer.plate-wrap{padding-bottom:150px} /* his walking lane stays clear */
   body::after,#pet-charizard,#pet-fx,#pet-toggle,.skip,.tbtn{display:none!important}
   body{background:#fff;color:#000}
   .bar{position:static}
-  .strip .cell,.plate .group,.markers,.contact,.readout-cell,.record li:target{background:#fff}
+  .strip .cell,.markers,.contact,.readout-cell,.record li:target{background:#fff}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:.75rem;color:#444;font-weight:400}
   footer.plate-wrap{padding-bottom:0}
 }

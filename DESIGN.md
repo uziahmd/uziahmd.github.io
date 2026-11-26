@@ -141,11 +141,6 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.square}"
     padding: "4px 12px"
-  plate-group:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.square}"
-    padding: "14px 18px"
   marker-row:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink-soft}"
@@ -169,7 +164,7 @@ The owned idea is one line: **a signal at rest is a straight line at the bottom 
 
 The previous build painted a fixed graticule field behind everything. **The owner removed it.** `body::before` and the four `--grat` data URIs are gone, and with them the `grid-minor` / `grid-major` colors, which were never custom properties — they were literal strokes inside those URIs. The 9px module and the ground line stayed. The world lost its wallpaper and kept its geometry, and it reads quieter for it.
 
-One device, repeated, is the handwriting: **the measurement strip / readout cell / leader tick family** appears on `work.html`: in the KPST and ICLab entries, on four project rows and once in DocsHunt. Density is deliberately uneven — Publications is the dense passage, Toolkit and Recognition are the reader's breath — because a real record is not uniformly interesting, and two places break the grammar on purpose with no caption.
+One device, repeated, is the handwriting: **the measurement strip / readout cell / leader tick family** appears on `work.html`: in the KPST and ICLab entries, on four project rows and once in DocsHunt. Density is deliberately uneven — Publications is the dense passage, News and Recognition are the reader's breath — because a real record is not uniformly interesting, and two places break the grammar on purpose with no caption.
 
 **Key Characteristics:**
 
@@ -192,13 +187,13 @@ Every custom property on `:root`, both themes, with its role. **RENAME-FORBIDDEN
 | Token | Light | Dark | Role |
 |---|---|---|---|
 | `--field` | `#edf1f3` | `#141c22` | Page ground: instrument paper, never pure white. Also the text color inside inverted keys, the focus inner ring, and the skip link's text. |
-| `--surface` | `#f8fafb` | `#1c262e` | **RENAME-FORBIDDEN.** Strip cells, readout cells, plate groups, marker rows, the contact bar, ghost keys, the theme button, the targeted record row, and the pet toggle's ground. |
+| `--surface` | `#f8fafb` | `#1c262e` | **RENAME-FORBIDDEN.** Strip cells, readout cells, marker rows, the contact bar, ghost keys, the theme button, the targeted record row, and the pet toggle's ground. |
 | `--surface-2` | `#e2e8ec` | `#232f38` | The third tint step. **Declared in all four `:root` blocks and in the print override, and currently spent on nothing.** It is kept as the ladder's top rung for a future surface; it is not a rule that anything must use it. |
 | `--ink` | `#101a20` | `#e7eef2` | Display, section headings, titles, emphasized values, marker names, the identity line, and the primary key's ground. |
 | `--ink-soft` | `#3a4a54` | `#a8b8c2` | Body prose, descriptions, dates, venues, authors, statuses, contribution clauses, nav at rest, group headings, the pet toggle's resting edge (site-side override), scrollbar thumb on hover. |
 | `--ink-faint` | `#566772` | `#8ba0ad` | **RENAME-FORBIDDEN.** Axis ticks (`.t0` / `.t1`) — *and nothing else on the page*. Also the pet's sleep z's. |
 | `--line` | `#d2dade` | `#2b3944` | **RENAME-FORBIDDEN.** Decorative hairlines only: the header's bottom rule, section top rules, work-entry and track rules, the declared lane rule at ≥1200px. Also the pet toggle's resting edge in `pet.css`. |
-| `--line-2` | `#b9c4ca` | `#3b4c58` | **Structural hairlines.** Record-row dividers, ledger-row dividers, marker rows, and the ground behind `gap: 1px` inside the strip and the plate. Introduced so `--line` could keep its pet-facing job while structural divisions got a heavier, legible step. |
+| `--line-2` | `#b9c4ca` | `#3b4c58` | **Structural hairlines.** Record-row dividers, ledger-row dividers, marker rows, and the ground behind `gap: 1px` inside the strip. Introduced so `--line` could keep its pet-facing job while structural divisions got a heavier, legible step. |
 | `--line-strong` | `#74838e` | `#6b7f8d` | **RENAME-FORBIDDEN.** Every control and container edge, the axis gutter's right border, the ground line, leader-tick horizontals, the dotted marker leader, the scrollbar thumb. Also the pet toggle's chrome. |
 | `--sig` | `#0a6f80` | `#5fd0e6` | **CH1, the committed channel.** The hero trace and step, axis brackets, every link, chip borders and text, artifact-link underlines, tick marks, the primary key's under-edge, the measurement cursors, the focus ring, `caret-color` and `accent-color`. |
 | `--sig-2` | `#063f4a` | `#a5e8f5` | **A darker (light) / lighter (dark) step of CH1.** Link, chip, nav and artifact-link hover only. It was blue-violet in the previous build; it is no longer a second hue, and it must not become one again. |
@@ -238,7 +233,7 @@ There is no `--grat` and no graticule layer. The paper palette for print is a fi
 | Lead | `clamp(1.2rem, 2vw, 1.5rem)` | the hero thesis, once |
 | Title | `1.15rem` | full publication titles on `publications.html` |
 | Body | `1.0625rem` | default; also the wordmark, ledger `h3`, and the project `h4` that opens a block on `work.html` |
-| Secondary | `0.9375rem` | contribution clauses, author lists, descriptions, findings, plate items, marker names, ledger prose, key labels |
+| Secondary | `0.9375rem` | contribution clauses, author lists, descriptions, findings, marker names, ledger prose, key labels |
 | Label | `0.8125rem` | nav, annotations, strip labels, statuses, venues, years, colophon, Details keys |
 | Tick | `0.75rem` | axis ticks, chips, notes |
 
@@ -260,7 +255,7 @@ This exists for one reason and it is not aesthetic. **`pet.js` measures the hero
 
 ### Measures
 
-The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry descriptions at 70ch, contribution clauses at 72ch, findings and ledger prose at 74ch.
+The thesis caps at 40ch (dropped at ≤520px), entry descriptions at 70ch, contribution clauses at 72ch, findings and ledger prose at 74ch.
 
 ### Named Rules
 
@@ -270,7 +265,7 @@ The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry desc
 
 **The Width-Not-Weight Rule.** Emphasis in headings comes from the width axis (112 / 118 / 125) at a constant 640 weight. Reaching for a heavier weight or a second family to make something louder is off-system.
 
-**The Plain-Heading Rule.** Section headings are plain nouns — Work, Publications, Projects, Toolkit, Recognition — by the owner's decision of 2026-09-08. Spans live in the rail ticks; counts and spans never go in a heading, and never as a slogan.
+**The Plain-Heading Rule.** Section headings are plain — News, Work, Publications, Recognition and Beyond research on the home page, Work and Projects on `work.html` — by the owner's decision of 2026-09-08; the home list is as he set it on 2026-11-26. Spans live in the rail ticks; counts and spans never go in a heading, and never as a slogan.
 
 ## Layout
 
@@ -280,19 +275,18 @@ The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry desc
 
 **The two-column row.** Every section on every page is `.row` — `grid-template-columns: 132px minmax(0,1fr)`, `gap: 0 27px`. The left column is the **axis gutter**: a `--line-strong` right border, a 2px CH1 span bracket inset 6px top and bottom, and two mono ticks — `t0` at the top and `t1` pinned to the bottom — reading that section's real date span. Small-multiples logic: each band carries its own local time axis, so sequence is carried by years that mean something rather than by section numbers.
 
-**The hero has no rail.** `.hero .row { display: block }`. The name owns the whole measure, which is what buys the perch its clear space. Below it, `.hero-body` is a two-column grid with named areas — `"left more" / "cta cta"` at `minmax(0,1.5fr) minmax(0,1fr)` — so the portrait and thesis sit on the left, the lead and the two affiliation lines on the right, and one row of four keys (email, résumé, Work, Publications) runs under both.
+**The hero has no rail.** `.hero .row { display: block }`. The name owns the whole measure, which is what buys the perch its clear space. Below it, `.hero-body` is a grid with named areas — `"pic text" / "cta cta"` at `108px minmax(0,1fr)` — so the portrait sits on the left with one column of text beside it (the thesis, a one-line "Now:" statement in `--ink`, and one affiliation line at label size), and one row of two keys (the résumé as the primary key, then email) runs under both. The portrait has alt text and no caption. Until 2026-11-26 the hero had a second text column, a caption and four keys; the owner cut it to this.
 
 **The declared lane (≥1200px).** `.row > :last-child { max-width: calc(100% - 120px); padding-right: 9px; border-right: 1px solid var(--line) }`. The record column stops 120px short of the sheet's right edge and declares that stop with a hairline; content stops a further 9px short of the rule, so no plate edge ever coincides with it. **The band beyond the rule is the dragon's, and it is marked rather than merely empty.**
 
-**The header.** 46px minimum height, `position: sticky; top: 0`, `z-index: 10`, on `--field` with a 1px `--line` bottom rule. Wordmark as real text at left in a 44px target, five section links pushed right by `margin-left: auto`, one theme button at the far right. On the home page all five links are local. On `work.html` and `publications.html` the wordmark links to `index.html`, and each link goes to its band in full wherever that lives — Work and Projects on `work.html`, Publications on `publications.html`, Toolkit on the home page — as a bare `#id` when the band is on the same page; Contact is always local. No page sets a static `aria-current`.
+**The header.** 46px minimum height, `position: sticky; top: 0`, `z-index: 10`, on `--field` with a 1px `--line` bottom rule. Wordmark as real text at left in a 44px target, four section links (News, Work, Publications, Contact) pushed right by `margin-left: auto`, one theme button at the far right. On the home page all four links are local. On `work.html` and `publications.html` the wordmark links to `index.html`, and each link goes to its band in full wherever that lives — News on the home page, Work on `work.html`, Publications on `publications.html` — as a bare `#id` when the band is on the same page; Contact is always local. No page sets a static `aria-current`.
 
 **Responsive.**
 
 - **≤1010px** — on `work.html` the dates in a workplace head drop under the workplace name (`flex-basis: 100%`), so they never sit alone at the far edge.
-- **≤900px** — the axis gutter collapses: `.row` becomes one column and `.axis-cell` flips to a full-width bottom-bordered strip with its two ticks pushed apart, so chronology survives as an inline dated rule above each band. `.hero-line` goes block and the h1 is allowed to wrap; `.step` is hidden and **the trace survives as a pseudo-element on `.hero-line`** — a 24px low run with a right-hand riser, both 2px CH1. `.hero-body` becomes one column ordered left / more / cta. Record rows unstack to block flow. The Toolkit band goes single-column.
-- **≤725px** — the hero's email key takes a row of its own, so the other three keys stay together.
-- **≤699px** — nav drops Projects and Toolkit, leaving Work · Publications · Contact (Work · Contact at ≤400px); strips become a 3-column grid; the footer's bottom lane drops 150px → 63px, because **that is the same predicate `pet.css` uses to hide the pet and his toggle**; the colophon swaps to its narrow, width-honest sentence.
-- **≤520px** — the thesis drops its measure cap, the CTA keys stretch to fill their rows — email, then the résumé, then Work and Publications side by side — the wordmark drops to label size, plate groups go single-column, and chips, artifact links and the band Details keys grow to a 44px target.
+- **≤900px** — the axis gutter collapses: `.row` becomes one column and `.axis-cell` flips to a full-width bottom-bordered strip with its two ticks pushed apart, so chronology survives as an inline dated rule above each band. `.hero-line` goes block and the h1 is allowed to wrap; `.step` is hidden and **the trace survives as a pseudo-element on `.hero-line`** — a 24px low run with a right-hand riser, both 2px CH1. `.hero-body` becomes one column ordered portrait / text / keys. Record rows unstack to block flow.
+- **≤699px** — strips become a 3-column grid; the footer's bottom lane drops 150px → 63px, because **that is the same predicate `pet.css` uses to hide the pet and his toggle**; the colophon swaps to its narrow, width-honest sentence.
+- **≤520px** — nav drops News, leaving Work · Publications · Contact (Work · Contact at ≤400px); the thesis drops its measure cap, the two hero keys stretch to fill a row each, the wordmark drops to label size, and chips, artifact links and the band Details keys grow to a 44px target.
 - **≤400px** — chips may wrap, strip values drop to `0.9375rem` in `9px 8px` cells, and a readout value never breaks, so a measured value is not split across lines on the narrowest phones.
 
 **Print.** A paper palette overrides both themes at once; the ground line, the pet, his toggle, the skip link and the theme button are hidden; the header un-sticks; every `--surface` container goes white; external `href`s print after their link text; the bottom lane goes to zero.
@@ -312,7 +306,7 @@ The thesis caps at 40ch (dropped at ≤520px), the hero lead at 52ch, entry desc
 - **Tint steps:** `--field` (page) → `--surface` (cells, rows, plates, keys) → `--surface-2` (unspent). A container is "raised" by being lighter than its ground, nothing more.
 - **Three rule weights:** 1px `--line` (decorative separation) → 1px `--line-2` / `--line-strong` (structural divider, then container and control edge) → 2px `--sig` (a trace, an axis, a cursor, a live edge). The 3px CH1 under-edge on the primary key is the one heavier mark, and it is a key's own trace.
 
-Multi-cell containers get their internal dividers for free: `.strip` and `.plate` set `background: var(--line-2)` with `gap: 1px`, so the ground shows through as hairlines between `--surface` cells. One border, no per-cell rules.
+Multi-cell containers get their internal dividers for free: `.strip` sets `background: var(--line-2)` with `gap: 1px`, so the ground shows through as hairlines between `--surface` cells. One border, no per-cell rules.
 
 The only `box-shadow` in `site.css` is `0 0 0 1px var(--field)` on `:focus-visible` — a hard inner ring so focus survives every ground. It carries no blur and no offset by design.
 
@@ -324,8 +318,8 @@ The only `box-shadow` in `site.css` is `0 0 0 1px var(--field)` on `:focus-visib
 
 **Corner language splits on a real affordance.** Everything you read is square; everything you press is a 7px key.
 
-- **Square (radius 0):** strips, cells, plates, marker tables, record rows, ledger rows, chips, the contact bar, the portrait, every rule and divider. 1px `--line-strong` edges.
-- **Key (radius 7px):** the four hero keys, the three Details keys in the home band heads, the six footer contact keys, the theme button, the skip link (`0 0 7px 7px`), and — critically — **`#pet-toggle`**, whose 7px radius is hardcoded in `pet.css`. The radius was chosen to match it, so the dragon's toggle joins a family instead of being the one round object on the page.
+- **Square (radius 0):** strips, cells, marker tables, record rows, ledger rows, chips, the contact bar, the portrait, every rule and divider. 1px `--line-strong` edges.
+- **Key (radius 7px):** the two hero keys, the two Details keys in the home band heads, the six footer contact keys, the theme button, the skip link (`0 0 7px 7px`), and — critically — **`#pet-toggle`**, whose 7px radius is hardcoded in `pet.css`. The radius was chosen to match it, so the dragon's toggle joins a family instead of being the one round object on the page.
 - **2px:** the focus-ring radius on non-key elements, and the scrollbar thumb.
 
 **The ground line.** `body::after` — a fixed 2px `--line-strong` bar at `bottom: 12px`, full width, `z-index: -1`, `pointer-events: none`. It is the page's only fixed painted mark and it is exactly where `pet.js` puts Charizard's feet (`groundY = vh − BOX_H − GROUND_PAD`, `GROUND_PAD = 12`). The same weight reappears once in the hero as the 2px `--ink` rule under the name — one line, seen twice.
@@ -342,8 +336,8 @@ The only `box-shadow` in `site.css` is `0 0 0 1px var(--field)` on `:focus-visib
 
 - **Shape:** 7px radius, 44px minimum height, `0 22px` padding, 9px gap before the `↗` glyph.
 - **Ghost (default):** `--surface` ground, `--ink` text, 1px `--line-strong` edge. Hover moves both edge and text to `--sig`.
-- **Primary:** `--ink` ground, `--field` text, and a **3px `--sig` bottom edge** — the key's own trace. It is used twice on the home page (hero and footer) and once in the footer of `work.html` and of `publications.html`, each time labelled with the literal email address, and each carries `user-select: all` so the address can be lifted in one gesture. Hover swaps the ground to `--ink-soft` and keeps the CH1 under-edge.
-- **Small (`.key.sm`):** the one Details key in the heading row of each of the Work, Publications and Projects bands (`.band-head`, beside the `h2`) — a ghost key at 36px minimum height (44px at ≤520px), `0 16px` padding and a label-size "Details →". It opens the band in full: Work at `work.html`, Publications at `publications.html`, Projects at `work.html#projects`.
+- **Primary:** `--ink` ground, `--field` text, and a **3px `--sig` bottom edge** — the key's own trace. It is used twice on the home page — the résumé key in the hero (the owner's ruling of 2026-11-26; email was primary there before) and the email key in the footer — and once, on the email key, in the footer of `work.html` and of `publications.html`. Every key that carries the email address, primary or ghost, has `user-select: all` (`.key[href^="mailto:"]`) so the address can be lifted in one gesture. Hover swaps the ground to `--ink-soft` and keeps the CH1 under-edge.
+- **Small (`.key.sm`):** the one Details key in the heading row of the home page's Work and Publications bands (`.band-head`, beside the `h2`) — a ghost key at 36px minimum height (44px at ≤520px), `0 16px` padding and a label-size "Details →". It opens the band in full: Work at `work.html` (which also holds the project list), Publications at `publications.html`.
 - **Focus:** 2px `--sig` outline at 2px offset plus the 1px `--field` inner ring, radius bumped back to 7px.
 - Transitions are 0.16s ease on border, color and background. Nothing moves, scales, or lifts.
 
@@ -353,7 +347,7 @@ The only `box-shadow` in `site.css` is `0 0 0 1px var(--field)` on `:focus-visib
 
 ### Nav links (header)
 
-13px/500 in `--ink-soft`, 5px/9px padding, 28px minimum height. The active section is bracketed by **two 1px `--sig` cursor rules** — transparent left and right borders that take color on `.active` — and the text goes to `--ink`. Driven by an IntersectionObserver at `rootMargin: -45% 0px -50% 0px`; `aria-current="true"` moves with the bracket. Hover is `--sig-2`. Below 700px the third and fourth links are hidden, leaving Work · Publications · Contact; at ≤400px Publications goes too. Every page carries the same five links in the same order, and the observer skips links whose target is not on the page. The row never becomes a clipped scroller and never becomes a menu.
+13px/500 in `--ink-soft`, 5px/9px padding, 28px minimum height. The active section is bracketed by **two 1px `--sig` cursor rules** — transparent left and right borders that take color on `.active` — and the text goes to `--ink`. Driven by an IntersectionObserver at `rootMargin: -45% 0px -50% 0px`; `aria-current="true"` moves with the bracket. Hover is `--sig-2`. At ≤520px News is hidden, leaving Work · Publications · Contact; at ≤400px Publications goes too. Both rules match the link by its target (`[href$="#news"]`, `[href$="#research"]`), not by position, so they hold on every page. Every page carries the same four links in the same order — News, Work, Publications, Contact — and the observer skips links whose target is not on the page. The row never becomes a clipped scroller and never becomes a menu.
 
 ### Measurement strip
 
@@ -369,9 +363,9 @@ The only `box-shadow` in `site.css` is `0 0 0 1px var(--field)` on `:focus-visib
 
 `grid-template-columns: 118px 148px minmax(0,1fr) 96px`, `18px 10px` padding, baseline-aligned, divided by 1px `--line-2` top rules. Venue (mono), status (mono + dash-coded tick), title (600, `--ink`, 1.15rem, `wdth 112`, its link underlined in CH1), and author position right-aligned in the 96px column. Then, in column three: the author list with his name at `--ink` 600, **a first-person contribution clause (`.pub-did`, 72ch) naming what he built**, and a row of artifact links plus an optional mono `.note`.
 
-That full row lives on `publications.html`. The home page carries the record in brief (`ol.record.brief`, same `pub-*` ids): the same four columns at `104px 148px minmax(0,1fr) 88px` with a status that never wraps, `12px 10px` padding, the title as plain text at `1rem`, and nothing under it — no authors, no contribution clause, no artifact links.
+That full row lives on `publications.html`. The home page carries the record in brief (`ol.record.brief`, same `pub-*` ids): three columns at `104px 148px minmax(0,1fr)` with a status that never wraps and `12px 10px` padding: venue, status, then the title at `1rem`, linked to the paper wherever `publications.html` links it (the JKAIA title stays plain), with the full author list under it at `.875rem` and his name at `--ink` 600. No `N / M` string, no contribution clause, no artifact links.
 
-**The author position is visible at every width**, on the brief row and the full row alike. `author N / M` — the word included, not a `title` attribute, not hidden by a column label. Below 900px the row unstacks to block flow and the same string simply moves down.
+**The author position is visible at every width.** On the full row and on the chips of `work.html` it is the string `author N / M` — the word included, not a `title` attribute, not hidden by a column label; below 900px the row unstacks to block flow and the same string simply moves down. On the brief row it is the full author list with his name marked, by the owner's ruling of 2026-11-26.
 
 ### Work entry
 
@@ -379,11 +373,11 @@ The Work entry lives on `work.html`, workplace first. Its `.entry-head` is the s
 
 ### Ledger row (projects)
 
-Not a card. `18px 0`, 1px `--line-2` top rule. A head line of title + role + right-pushed mono year, a 74ch description, then a foot of readout cells, chips and artifact links. **A readout cell appears only where a real measured number exists**; four of six rows have one, and that unevenness is the design. On the home page the same row carries Work and Projects as an index: head line and one sentence that renders on one line at 600px and wider, and no link on any row (the Allah-u-Allam row carries its NDA note in the head line); no foot. The way into the detail is the one Details key in the band's heading row. Readout cells, chips and repository links live on `work.html`. The `← Back to the home page` link that closes Projects on `work.html` and the record on `publications.html` sits in its own `.row.after` under the dated axis so the last tick stays on the last dated row; below 520px it keeps its 24px line and takes its 44px target from an `::after` hit area, and so does the `← Home` link in `.page-head`.
+Not a card. `18px 0`, 1px `--line-2` top rule. A head line of title + role + right-pushed mono year, a 74ch description, then a foot of readout cells, chips and artifact links. **A readout cell appears only where a real measured number exists**; four of six rows have one, and that unevenness is the design. On the home page the same row carries Work as an index: head line and one first-person sentence, two lines at most on a laptop, that works in a result where `work.html` states one, with no link on any row and no foot. The single HSN Academy row under "Beyond research" is the same row. The way into the detail is the one Details key in the band's heading row. Readout cells, chips and repository links live on `work.html`. The `← Back to the home page` link that closes Projects on `work.html` and the record on `publications.html` sits in its own `.row.after` under the dated axis so the last tick stays on the last dated row; below 520px it keeps its 24px line and takes its 44px target from an `::after` hit area, and so does the `← Home` link in `.page-head`.
 
-### Plate and markers (Toolkit & Recognition)
+### Markers (News & Recognition)
 
-Two bands, one after the other, each in its own `.row` with its own `h2`. **Toolkit** is a bordered plate of four `label + list` groups on a `--line-2` ground (`150px` label column, items joined by a `--line-strong` middot); its axis cell carries no ticks. **Recognition** is a bordered ledger of six rows, each `96px minmax(0,1fr)`: the year first in `--font-data` at `.8125rem`, then the award with its name in `--ink` 600 and the result in `--ink-soft`; rows divide on `--line-2`, and the rail ticks read 2025 / 2018. No leaders, no fold: every award has its own row and its own year, the six at equal weight by the owner's decision.
+Two bands on the home page, each in its own `.row` with its own `h2`, share one component: a bordered `--surface` ledger of rows, each `96px minmax(0,1fr)`, with the date first in `--font-data` at `.8125rem`, then the item with its name in `--ink` 600 and the rest in `--ink-soft`; rows divide on `--line-2`. **News** sits between the hero and Work: one `<li>` per item, newest first, the date as month and year, the paper title in quotation marks as the name; its rail carries a single tick while every item falls in one year. **Recognition** has four rows by the owner's decision of 2026-11-26 (six before), the year leading each, and its rail ticks read 2025 / 2018. No leaders, no fold: every item has its own row and its own date. The Toolkit plate that used to sit before Recognition was removed on the same day, with its CSS.
 
 ### Chip / artifact link
 
@@ -432,7 +426,7 @@ The one piece of delight, and it is pure CSS. A chip on `work.html` targets its 
 - **Don't** add fade-up, parallax, or scroll-triggered reveals. Motion in this world is one cursor sweep that stops, and a 0.16s color change.
 - **Don't** demote a date, venue, author, or status to `--ink-faint`, and don't spend `--signal` or `--accent` on the page.
 - **Don't** add a third font family or reach for a heavier weight — emphasis comes from the width axis.
-- **Don't** hide the author position, the status, or the `N / M` string at any width, and don't turn any of them into a `title` attribute.
+- **Don't** hide the author position or the status at any width — the `N / M` string on a full row or a chip, the marked name in the author list on a brief row — and don't turn either into a `title` attribute.
 - **Don't** add any `<input>`, `<textarea>`, `contenteditable`, or free-text `<select>`, ever, and don't take `:target` away from `.record li`.
 
 ## Maintenance

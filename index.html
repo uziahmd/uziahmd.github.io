@@ -33,10 +33,9 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
 <header class="bar">
   <a class="brand" href="#top">Uzair Ahmed</a>
   <nav class="bar-nav" aria-label="Sections">
+    <a href="#news">News</a>
     <a href="#work">Work</a>
     <a href="#research">Publications</a>
-    <a href="#projects">Projects</a>
-    <a href="#stack">Toolkit</a>
     <a href="#contact">Contact</a>
   </nav>
   <button id="themeToggle" class="tbtn" type="button"><span class="sr">Switch to </span><span class="tlabel">Dark</span></button>
@@ -53,27 +52,36 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
           <div class="step" aria-hidden="true"><i></i></div>
         </div>
         <div class="hero-body">
-          <div class="hero-left">
-            <figure class="portrait-fig"><img class="portrait" src="uzi_img.jpeg" width="400" height="400" alt="Portrait of Uzair Ahmed" /><figcaption>Uzair Ahmed, 2026</figcaption></figure>
+          <figure class="portrait-fig"><img class="portrait" src="uzi_img.jpeg" width="400" height="400" alt="Portrait of Uzair Ahmed" /></figure>
+          <div class="hero-text">
             <p class="hero-thesis">I build vision-language and LLM systems that run in production, and I measure what they actually do.</p>
-          </div>
-          <div class="hero-more">
-            <p class="hero-lead">Currently shipping an industrial-safety streaming VLM at KPST that monitors continuous CCTV feeds with constant memory usage to trigger live hazard alarms.</p>
-            <ul class="annot" role="list">
-              <li>AI Researcher @ KPST (Daejeon)</li>
-              <li>B.S. Computer Science &amp; Business Tech, KAIST ('26)</li>
-            </ul>
+            <p class="hero-lead">Now: streaming VLM for factory-safety CCTV, 83% F1 on held-out cameras.</p>
+            <p class="annot">AI Researcher @ KPST · B.S. CS &amp; Business Tech, KAIST '26</p>
           </div>
           <div class="cta-row">
-            <a class="key primary" href="mailto:uziahmd@outlook.com?subject=From%20your%20site">uziahmd@outlook.com</a>
-            <a class="key" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
-            <a class="key" href="work.html">Work<span class="sr">: work and projects in full</span><span class="arw" aria-hidden="true">→</span></a>
-            <a class="key" href="publications.html">Publications<span class="sr">: publications in full</span><span class="arw" aria-hidden="true">→</span></a>
+            <a class="key primary" href="Uzair_Ahmed_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) <span class="arw" aria-hidden="true">↗</span><span class="sr"> (opens in new tab)</span></a>
+            <a class="key" href="mailto:uziahmd@outlook.com?subject=From%20your%20site">uziahmd@outlook.com</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- NEWS — newest first. To add an item, copy one <li> line to the top of the list
+       and change its date and text. If its year is outside the tick in the axis cell,
+       make the first tick the newest year and add <span class="t1">oldest year</span>. -->
+  <section id="news">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span></div>
+      <div>
+        <h2>News</h2>
+        <ul class="markers" role="list">
+          <li><span class="m-year">Aug 2026</span><span class="m-name"><b>“Can LLMs Reliably Self-Report Adversarial Prefills, and How?”</b> accepted to EMNLP 2026.</span></li>
+          <li><span class="m-year">Jul 2026</span><span class="m-name"><b>“CrossShift: Quantifying Interpersonal Differences in Mobile Sensing for Mental Health”</b> accepted to ACM IMWUT 2026.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- WORK -->
   <section id="work">
@@ -87,7 +95,7 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
         <ul class="ledger" role="list">
           <li id="work-kpst">
             <div class="l-head"><h3>KPST</h3><span class="l-role">AI Researcher</span><span class="l-year">Feb 2026 — Present</span></div>
-            <p>Video AI for security and factory-safety cameras, and a drone app for ETRI.</p>
+            <p>I build video AI for security and factory-safety cameras, and I built a drone fault-diagnosis app that I delivered to ETRI in August 2026.</p>
           </li>
           <li id="work-kd">
             <div class="l-head"><h3>Knowledge &amp; Democracy Lab, KAIST</h3><span class="l-role">Undergraduate Researcher</span><span class="l-year">Aug 2025 — Feb 2026</span></div>
@@ -95,11 +103,11 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
           </li>
           <li id="work-iclab">
             <div class="l-head"><h3>ICLab, KAIST</h3><span class="l-role">Undergraduate Researcher</span><span class="l-year">May 2023 — Jun 2025</span></div>
-            <p>Two years of in-the-wild stress prediction from mobile sensor data.</p>
+            <p>I spent two years on in-the-wild stress prediction from mobile sensor data, and the personalization I led raised AUROC from 0.503 to 0.676 on DeepStress.</p>
           </li>
           <li id="work-docshunt">
             <div class="l-head"><h3>DocsHunt AI</h3><span class="l-role">AI Engineer</span><span class="l-year">Jun 2024 — Aug 2024</span></div>
-            <p>I built and productionized a multilingual document-generation pipeline.</p>
+            <p>I built and productionized a multilingual document-generation pipeline, and cut its average generation time from 10 s to 3 s per document.</p>
           </li>
         </ul>
       </div>
@@ -119,101 +127,34 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
           <li id="pub-imwut26">
             <span class="pub-venue">ACM IMWUT</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2026</span>
-            <span class="pub-title">CrossShift: Quantifying Interpersonal Differences in Mobile Sensing for Mental Health</span>
-            <span class="pub-pos"><span class="pl">author </span><b>5</b> / 9</span>
+            <span class="pub-title"><a href="https://doi.org/10.1145/3831954" target="_blank" rel="noopener">CrossShift: Quantifying Interpersonal Differences in Mobile Sensing for Mental Health<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">P. Zhang, M. Park, T. Ismatzoda, A. Mustafakulov, <span class="me">U. Ahmed</span>, O. Najimov, J. Alikhanov, S. Ghosh, U. Lee</span>
           </li>
           <li id="pub-emnlp26">
             <span class="pub-venue">EMNLP</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2026</span>
-            <span class="pub-title">Can LLMs Reliably Self-Report Adversarial Prefills, and How?</span>
-            <span class="pub-pos"><span class="pl">author </span><b>2</b> / 3</span>
+            <span class="pub-title"><a href="https://arxiv.org/abs/2606.23671" target="_blank" rel="noopener">Can LLMs Reliably Self-Report Adversarial Prefills, and How?<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">Q. M. Nguyen, <span class="me">U. Ahmed</span>, T. Kim</span>
           </li>
           <li id="pub-chiea25">
             <span class="pub-venue">CHI EA</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2025</span>
-            <span class="pub-title">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features</span>
-            <span class="pub-pos"><span class="pl">author </span><b>3</b> / 4</span>
+            <span class="pub-title"><a href="https://dl.acm.org/doi/full/10.1145/3706599.3719776" target="_blank" rel="noopener">CausalCFF: Causal Analysis between User Stress Level and Contextually Filtered Features<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">P. Zhang, G. Jung, <span class="me">U. Ahmed</span>, U. Lee</span>
           </li>
           <li id="pub-imwut24">
             <span class="pub-venue">ACM IMWUT</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2024</span>
-            <span class="pub-title">A Reproducible Stress Prediction Pipeline with Mobile Sensor Data</span>
-            <span class="pub-pos"><span class="pl">author </span><b>4</b> / 5</span>
+            <span class="pub-title"><a href="https://dl.acm.org/doi/10.1145/3678578" target="_blank" rel="noopener">A Reproducible Stress Prediction Pipeline with Mobile Sensor Data<span class="sr"> (opens in new tab)</span></a></span>
+            <span class="pub-authors">P. Zhang, G. Jung, J. Alikhanov, <span class="me">U. Ahmed</span>, U. Lee</span>
           </li>
           <li id="pub-jkaia23">
             <span class="pub-venue">JKAIA</span>
             <span class="pub-status"><span class="tick" aria-hidden="true"></span>2023</span>
             <span class="pub-title">Standing on the Shoulders of Language Giants: Improving LLM Capabilities on Low-Resource Languages through Pivots</span>
-            <span class="pub-pos"><span class="pl">author </span><b>1</b> / 5</span>
+            <span class="pub-authors"><span class="me">U. Ahmed</span>, M. F. Zahid, H. Ahmad, A. Oh, J. Thorne</span>
           </li>
         </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="row">
-      <div class="axis-cell" aria-hidden="true"><span class="t0">2026</span><span class="t1">2019</span></div>
-      <div>
-        <div class="band-head">
-          <h2>Projects</h2>
-          <a class="key sm" href="work.html#projects">Details<span class="sr">: projects in full</span><span class="arw" aria-hidden="true">→</span></a>
-        </div>
-        <ul class="ledger" role="list">
-          <li id="smart-binarization">
-            <div class="l-head"><h3>Smart Binarization</h3><span class="l-role">LLM quantization</span><span class="l-year">2026</span></div>
-            <p>LLM post-training quantization that binarizes all but the salient weights.</p>
-          </li>
-          <li id="hierarchical-rag">
-            <div class="l-head"><h3>Allah-u-Allam</h3><span class="l-role">Hierarchical RAG · Freelance</span><span class="note">client work · NDA</span><span class="l-year">2025</span></div>
-            <p>Air-gapped hierarchical RAG over 96+ canonical texts, served offline.</p>
-          </li>
-          <li id="signature-verification">
-            <div class="l-head"><h3>Signature Forgery Verification</h3><span class="l-role">ViT &amp; CNNs</span><span class="l-year">2024</span></div>
-            <p>Signature pair verification over 500 identities, comparing CNN and ViT.</p>
-          </li>
-          <li id="pivot-assisted">
-            <div class="l-head"><h3>Pivot-Assisted Consensus</h3><span class="l-role">KAIST</span><span class="l-year">2023</span></div>
-            <p>Zero-shot routing of low-resource inputs through high-resource pivots.</p>
-          </li>
-          <li id="alphahand">
-            <div class="l-head"><h3>AlphaHand</h3><span class="l-role">Vision + control</span><span class="l-year">2023</span></div>
-            <p>A rock-paper-scissors robot driven by real-time hand-gesture recognition.</p>
-          </li>
-          <li id="hsn-academy">
-            <div class="l-head"><h3>HSN Academy</h3><span class="l-role">Growth &amp; operations</span><span class="l-year">2019 — 2022</span></div>
-            <p>Helped scale my brother's online K-12 academy: funnel and enrollment.</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLKIT -->
-  <section id="stack">
-    <div class="row">
-      <div class="axis-cell" aria-hidden="true"></div>
-      <div>
-        <h2>Toolkit</h2>
-        <div class="plate">
-          <div class="group">
-            <h3>Programming</h3>
-            <ul role="list"><li>Python</li><li>C</li><li>OCaml</li><li>Kotlin</li><li>SQL</li></ul>
-          </div>
-          <div class="group">
-            <h3>Modeling</h3>
-            <ul role="list"><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>XGBoost</li><li>Hugging Face (Transformers, PEFT, TRL)</li><li>OpenCLIP</li><li>PTQ / quantization</li><li>RAG</li><li>SGLang</li></ul>
-          </div>
-          <div class="group">
-            <h3>Evaluation &amp; tooling</h3>
-            <ul role="list"><li>CKA</li><li>eval-harness design</li><li>Hydra</li><li>Weights &amp; Biases</li><li>CUDA</li><li>FFmpeg</li><li>OpenCV</li><li>REST</li><li>AWS (S3, EC2)</li></ul>
-          </div>
-          <div class="group">
-            <h3>Spoken</h3>
-            <ul role="list"><li>English (fluent)</li><li>Urdu (native)</li><li>Korean (TOPIK 2)</li></ul>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -226,11 +167,25 @@ try{var _t=localStorage.getItem("theme");if(_t)document.documentElement.setAttri
         <h2>Recognition</h2>
         <ul class="markers" role="list">
           <li><span class="m-year">2025</span><span class="m-name"><b>WorldQuant Challenge</b>, Gold</span></li>
-          <li><span class="m-year">2025</span><span class="m-name">International Quant Competition, top 20%</span></li>
           <li><span class="m-year">2024</span><span class="m-name"><b>KAIST Lean Start-up</b> Industry Cooperation, winner</span></li>
           <li><span class="m-year">2018–2019</span><span class="m-name"><b>National Mathematics Olympiad</b>, top 5 in Pakistan</span></li>
-          <li><span class="m-year">2018–2019</span><span class="m-name">Cambridge IGCSE, distinction and top in Pakistan in International Mathematics</span></li>
           <li><span class="m-year">2018</span><span class="m-name"><b>Google Code-in</b>, runner-up</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND RESEARCH -->
+  <section id="beyond">
+    <div class="row">
+      <div class="axis-cell" aria-hidden="true"><span class="t0">2022</span><span class="t1">2019</span></div>
+      <div>
+        <h2>Beyond research</h2>
+        <ul class="ledger" role="list">
+          <li id="hsn-academy">
+            <div class="l-head"><h3>HSN Academy</h3><span class="l-role">Growth &amp; operations</span><span class="l-year">2019 — 2022</span></div>
+            <p>Helped scale my brother's online K-12 academy: funnel and enrollment.</p>
+          </li>
         </ul>
       </div>
     </div>
